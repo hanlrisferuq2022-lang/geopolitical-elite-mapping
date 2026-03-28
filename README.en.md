@@ -73,8 +73,8 @@ An end-to-end generation pipeline built on the project's built-in `SKILL.md`, de
 
 | File | Description |
 |------|-------------|
-| `[Topic]_EliteNetwork_Viewer.html` | Interactive graph viewer, opens directly in a browser; also the source file for importing into the Editor |
-| `[Topic]_EliteNetwork_Report.md` | Analysis report (actor profiles, confidence audit table, relationship verification, conclusions) |
+| `output/[Topic]_EliteNetwork_Viewer.html` | Interactive graph viewer, opens directly in a browser; also the source file for importing into the Editor |
+| `output/[Topic]_EliteNetwork_Report.md` | Analysis report (actor profiles, confidence audit table, relationship verification, conclusions) |
 | `generate_elite_network.py` | Graph generation script for reproduction and manual iteration |
 
 ## Module 2: Interactive Visual Editor

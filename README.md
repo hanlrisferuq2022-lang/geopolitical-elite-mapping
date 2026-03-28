@@ -76,8 +76,8 @@
 
 | 文件 | 说明 |
 |------|------|
-| `[Topic]_EliteNetwork_Viewer.html` | 交互式图谱查看器，可直接在浏览器中浏览，也是导入 Editor 的源文件 |
-| `[Topic]_EliteNetwork_Report.md` | 分析报告（行为体简介、置信度审计表、关系验证、分析结论） |
+| `output/[Topic]_EliteNetwork_Viewer.html` | 交互式图谱查看器，可直接在浏览器中浏览，也是导入 Editor 的源文件 |
+| `output/[Topic]_EliteNetwork_Report.md` | 分析报告（行为体简介、置信度审计表、关系验证、分析结论） |
 | `generate_elite_network.py` | 图谱生成脚本，可复现与手动迭代 |
 
 ## 模块二：交互式可视化编辑器 (Visual Editor)

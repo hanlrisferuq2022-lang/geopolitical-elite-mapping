@@ -34,8 +34,8 @@ description: "地缘政治精英网络图谱工具。适用于分析特定议题
 用户提供一个地缘政治议题关键词或描述：`"中东石油地缘政治"` / `"印太安全同盟"` / `"全球半导体供应链权力博弈"`
 
 ### 输出
-1. **`[Topic]_EliteNetwork_Viewer.html`** — 交互式图谱查看器（置信度编码进视觉，内置纪元筛选器）
-2. **`[Topic]_EliteNetwork_Report.md`** — 文字分析报告（行为体简介 + 置信度审计表 + 关系验证 + 分析结论）
+1. **`output/[Topic]_EliteNetwork_Viewer.html`** — 交互式图谱查看器（置信度编码进视觉，内置纪元筛选器）
+2. **`output/[Topic]_EliteNetwork_Report.md`** — 文字分析报告（行为体简介 + 置信度审计表 + 关系验证 + 分析结论）
 3. **`generate_elite_network.py`** — 图谱生成脚本（可复现、可迭代修改）
 
 ---
@@ -303,7 +303,7 @@ description: "地缘政治精英网络图谱工具。适用于分析特定议题
 
 8. **布局验证** — 生成查看器后按 [调试 checklist](references/visual_spec.md#6-调试-checklist) 检查
 
-**Phase 4 交付物**：`[Topic]_EliteNetwork_Viewer.html` 交互式查看器 + 生成脚本。
+**Phase 4 交付物**：`output/[Topic]_EliteNetwork_Viewer.html` 交互式查看器 + 生成脚本。
    - 由 `export_html()` 自动生成，内置纪元筛选器 + 时间线控件
    - 用户可通过左侧「📅 时代纪元」筛选器或底部时间线切换纪元视图
    - 支持多纪元叠加、单纪元独显、全部纪元（长曝光模式）
@@ -316,7 +316,7 @@ description: "地缘政治精英网络图谱工具。适用于分析特定议题
 
 **步骤**：
 
-1. **生成分析报告** (`[Topic]_EliteNetwork_Report.md`)：
+1. **生成分析报告** (`output/[Topic]_EliteNetwork_Report.md`)：
 
    **报告结构**（必须包含所有章节）：
 
