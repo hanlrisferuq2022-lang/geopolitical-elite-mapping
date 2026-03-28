@@ -1425,8 +1425,6 @@ window.m3ApplySuspectedStyle=applySuspectedStyle;
 .m2c-title{font-size:13px;font-weight:600;margin-bottom:8px}
 .m2c-msg{font-size:11px;color:var(--text-dim);line-height:1.6;margin-bottom:18px;white-space:pre-line}
 .m2c-btns{display:flex;gap:8px;justify-content:flex-end}
-body.edge-pick, body.edge-pick * {cursor:crosshair!important}
-body.edge-pick .canvas-wrap::after{content:'点击目标节点创建连线 (Esc 取消)';position:absolute;top:10px;left:50%;transform:translateX(-50%);background:rgba(59,130,246,.88);color:#fff;padding:5px 14px;border-radius:20px;font-size:10px;pointer-events:none;z-index:100;white-space:nowrap}
 </style>
 
 <div id="m2Modal" class="hidden">
@@ -1493,28 +1491,10 @@ window.onDataLoaded=function(data){
   },30);
 };
 
-/* ── Cy tap binding (双击 + edge pick 统一处理) ── */
+/* ── Cy tap binding ── */
 function bindCy(mode){
   const cy=window.cy;if(!cy)return;
-  try { cy.off('tap.m2'); cy.off('.m2'); } catch(e) {}
-  if(mode!=='edit')return;
-
-  cy.on('tap.m2',function(evt){
-    const t=evt.target;
-    // ── Edge pick mode ──
-    if(_pickSrc){
-      if(t===cy){ toast('未选中目标，请点击目标节点或按 Esc 注销','warn'); return; }
-      if(t.isNode && t.isNode() && !t.data('isGroup')){
-        const tid=t.id();
-        if(tid===_pickSrc){ toast('不能直连自己，请选择不同的目标节点','err'); return; }
-        const src=_pickSrc; cancelPick(); doAddEdge(src,tid);
-      } else {
-        toast('请点击目标节点','warn');
-      }
-      return;
-    }
-    // Double-click removed per user request, use right-click instead.
-  });
+  // Previously handled edge-pick mode here, now removed.
 }
 
 /* ── Mode change ── */
@@ -1523,8 +1503,6 @@ window.onModeChange=function(mode){
   if(h)h.textContent=mode==='edit'
     ?'✏️ 编辑模式 · 右键空白处新增节点 · 右键节点/连线编辑 · 右键删除'
     :'🖱 点击节点高亮邻居 · 悬停边查看详情 · 滚轮缩放';
-  if(mode==='view')cancelPick();
-  bindCy(mode);
 };
 
 /* ── Extend afterShowDetail: add edge-create button in edit mode ── */
@@ -1536,7 +1514,7 @@ window.afterShowDetail=function(d,panel){
   btn.className='btn btn-secondary';
   btn.style.cssText='display:block;margin:4px 12px 8px;font-size:10px;width:calc(100% - 24px)';
   btn.textContent='➕ 从此节点新增连线';
-  btn.onclick=()=>startPick(d.id);
+  btn.onclick=()=>doAddEdge(d.id);
   const ns=panel.querySelector('.note-section');
   ns?panel.insertBefore(btn,ns):panel.appendChild(btn);
 };
@@ -1544,7 +1522,6 @@ window.afterShowDetail=function(d,panel){
 /* ── Keyboard: undo/redo + escape ── */
 document.addEventListener('keydown',function(e){
   if(e.key==='Escape'){
-    cancelPick();
     if(!$i('m2Modal').classList.contains('hidden'))closeModal();
     const c=$i('m2Confirm');if(!c.classList.contains('hidden'))c.classList.add('hidden');
     return;
@@ -1679,11 +1656,46 @@ function getNodeVals(isEdit){
 function buildEdgeForm(ed,srcId,tgtId,isEdit){
   const data=getD();if(!data)return mk('div');
   const c=mk('div');
-  // Source → Target display
-  const srcN=data.nodes.find(n=>n.id===srcId),tgtN=data.nodes.find(n=>n.id===tgtId);
-  const sdsp=mk('div');sdsp.style.cssText='font-size:12px;padding:4px 0;color:var(--text)';
-  sdsp.textContent=((srcN&&(srcN.label||srcN.id))||srcId).replace(/\n/g,' ')+' → '+((tgtN&&(tgtN.label||tgtN.id))||tgtId).replace(/\n/g,' ');
-  c.appendChild(row('连接节点',sdsp));
+  const srcN=data.nodes.find(n=>n.id===srcId);
+  
+  if(isEdit){
+    // Source → Target display
+    const tgtN=data.nodes.find(n=>n.id===tgtId);
+    const sdsp=mk('div');sdsp.style.cssText='font-size:12px;padding:4px 0;color:var(--text)';
+    sdsp.textContent=((srcN&&(srcN.label||srcN.id))||srcId).replace(/\n/g,' ')+' → '+((tgtN&&(tgtN.label||tgtN.id))||tgtId).replace(/\n/g,' ');
+    c.appendChild(row('连接节点',sdsp));
+  } else {
+    // Dropdown + Search target selection
+    const wrap=mk('div');
+    const sTitle=mk('div');sTitle.style.cssText='font-size:12px;color:var(--accent);font-weight:600;margin-bottom:8px;';
+    sTitle.textContent='从：'+((srcN&&(srcN.label||srcN.id))||srcId).replace(/\n/g,' ');
+    const search=mk('input','m2-inp');search.id='m2eTgtFilter';search.placeholder='🔍 搜索节点...';search.style.marginBottom='6px';
+    const selEl=mk('select','m2-sel');selEl.id='m2eTgtSel';selEl.size=5;selEl.style.height='110px';
+    
+    const nodes=data.nodes.filter(n=>n.id!==srcId&&n.type!=='timeline');
+    nodes.forEach(n=>{
+      const opt=mk('option');opt.value=n.id;
+      opt.textContent=(n.label||n.id).replace(/\n/g,' ');
+      opt.dataset.searchText=opt.textContent.toLowerCase()+' '+n.id.toLowerCase();
+      selEl.appendChild(opt);
+    });
+    
+    search.oninput=()=>{
+      const v=search.value.toLowerCase().trim();
+      let firstVis=null;
+      Array.from(selEl.options).forEach(opt=>{
+        if(opt.dataset.searchText.includes(v)){
+          opt.style.display=''; if(!firstVis)firstVis=opt;
+        }else{
+          opt.style.display='none'; opt.selected=false;
+        }
+      });
+      if(firstVis&&!selEl.value)firstVis.selected=true;
+    };
+    if(selEl.options.length>0)selEl.options[0].selected=true;
+    wrap.append(sTitle,search,selEl);
+    c.appendChild(row('连接至 (目标) *',wrap));
+  }
   // Confidence + Direction
   c.appendChild(row('置信度 *',sel([['HIGH','HIGH'],['MED','MED'],['LOW','LOW'],['INFERRED','INFERRED']],isEdit?ed.confidence:'HIGH','m2eConf')));
   c.appendChild(row('方向 *',sel([['forward','→ forward'],['backward','← backward'],['both','↔ both']],isEdit?ed.direction:'forward','m2eDir')));
@@ -1724,13 +1736,24 @@ function buildEdgeForm(ed,srcId,tgtId,isEdit){
   return c;
 }
 
-function getEdgeVals(){
+function getEdgeVals(isEdit){
+  let tgtId=null;
+  if(!isEdit){
+    const selEl=$i('m2eTgtSel');
+    if(!selEl||!selEl.value){
+      if(selEl)selEl.classList.add('err');
+      toast('请选择目标节点','err');
+      return null;
+    }
+    tgtId=selEl.value;
+  }
+
   const conf=$i('m2eConf').value,dir=$i('m2eDir').value;
   const era=[];
   document.querySelectorAll('#m2Body [data-era-id]').forEach(cb=>{if(cb.checked)era.push(cb.dataset.eraId);});
   const label={};
   document.querySelectorAll('#m2Body [data-era-lbl-id]').forEach(li=>{if(li.value.trim())label[li.dataset.eraLblId]=li.value.trim();});
-  return{conf,dir,era,label};
+  return{conf,dir,era,label,tgtId};
 }
 
 /* ── Operations ── */
@@ -1795,11 +1818,15 @@ window.m2DeleteNode=function(ele){
   });
 };
 
-function doAddEdge(srcId,tgtId){
+function doAddEdge(srcId, initialTgtId){
   const data=getD();if(!data)return;
-  openModal('新增连线',buildEdgeForm(null,srcId,tgtId,false),'添加连线',function(){
-    const v=getEdgeVals();
+  // If initialTgtId is provided (e.g. from right-click context menu), we use the edit form layout to just show it
+  // Wait, right click is "将当前节点连接到此". I'll skip right-click for now since dropdown is requested as base.
+  openModal('新增连线',buildEdgeForm(null,srcId,null,false),'添加连线',function(){
+    const v=getEdgeVals(false);
+    if(!v) return;
     pushU();
+    const tgtId = v.tgtId;
     const eid='eid_'+Date.now()+'_'+Math.random().toString(36).slice(2,6);
     const ne={_eid:eid,source:srcId,target:tgtId,label:v.label,confidence:v.conf,direction:v.dir,era:v.era,user_note:'',suspected:false};
     data.edges.push(ne);
@@ -1841,18 +1868,7 @@ window.m2DeleteEdge=function(ele){
   window.editorState.markDirty();toast('🗑️ 连线已删除');
 };
 
-/* ── Edge pick mode ── */
-let _pickSrc=null;
-function startPick(srcId){
-  _pickSrc=srcId;
-  document.body.classList.add('edge-pick');
-  toast('请点击目标节点，创建从「'+srcId+'」出发的连线（Esc 取消）');
-}
-function cancelPick(){
-  if(!_pickSrc)return;
-  _pickSrc=null;
-  document.body.classList.remove('edge-pick');
-}
+// Pick mode logic removed in favor of robust modal dropdown.
 
 })();
 </script>
