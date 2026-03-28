@@ -72,7 +72,9 @@
 <title>SA_MBS&#45;&gt;SA_ARAMCO</title>
 <path fill="none" stroke="#cc2222" stroke-width="2.5" d="M1239,-410.59C1239,-369.34 1239,-298 1239,-298 1239,-298 1135.79,-298 1135.79,-298"/>
 <polygon fill="#cc2222" stroke="#cc2222" stroke-width="2.5" points="1135.79,-295.55 1128.79,-298 1135.79,-300.45 1135.79,-295.55"/>
-<text xml:space="preserve" text-anchor="middle" x="1216.5" y="-306.81" font-family="Arial" font-size="7.50" fill="#cc2222">国家完全控制</text>
+<text xml:space="preserve" text-anchor="middle" x="1185.38" y="-329.31" font-family="Arial" font-size="7.50" fill="#cc2222">2019 Aramco IPO(1.7万亿估值)</text>
+<text xml:space="preserve" text-anchor="middle" x="1185.38" y="-318.06" font-family="Arial" font-size="7.50" fill="#cc2222">国家100%战略控制</text>
+<text xml:space="preserve" text-anchor="middle" x="1185.38" y="-306.81" font-family="Arial" font-size="7.50" fill="#cc2222">2024重组下游扩张</text>
 </g>
 <!-- IR_SL -->
 <g id="node7" class="node">
@@ -88,7 +90,9 @@
 <path fill="none" stroke="#cc2222" stroke-width="2.5" d="M1244.1,-478.54C1244.1,-478.54 1244.1,-528 1244.1,-528 1244.1,-528 1978.73,-528 1978.73,-528 1978.73,-528 1978.73,-540.8 1978.73,-540.8"/>
 <polygon fill="#cc2222" stroke="#cc2222" stroke-width="2.5" points="1246.55,-478.54 1244.1,-471.54 1241.65,-478.54 1246.55,-478.54"/>
 <polygon fill="#cc2222" stroke="#cc2222" stroke-width="2.5" points="1976.28,-540.8 1978.73,-547.8 1981.18,-540.8 1976.28,-540.8"/>
-<text xml:space="preserve" text-anchor="middle" x="1561.59" y="-532.12" font-family="Arial" font-size="7.50" fill="#cc2222">2023中调沙伊复交</text>
+<text xml:space="preserve" text-anchor="middle" x="1548.84" y="-520.88" font-family="Arial" font-size="7.50" fill="#cc2222">2023.3中国调解沙伊复交</text>
+<text xml:space="preserve" text-anchor="middle" x="1548.84" y="-509.62" font-family="Arial" font-size="7.50" fill="#cc2222">2016断交→2023恢复外交</text>
+<text xml:space="preserve" text-anchor="middle" x="1548.84" y="-498.38" font-family="Arial" font-size="7.50" fill="#cc2222">战略对冲/降温信号</text>
 </g>
 <!-- IR_IRGC -->
 <g id="node8" class="node">
@@ -104,7 +108,9 @@
 <path fill="none" stroke="#cc2222" stroke-width="2.5" d="M1264,-478.55C1264,-478.55 1264,-516 1264,-516 1264,-516 1924.7,-516 1924.7,-516 1924.7,-516 1924.7,-478.55 1924.7,-478.55"/>
 <polygon fill="#cc2222" stroke="#cc2222" stroke-width="2.5" points="1266.45,-478.55 1264,-471.55 1261.55,-478.55 1266.45,-478.55"/>
 <polygon fill="#cc2222" stroke="#cc2222" stroke-width="2.5" points="1927.15,-478.55 1924.7,-471.55 1922.25,-478.55 1927.15,-478.55"/>
-<text xml:space="preserve" text-anchor="middle" x="1564.35" y="-520.12" font-family="Arial" font-size="7.50" fill="#cc2222">也门代理战争对抗</text>
+<text xml:space="preserve" text-anchor="middle" x="1546.73" y="-508.88" font-family="Arial" font-size="7.50" fill="#cc2222">2015也门代理战争对抗</text>
+<text xml:space="preserve" text-anchor="middle" x="1546.73" y="-497.62" font-family="Arial" font-size="7.50" fill="#cc2222">2019 Aramco遇袭(伊朗关联)</text>
+<text xml:space="preserve" text-anchor="middle" x="1546.73" y="-486.38" font-family="Arial" font-size="7.50" fill="#cc2222">双边对抗持续</text>
 </g>
 <!-- HOUTHI -->
 <g id="node9" class="node">
@@ -118,7 +124,9 @@
 <title>SA_MBS&#45;&gt;HOUTHI</title>
 <path fill="none" stroke="#cc2222" stroke-width="2.5" d="M1206.6,-410.62C1206.6,-391.2 1206.6,-369 1206.6,-369 1206.6,-369 2130.6,-369 2130.6,-369 2130.6,-369 2130.6,-330.65 2130.6,-330.65"/>
 <polygon fill="#cc2222" stroke="#cc2222" stroke-width="2.5" points="2133.05,-330.65 2130.6,-323.65 2128.15,-330.65 2133.05,-330.65"/>
-<text xml:space="preserve" text-anchor="middle" x="1634.72" y="-373.12" font-family="Arial" font-size="7.50" fill="#cc2222">也门内战(沙特联军)</text>
+<text xml:space="preserve" text-anchor="middle" x="1627.97" y="-395.62" font-family="Arial" font-size="7.50" fill="#cc2222">2015沙特联军介入也门</text>
+<text xml:space="preserve" text-anchor="middle" x="1627.97" y="-384.38" font-family="Arial" font-size="7.50" fill="#cc2222">2023停火谈判推进</text>
+<text xml:space="preserve" text-anchor="middle" x="1627.97" y="-373.12" font-family="Arial" font-size="7.50" fill="#cc2222">也门和平路线图磋商</text>
 </g>
 <!-- CN_NOC -->
 <g id="node15" class="node">
@@ -132,7 +140,9 @@
 <title>SA_MBS&#45;&gt;CN_NOC</title>
 <path fill="none" stroke="#1a5296" stroke-width="1.5" d="M1187,-467.54C1187,-506.83 1187,-573 1187,-573 1187,-573 1134.15,-573 1134.15,-573"/>
 <polygon fill="#1a5296" stroke="#1a5296" stroke-width="1.5" points="1134.15,-570.55 1127.15,-573 1134.15,-575.45 1134.15,-570.55"/>
-<text xml:space="preserve" text-anchor="middle" x="1160.75" y="-550.82" font-family="Arial" font-size="7.50" fill="#1a5296">人民币结算探索</text>
+<text xml:space="preserve" text-anchor="middle" x="1143.12" y="-573.32" font-family="Arial" font-size="7.50" fill="#1a5296">2023首笔人民币结算LNG</text>
+<text xml:space="preserve" text-anchor="middle" x="1143.12" y="-562.07" font-family="Arial" font-size="7.50" fill="#1a5296">沙特→中国原油$500亿/年</text>
+<text xml:space="preserve" text-anchor="middle" x="1143.12" y="-550.82" font-family="Arial" font-size="7.50" fill="#1a5296">去美元化试探</text>
 </g>
 <!-- IL_GOVT -->
 <g id="node16" class="node">
@@ -147,7 +157,9 @@
 <path fill="none" stroke="#1a5296" stroke-width="1.5" d="M1193.4,-476.96C1193.4,-476.96 1193.4,-479 1193.4,-479 1193.4,-479 621,-479 621,-479 621,-479 621,-548.85 621,-548.85"/>
 <polygon fill="#1a5296" stroke="#1a5296" stroke-width="1.5" points="1195.85,-476.96 1193.4,-469.96 1190.95,-476.96 1195.85,-476.96"/>
 <polygon fill="#1a5296" stroke="#1a5296" stroke-width="1.5" points="618.55,-548.85 621,-555.85 623.45,-548.85 618.55,-548.85"/>
-<text xml:space="preserve" text-anchor="middle" x="847.04" y="-483.12" font-family="Arial" font-size="7.50" fill="#1a5296">正常化谈判搁置</text>
+<text xml:space="preserve" text-anchor="middle" x="834.29" y="-505.62" font-family="Arial" font-size="7.50" fill="#1a5296">2023美斡旋正常化框架</text>
+<text xml:space="preserve" text-anchor="middle" x="834.29" y="-494.38" font-family="Arial" font-size="7.50" fill="#1a5296">10.7后MBS搁置谈判</text>
+<text xml:space="preserve" text-anchor="middle" x="834.29" y="-483.12" font-family="Arial" font-size="7.50" fill="#1a5296">条件:巴勒斯坦建国路径</text>
 </g>
 <!-- OPEC_PLUS -->
 <g id="node18" class="node">
@@ -162,14 +174,17 @@
 <path fill="none" stroke="#cc2222" stroke-width="2.5" d="M1271.4,-399.7C1271.4,-399.7 1271.4,-164 1271.4,-164 1271.4,-164 841.73,-164 841.73,-164"/>
 <polygon fill="#cc2222" stroke="#cc2222" stroke-width="2.5" points="1268.95,-399.7 1271.4,-406.7 1273.85,-399.7 1268.95,-399.7"/>
 <polygon fill="#cc2222" stroke="#cc2222" stroke-width="2.5" points="841.73,-161.55 834.73,-164 841.73,-166.45 841.73,-161.55"/>
-<text xml:space="preserve" text-anchor="middle" x="1151.91" y="-168.12" font-family="Arial" font-size="7.50" fill="#cc2222">领导定价配额</text>
+<text xml:space="preserve" text-anchor="middle" x="1127.54" y="-190.62" font-family="Arial" font-size="7.50" fill="#cc2222">2016主导OPEC+减产协议</text>
+<text xml:space="preserve" text-anchor="middle" x="1127.54" y="-179.38" font-family="Arial" font-size="7.50" fill="#cc2222">2020史诗级减产970万桶/日</text>
+<text xml:space="preserve" text-anchor="middle" x="1127.54" y="-168.12" font-family="Arial" font-size="7.50" fill="#cc2222">2024延长自愿减产至Q1&#39;25</text>
 </g>
 <!-- SA_ARAMCO&#45;&gt;OPEC_PLUS -->
 <g id="edge10" class="edge">
 <title>SA_ARAMCO&#45;&gt;OPEC_PLUS</title>
 <path fill="none" stroke="#cc2222" stroke-width="2.5" d="M1037.4,-271.26C1037.4,-233.91 1037.4,-171 1037.4,-171 1037.4,-171 841.72,-171 841.72,-171"/>
 <polygon fill="#cc2222" stroke="#cc2222" stroke-width="2.5" points="841.72,-168.55 834.72,-171 841.72,-173.45 841.72,-168.55"/>
-<text xml:space="preserve" text-anchor="middle" x="967.19" y="-175.12" font-family="Arial" font-size="7.50" fill="#cc2222">产量数据支撑</text>
+<text xml:space="preserve" text-anchor="middle" x="936.07" y="-186.38" font-family="Arial" font-size="7.50" fill="#cc2222">产量数据核心支撑</text>
+<text xml:space="preserve" text-anchor="middle" x="936.07" y="-175.12" font-family="Arial" font-size="7.50" fill="#cc2222">闲置产能全球最大(~200万桶/日)</text>
 </g>
 <!-- UAE_MBZ -->
 <g id="node3" class="node">
@@ -185,14 +200,18 @@
 <path fill="none" stroke="#1a5296" stroke-width="1.5" d="M1080.6,-402.71C1080.6,-402.71 1080.6,-334.6 1080.6,-334.6"/>
 <polygon fill="#1a5296" stroke="#1a5296" stroke-width="1.5" points="1078.15,-402.71 1080.6,-409.71 1083.05,-402.71 1078.15,-402.71"/>
 <polygon fill="#1a5296" stroke="#1a5296" stroke-width="1.5" points="1083.05,-334.6 1080.6,-327.6 1078.15,-334.6 1083.05,-334.6"/>
-<text xml:space="preserve" text-anchor="middle" x="1059.6" y="-372.78" font-family="Arial" font-size="7.50" fill="#1a5296">ADNOC竞争</text>
+<text xml:space="preserve" text-anchor="middle" x="1030.72" y="-395.28" font-family="Arial" font-size="7.50" fill="#1a5296">ADNOC vs Aramco扩产竞争</text>
+<text xml:space="preserve" text-anchor="middle" x="1030.72" y="-384.03" font-family="Arial" font-size="7.50" fill="#1a5296">2023 ADNOC产能450万桶/日</text>
+<text xml:space="preserve" text-anchor="middle" x="1030.72" y="-372.78" font-family="Arial" font-size="7.50" fill="#1a5296">下游石化投资角力</text>
 </g>
 <!-- UAE_MBZ&#45;&gt;OPEC_PLUS -->
 <g id="edge3" class="edge">
 <title>UAE_MBZ&#45;&gt;OPEC_PLUS</title>
 <path fill="none" stroke="#cc2222" stroke-width="2.5" d="M993.18,-426C913.52,-426 789.93,-426 789.93,-426 789.93,-426 789.93,-195 789.93,-195"/>
 <polygon fill="#cc2222" stroke="#cc2222" stroke-width="2.5" points="792.38,-195 789.93,-188 787.48,-195 792.38,-195"/>
-<text xml:space="preserve" text-anchor="middle" x="766.31" y="-416.25" font-family="Arial" font-size="7.50" fill="#cc2222">配额参与/分歧</text>
+<text xml:space="preserve" text-anchor="middle" x="739.31" y="-405" font-family="Arial" font-size="7.50" fill="#cc2222">2021争取更高基准配额</text>
+<text xml:space="preserve" text-anchor="middle" x="739.31" y="-393.75" font-family="Arial" font-size="7.50" fill="#cc2222">2024扩产能至500万桶/日目标</text>
+<text xml:space="preserve" text-anchor="middle" x="739.31" y="-382.5" font-family="Arial" font-size="7.50" fill="#cc2222">与沙特产量分歧持续</text>
 </g>
 <!-- QA_FUND -->
 <g id="node4" class="node">
@@ -207,7 +226,8 @@
 <title>QA_FUND&#45;&gt;OPEC_PLUS</title>
 <path fill="none" stroke="#cc2222" stroke-width="2.5" d="M1419,-410.64C1419,-339.17 1419,-158 1419,-158 1419,-158 841.79,-158 841.79,-158"/>
 <polygon fill="#cc2222" stroke="#cc2222" stroke-width="2.5" points="841.79,-155.55 834.79,-158 841.79,-160.45 841.79,-155.55"/>
-<text xml:space="preserve" text-anchor="middle" x="1241.72" y="-162.12" font-family="Arial" font-size="7.50" fill="#cc2222">配额参与</text>
+<text xml:space="preserve" text-anchor="middle" x="1217.34" y="-173.38" font-family="Arial" font-size="7.50" fill="#cc2222">2019退出OPEC转LNG</text>
+<text xml:space="preserve" text-anchor="middle" x="1217.34" y="-162.12" font-family="Arial" font-size="7.50" fill="#cc2222">仍参与OPEC+协调机制</text>
 </g>
 <!-- KW_GOVT -->
 <g id="node5" class="node">
@@ -228,7 +248,9 @@
 <title>IQ_GOVT&#45;&gt;OPEC_PLUS</title>
 <path fill="none" stroke="#1a5296" stroke-width="1.5" d="M536.39,-291C605.17,-291 703.53,-291 703.53,-291 703.53,-291 703.53,-193.76 703.53,-193.76"/>
 <polygon fill="#1a5296" stroke="#1a5296" stroke-width="1.5" points="705.98,-193.76 703.53,-186.76 701.08,-193.76 705.98,-193.76"/>
-<text xml:space="preserve" text-anchor="middle" x="643.83" y="-295.12" font-family="Arial" font-size="7.50" fill="#1a5296">配额(低合规率)</text>
+<text xml:space="preserve" text-anchor="middle" x="634.46" y="-317.62" font-family="Arial" font-size="7.50" fill="#1a5296">1960创始成员国</text>
+<text xml:space="preserve" text-anchor="middle" x="634.46" y="-306.38" font-family="Arial" font-size="7.50" fill="#1a5296">2024合规率仅~65%</text>
+<text xml:space="preserve" text-anchor="middle" x="634.46" y="-295.12" font-family="Arial" font-size="7.50" fill="#1a5296">长期超产争议</text>
 </g>
 <!-- IR_SL&#45;&gt;QA_FUND -->
 <g id="edge40" class="edge">
@@ -236,21 +258,27 @@
 <path fill="none" stroke="#aaaaaa" stroke-width="0.7" stroke-dasharray="1,5" d="M1935.13,-587C1935.13,-587 1906,-587 1906,-587 1906,-587 1906,-462 1906,-462 1906,-462 1492.99,-462 1492.99,-462"/>
 <polygon fill="#aaaaaa" stroke="#aaaaaa" stroke-width="0.7" points="1935.13,-589.45 1942.13,-587 1935.13,-584.55 1935.13,-589.45"/>
 <polygon fill="#aaaaaa" stroke="#aaaaaa" stroke-width="0.7" points="1492.99,-459.55 1485.99,-462 1492.99,-464.45 1492.99,-459.55"/>
-<text xml:space="preserve" text-anchor="middle" x="1740.18" y="-466.12" font-family="Arial" font-size="7.50" fill="#aaaaaa">叙事竞争[INFERRED]</text>
+<text xml:space="preserve" text-anchor="middle" x="1727.81" y="-488.62" font-family="Arial" font-size="7.50" fill="#aaaaaa">什叶&#45;逊尼叙事竞争</text>
+<text xml:space="preserve" text-anchor="middle" x="1727.81" y="-477.38" font-family="Arial" font-size="7.50" fill="#aaaaaa">半岛电视台信息战</text>
+<text xml:space="preserve" text-anchor="middle" x="1727.81" y="-466.12" font-family="Arial" font-size="7.50" fill="#aaaaaa">2017断交危机(沙特指控亲伊)</text>
 </g>
 <!-- IR_SL&#45;&gt;IR_IRGC -->
 <g id="edge18" class="edge">
 <title>IR_SL&#45;&gt;IR_IRGC</title>
 <path fill="none" stroke="#cc2222" stroke-width="2.5" d="M2013.27,-551.54C2013.27,-551.54 2013.27,-478.4 2013.27,-478.4"/>
 <polygon fill="#cc2222" stroke="#cc2222" stroke-width="2.5" points="2015.72,-478.4 2013.27,-471.4 2010.82,-478.4 2015.72,-478.4"/>
-<text xml:space="preserve" text-anchor="middle" x="1983.27" y="-519.1" font-family="Arial" font-size="7.50" fill="#cc2222">最高领袖直接指挥</text>
+<text xml:space="preserve" text-anchor="middle" x="1970.52" y="-507.85" font-family="Arial" font-size="7.50" fill="#cc2222">1979革命卫队成立</text>
+<text xml:space="preserve" text-anchor="middle" x="1970.52" y="-496.6" font-family="Arial" font-size="7.50" fill="#cc2222">最高领袖直接指挥权</text>
+<text xml:space="preserve" text-anchor="middle" x="1970.52" y="-485.35" font-family="Arial" font-size="7.50" fill="#cc2222">2020苏莱曼尼遇刺后重组</text>
 </g>
 <!-- IR_IRGC&#45;&gt;HOUTHI -->
 <g id="edge19" class="edge">
 <title>IR_IRGC&#45;&gt;HOUTHI</title>
 <path fill="none" stroke="#cc2222" stroke-width="2.5" d="M2049,-414C2100.38,-414 2163,-414 2163,-414 2163,-414 2163,-330.81 2163,-330.81"/>
 <polygon fill="#cc2222" stroke="#cc2222" stroke-width="2.5" points="2165.45,-330.81 2163,-323.81 2160.55,-330.81 2165.45,-330.81"/>
-<text xml:space="preserve" text-anchor="middle" x="2122.85" y="-418.12" font-family="Arial" font-size="7.50" fill="#cc2222">武器/资金/训练</text>
+<text xml:space="preserve" text-anchor="middle" x="2105.22" y="-440.62" font-family="Arial" font-size="7.50" fill="#cc2222">2014胡塞武装夺萨那</text>
+<text xml:space="preserve" text-anchor="middle" x="2105.22" y="-429.38" font-family="Arial" font-size="7.50" fill="#cc2222">提供无人机/反舰导弹技术</text>
+<text xml:space="preserve" text-anchor="middle" x="2105.22" y="-418.12" font-family="Arial" font-size="7.50" fill="#cc2222">2024红海袭击军事支援</text>
 </g>
 <!-- PMF_IQ -->
 <g id="node10" class="node">
@@ -265,7 +293,9 @@
 <title>IR_IRGC&#45;&gt;PMF_IQ</title>
 <path fill="none" stroke="#cc2222" stroke-width="2.5" d="M2048.65,-416C2147.06,-416 2321.4,-416 2321.4,-416 2321.4,-416 2321.4,-337.54 2321.4,-337.54"/>
 <polygon fill="#cc2222" stroke="#cc2222" stroke-width="2.5" points="2323.85,-337.54 2321.4,-330.54 2318.95,-337.54 2323.85,-337.54"/>
-<text xml:space="preserve" text-anchor="middle" x="2194.26" y="-420.12" font-family="Arial" font-size="7.50" fill="#cc2222">伊朗化伊拉克民兵</text>
+<text xml:space="preserve" text-anchor="middle" x="2180.76" y="-442.62" font-family="Arial" font-size="7.50" fill="#cc2222">2014 PMF成立(反ISIS)</text>
+<text xml:space="preserve" text-anchor="middle" x="2180.76" y="-431.38" font-family="Arial" font-size="7.50" fill="#cc2222">伊朗系指挥官渗透</text>
+<text xml:space="preserve" text-anchor="middle" x="2180.76" y="-420.12" font-family="Arial" font-size="7.50" fill="#cc2222">2024超15万民兵准军事化</text>
 </g>
 <!-- HEZBOLLAH -->
 <g id="node11" class="node">
@@ -279,7 +309,9 @@
 <title>IR_IRGC&#45;&gt;HEZBOLLAH</title>
 <path fill="none" stroke="#cc2222" stroke-width="2.5" d="M1961.4,-410.64C1961.4,-410.64 1961.4,-330.6 1961.4,-330.6"/>
 <polygon fill="#cc2222" stroke="#cc2222" stroke-width="2.5" points="1963.85,-330.6 1961.4,-323.6 1958.95,-330.6 1963.85,-330.6"/>
-<text xml:space="preserve" text-anchor="middle" x="1936.27" y="-374.74" font-family="Arial" font-size="7.50" fill="#cc2222">$7亿+/年+武器</text>
+<text xml:space="preserve" text-anchor="middle" x="1928.77" y="-397.24" font-family="Arial" font-size="7.50" fill="#cc2222">1982创建真主党</text>
+<text xml:space="preserve" text-anchor="middle" x="1928.77" y="-385.99" font-family="Arial" font-size="7.50" fill="#cc2222">$7亿+/年资金+武器</text>
+<text xml:space="preserve" text-anchor="middle" x="1928.77" y="-374.74" font-family="Arial" font-size="7.50" fill="#cc2222">2024以黎冲突升级</text>
 </g>
 <!-- HORMUZ -->
 <g id="node23" class="node">
@@ -293,7 +325,9 @@
 <title>IR_IRGC&#45;&gt;HORMUZ</title>
 <path fill="none" stroke="#cc2222" stroke-width="2.5" d="M2048.91,-418C2058.45,-418 2065.13,-418 2065.13,-418 2065.13,-418 2065.13,-49 2065.13,-49 2065.13,-49 2086.39,-49 2086.39,-49"/>
 <polygon fill="#cc2222" stroke="#cc2222" stroke-width="2.5" points="2086.39,-51.45 2093.39,-49 2086.39,-46.55 2086.39,-51.45"/>
-<text xml:space="preserve" text-anchor="middle" x="2041.51" y="-235.11" font-family="Arial" font-size="7.50" fill="#cc2222">封锁威胁/骚扰</text>
+<text xml:space="preserve" text-anchor="middle" x="2019.76" y="-257.61" font-family="Arial" font-size="7.50" fill="#cc2222">1988油轮战争先例</text>
+<text xml:space="preserve" text-anchor="middle" x="2019.76" y="-246.36" font-family="Arial" font-size="7.50" fill="#cc2222">2019扣押英国油轮</text>
+<text xml:space="preserve" text-anchor="middle" x="2019.76" y="-235.11" font-family="Arial" font-size="7.50" fill="#cc2222">持续封锁威胁21%全球油运</text>
 </g>
 <!-- BAB_MAND -->
 <g id="node24" class="node">
@@ -307,28 +341,34 @@
 <title>HOUTHI&#45;&gt;BAB_MAND</title>
 <path fill="none" stroke="#cc2222" stroke-width="2.5" d="M2163,-276.4C2163,-276.4 2163,-196.73 2163,-196.73"/>
 <polygon fill="#cc2222" stroke="#cc2222" stroke-width="2.5" points="2165.45,-196.73 2163,-189.73 2160.55,-196.73 2165.45,-196.73"/>
-<text xml:space="preserve" text-anchor="middle" x="2133" y="-240.69" font-family="Arial" font-size="7.50" fill="#cc2222">袭击商船(200+次)</text>
+<text xml:space="preserve" text-anchor="middle" x="2117.25" y="-263.19" font-family="Arial" font-size="7.50" fill="#cc2222">2023.11起袭击商船200+次</text>
+<text xml:space="preserve" text-anchor="middle" x="2117.25" y="-251.94" font-family="Arial" font-size="7.50" fill="#cc2222">反舰导弹+无人艇+无人机</text>
+<text xml:space="preserve" text-anchor="middle" x="2117.25" y="-240.69" font-family="Arial" font-size="7.50" fill="#cc2222">全球贸易12%绕行好望角</text>
 </g>
 <!-- PMF_IQ&#45;&gt;SA_ARAMCO -->
 <g id="edge23" class="edge">
 <title>PMF_IQ&#45;&gt;SA_ARAMCO</title>
 <path fill="none" stroke="#888888" stroke-dasharray="5,2" d="M2343,-269.8C2343,-255.84 2343,-242 2343,-242 2343,-242 1080.6,-242 1080.6,-242 1080.6,-242 1080.6,-262.6 1080.6,-262.6"/>
 <polygon fill="#888888" stroke="#888888" points="1078.15,-262.6 1080.6,-269.6 1083.05,-262.6 1078.15,-262.6"/>
-<text xml:space="preserve" text-anchor="middle" x="1682.02" y="-246.12" font-family="Arial" font-size="7.50" fill="#888888">威胁沙特设施[LOW]</text>
+<text xml:space="preserve" text-anchor="middle" x="1667.77" y="-257.38" font-family="Arial" font-size="7.50" fill="#888888">2019无人机袭击Abqaiq设施</text>
+<text xml:space="preserve" text-anchor="middle" x="1667.77" y="-246.12" font-family="Arial" font-size="7.50" fill="#888888">威胁沙特东部油田安全</text>
 </g>
 <!-- PMF_IQ&#45;&gt;IQ_GOVT -->
 <g id="edge22" class="edge">
 <title>PMF_IQ&#45;&gt;IQ_GOVT</title>
 <path fill="none" stroke="#cc2222" stroke-width="2.5" d="M2364.6,-326.78C2364.6,-353.71 2364.6,-390 2364.6,-390 2364.6,-390 520.8,-390 520.8,-390 520.8,-390 520.8,-330.31 520.8,-330.31"/>
 <polygon fill="#cc2222" stroke="#cc2222" stroke-width="2.5" points="523.25,-330.31 520.8,-323.31 518.35,-330.31 523.25,-330.31"/>
-<text xml:space="preserve" text-anchor="middle" x="1413.34" y="-394.12" font-family="Arial" font-size="7.50" fill="#cc2222">政治渗透议会/部委</text>
+<text xml:space="preserve" text-anchor="middle" x="1397.97" y="-416.62" font-family="Arial" font-size="7.50" fill="#cc2222">2016 PMF合法化(国会法案)</text>
+<text xml:space="preserve" text-anchor="middle" x="1397.97" y="-405.38" font-family="Arial" font-size="7.50" fill="#cc2222">渗透议会/内政部</text>
+<text xml:space="preserve" text-anchor="middle" x="1397.97" y="-394.12" font-family="Arial" font-size="7.50" fill="#cc2222">准国家暴力垄断</text>
 </g>
 <!-- HEZBOLLAH&#45;&gt;IR_IRGC -->
 <g id="edge24" class="edge">
 <title>HEZBOLLAH&#45;&gt;IR_IRGC</title>
 <path fill="none" stroke="#cc2222" stroke-width="2.5" d="M2004.6,-319.96C2004.6,-319.96 2004.6,-399.81 2004.6,-399.81"/>
 <polygon fill="#cc2222" stroke="#cc2222" stroke-width="2.5" points="2002.15,-399.81 2004.6,-406.81 2007.05,-399.81 2002.15,-399.81"/>
-<text xml:space="preserve" text-anchor="middle" x="1974.6" y="-352.76" font-family="Arial" font-size="7.50" fill="#cc2222">伊朗油黎巴嫩分销</text>
+<text xml:space="preserve" text-anchor="middle" x="1955.85" y="-352.76" font-family="Arial" font-size="7.50" fill="#cc2222">伊朗油经叙利亚→黎巴嫩分销</text>
+<text xml:space="preserve" text-anchor="middle" x="1955.85" y="-341.51" font-family="Arial" font-size="7.50" fill="#cc2222">2024战后经济困境加深依赖</text>
 </g>
 <!-- RU_KREMLIN -->
 <g id="node12" class="node">
@@ -343,7 +383,9 @@
 <title>RU_KREMLIN&#45;&gt;CN_NOC</title>
 <path fill="none" stroke="#cc2222" stroke-width="2.5" d="M834.8,-693.81C834.8,-651.1 834.8,-573 834.8,-573 834.8,-573 982.46,-573 982.46,-573"/>
 <polygon fill="#cc2222" stroke="#cc2222" stroke-width="2.5" points="982.46,-575.45 989.46,-573 982.46,-570.55 982.46,-575.45"/>
-<text xml:space="preserve" text-anchor="middle" x="814.47" y="-577.12" font-family="Arial" font-size="7.50" fill="#cc2222">制裁后扩大对华出口</text>
+<text xml:space="preserve" text-anchor="middle" x="786.35" y="-599.62" font-family="Arial" font-size="7.50" fill="#cc2222">2022制裁后管道对华扩至200万桶/日</text>
+<text xml:space="preserve" text-anchor="middle" x="786.35" y="-588.38" font-family="Arial" font-size="7.50" fill="#cc2222">2024中俄能源贸易$700亿+</text>
+<text xml:space="preserve" text-anchor="middle" x="786.35" y="-577.12" font-family="Arial" font-size="7.50" fill="#cc2222">人民币结算占比↑</text>
 </g>
 <!-- RU_KREMLIN&#45;&gt;OPEC_PLUS -->
 <g id="edge2" class="edge">
@@ -351,7 +393,9 @@
 <path fill="none" stroke="#cc2222" stroke-width="2.5" d="M750.07,-683.31C750.07,-683.31 750.07,-195.05 750.07,-195.05"/>
 <polygon fill="#cc2222" stroke="#cc2222" stroke-width="2.5" points="747.62,-683.31 750.07,-690.31 752.52,-683.31 747.62,-683.31"/>
 <polygon fill="#cc2222" stroke="#cc2222" stroke-width="2.5" points="752.52,-195.05 750.07,-188.05 747.62,-195.05 752.52,-195.05"/>
-<text xml:space="preserve" text-anchor="middle" x="721.94" y="-443.31" font-family="Arial" font-size="7.50" fill="#cc2222">OPEC+共同主导</text>
+<text xml:space="preserve" text-anchor="middle" x="705.07" y="-432.06" font-family="Arial" font-size="7.50" fill="#cc2222">2016加入OPEC+联盟</text>
+<text xml:space="preserve" text-anchor="middle" x="705.07" y="-420.81" font-family="Arial" font-size="7.50" fill="#cc2222">2020沙俄价格战→3月协议</text>
+<text xml:space="preserve" text-anchor="middle" x="705.07" y="-409.56" font-family="Arial" font-size="7.50" fill="#cc2222">2024制裁下维持配额合作</text>
 </g>
 <!-- US_SHALE -->
 <g id="node13" class="node">
@@ -366,7 +410,9 @@
 <title>US_SHALE&#45;&gt;OPEC_PLUS</title>
 <path fill="none" stroke="#cc2222" stroke-width="2.5" d="M942.2,-692.47C942.2,-580.55 942.2,-177 942.2,-177 942.2,-177 841.77,-177 841.77,-177"/>
 <polygon fill="#cc2222" stroke="#cc2222" stroke-width="2.5" points="841.77,-174.55 834.77,-177 841.77,-179.45 841.77,-174.55"/>
-<text xml:space="preserve" text-anchor="middle" x="919.7" y="-388.64" font-family="Arial" font-size="7.50" fill="#cc2222">市场竞争压力</text>
+<text xml:space="preserve" text-anchor="middle" x="896.83" y="-411.14" font-family="Arial" font-size="7.50" fill="#cc2222">2014页岩革命冲击油价</text>
+<text xml:space="preserve" text-anchor="middle" x="896.83" y="-399.89" font-family="Arial" font-size="7.50" fill="#cc2222">2020产量战相互消耗</text>
+<text xml:space="preserve" text-anchor="middle" x="896.83" y="-388.64" font-family="Arial" font-size="7.50" fill="#cc2222">2024美产1300万桶/日纪录</text>
 </g>
 <!-- IEA -->
 <g id="node19" class="node">
@@ -380,7 +426,9 @@
 <title>US_SHALE&#45;&gt;IEA</title>
 <path fill="none" stroke="#cc2222" stroke-width="2.5" d="M968.2,-692.43C968.2,-562.99 968.2,-37 968.2,-37 968.2,-37 841.76,-37 841.76,-37"/>
 <polygon fill="#cc2222" stroke="#cc2222" stroke-width="2.5" points="841.76,-34.55 834.76,-37 841.76,-39.45 841.76,-34.55"/>
-<text xml:space="preserve" text-anchor="middle" x="945.7" y="-305.62" font-family="Arial" font-size="7.50" fill="#cc2222">西方战略储备</text>
+<text xml:space="preserve" text-anchor="middle" x="921.7" y="-294.37" font-family="Arial" font-size="7.50" fill="#cc2222">2015页岩油使美成净出口国</text>
+<text xml:space="preserve" text-anchor="middle" x="921.7" y="-283.12" font-family="Arial" font-size="7.50" fill="#cc2222">2022 SPR释放1.8亿桶</text>
+<text xml:space="preserve" text-anchor="middle" x="921.7" y="-271.87" font-family="Arial" font-size="7.50" fill="#cc2222">西方能源安全支柱</text>
 </g>
 <!-- US_CENTCOM -->
 <g id="node14" class="node">
@@ -394,56 +442,72 @@
 <title>US_CENTCOM&#45;&gt;HOUTHI</title>
 <path fill="none" stroke="#cc2222" stroke-width="2.5" d="M1200.93,-727C1432.6,-727 2195.4,-727 2195.4,-727 2195.4,-727 2195.4,-330.89 2195.4,-330.89"/>
 <polygon fill="#cc2222" stroke="#cc2222" stroke-width="2.5" points="2197.85,-330.89 2195.4,-323.89 2192.95,-330.89 2197.85,-330.89"/>
-<text xml:space="preserve" text-anchor="middle" x="1872.6" y="-731.12" font-family="Arial" font-size="7.50" fill="#cc2222">军事反制OPG</text>
+<text xml:space="preserve" text-anchor="middle" x="1850.47" y="-753.62" font-family="Arial" font-size="7.50" fill="#cc2222">2024.1繁荣卫士行动(OPG)</text>
+<text xml:space="preserve" text-anchor="middle" x="1850.47" y="-742.38" font-family="Arial" font-size="7.50" fill="#cc2222">空袭也门胡塞据点</text>
+<text xml:space="preserve" text-anchor="middle" x="1850.47" y="-731.12" font-family="Arial" font-size="7.50" fill="#cc2222">多国海军护航联盟</text>
 </g>
 <!-- US_CENTCOM&#45;&gt;IL_GOVT -->
 <g id="edge36" class="edge">
 <title>US_CENTCOM&#45;&gt;IL_GOVT</title>
 <path fill="none" stroke="#cc2222" stroke-width="2.5" d="M1097,-699.2C1097,-678.67 1097,-651 1097,-651 1097,-651 621,-651 621,-651 621,-651 621,-612.51 621,-612.51"/>
 <polygon fill="#cc2222" stroke="#cc2222" stroke-width="2.5" points="623.45,-612.51 621,-605.51 618.55,-612.51 623.45,-612.51"/>
-<text xml:space="preserve" text-anchor="middle" x="827.85" y="-655.12" font-family="Arial" font-size="7.50" fill="#cc2222">CENTCOM区责+武器</text>
+<text xml:space="preserve" text-anchor="middle" x="813.6" y="-677.62" font-family="Arial" font-size="7.50" fill="#cc2222">2021以色列入CENTCOM区责</text>
+<text xml:space="preserve" text-anchor="middle" x="813.6" y="-666.38" font-family="Arial" font-size="7.50" fill="#cc2222">铁穹/F&#45;35武器供应</text>
+<text xml:space="preserve" text-anchor="middle" x="813.6" y="-655.12" font-family="Arial" font-size="7.50" fill="#cc2222">2024加沙军事支持</text>
 </g>
 <!-- US_CENTCOM&#45;&gt;HORMUZ -->
 <g id="edge30" class="edge">
 <title>US_CENTCOM&#45;&gt;HORMUZ</title>
 <path fill="none" stroke="#cc2222" stroke-width="2.5" d="M1200.83,-715C1415.58,-715 2081.93,-715 2081.93,-715 2081.93,-715 2081.93,-24 2081.93,-24 2081.93,-24 2086.4,-24 2086.4,-24"/>
 <polygon fill="#cc2222" stroke="#cc2222" stroke-width="2.5" points="2086.4,-26.45 2093.4,-24 2086.4,-21.55 2086.4,-26.45"/>
-<text xml:space="preserve" text-anchor="middle" x="1965.49" y="-719.12" font-family="Arial" font-size="7.50" fill="#cc2222">护航/海上阻绝</text>
+<text xml:space="preserve" text-anchor="middle" x="1957.62" y="-741.62" font-family="Arial" font-size="7.50" fill="#cc2222">1987护航行动开始</text>
+<text xml:space="preserve" text-anchor="middle" x="1957.62" y="-730.38" font-family="Arial" font-size="7.50" fill="#cc2222">第五舰队常驻巴林</text>
+<text xml:space="preserve" text-anchor="middle" x="1957.62" y="-719.12" font-family="Arial" font-size="7.50" fill="#cc2222">持续自由航行巡逻</text>
 </g>
 <!-- CN_NOC&#45;&gt;SA_ARAMCO -->
 <g id="edge12" class="edge">
 <title>CN_NOC&#45;&gt;SA_ARAMCO</title>
 <path fill="none" stroke="#cc2222" stroke-width="2.5" d="M1124.88,-587C1138.61,-587 1149,-587 1149,-587 1149,-587 1149,-309 1149,-309 1149,-309 1135.67,-309 1135.67,-309"/>
 <polygon fill="#cc2222" stroke="#cc2222" stroke-width="2.5" points="1135.67,-306.55 1128.67,-309 1135.67,-311.45 1135.67,-306.55"/>
-<text xml:space="preserve" text-anchor="middle" x="1124.25" y="-457.52" font-family="Arial" font-size="7.50" fill="#cc2222">石油长约(买方)</text>
+<text xml:space="preserve" text-anchor="middle" x="1098.38" y="-480.02" font-family="Arial" font-size="7.50" fill="#cc2222">2023中石化长约50年合作</text>
+<text xml:space="preserve" text-anchor="middle" x="1098.38" y="-468.77" font-family="Arial" font-size="7.50" fill="#cc2222">2024沙特对华出口170万桶/日</text>
+<text xml:space="preserve" text-anchor="middle" x="1098.38" y="-457.52" font-family="Arial" font-size="7.50" fill="#cc2222">联合炼厂投资</text>
 </g>
 <!-- CN_NOC&#45;&gt;UAE_MBZ -->
 <g id="edge42" class="edge">
 <title>CN_NOC&#45;&gt;UAE_MBZ</title>
 <path fill="none" stroke="#cc2222" stroke-width="2.5" d="M1026.6,-558.34C1026.6,-558.34 1026.6,-476.72 1026.6,-476.72"/>
 <polygon fill="#cc2222" stroke="#cc2222" stroke-width="2.5" points="1029.05,-476.72 1026.6,-469.72 1024.15,-476.72 1029.05,-476.72"/>
-<text xml:space="preserve" text-anchor="middle" x="998.1" y="-521.66" font-family="Arial" font-size="7.50" fill="#cc2222">ADNOC投资合作</text>
+<text xml:space="preserve" text-anchor="middle" x="968.47" y="-544.16" font-family="Arial" font-size="7.50" fill="#cc2222">2018 ADNOC股权投资</text>
+<text xml:space="preserve" text-anchor="middle" x="968.47" y="-532.91" font-family="Arial" font-size="7.50" fill="#cc2222">2024中国进口阿联酋油~60万桶/日</text>
+<text xml:space="preserve" text-anchor="middle" x="968.47" y="-521.66" font-family="Arial" font-size="7.50" fill="#cc2222">石化联合投资</text>
 </g>
 <!-- CN_NOC&#45;&gt;QA_FUND -->
 <g id="edge41" class="edge">
 <title>CN_NOC&#45;&gt;QA_FUND</title>
 <path fill="none" stroke="#cc2222" stroke-width="2.5" d="M1059,-558.18C1059,-535.4 1059,-503 1059,-503 1059,-503 1379.2,-503 1379.2,-503 1379.2,-503 1379.2,-478.5 1379.2,-478.5"/>
 <polygon fill="#cc2222" stroke="#cc2222" stroke-width="2.5" points="1381.65,-478.5 1379.2,-471.5 1376.75,-478.5 1381.65,-478.5"/>
-<text xml:space="preserve" text-anchor="middle" x="1167.76" y="-507.12" font-family="Arial" font-size="7.50" fill="#cc2222">卡塔尔LNG 27年合同</text>
+<text xml:space="preserve" text-anchor="middle" x="1135.51" y="-529.62" font-family="Arial" font-size="7.50" fill="#cc2222">2022 QatarEnergy&#45;中石化27年LNG合同</text>
+<text xml:space="preserve" text-anchor="middle" x="1135.51" y="-518.38" font-family="Arial" font-size="7.50" fill="#cc2222">400万吨/年($600亿+)</text>
+<text xml:space="preserve" text-anchor="middle" x="1135.51" y="-507.12" font-family="Arial" font-size="7.50" fill="#cc2222">最大单笔LNG长约</text>
 </g>
 <!-- CN_NOC&#45;&gt;IQ_GOVT -->
 <g id="edge13" class="edge">
 <title>CN_NOC&#45;&gt;IQ_GOVT</title>
 <path fill="none" stroke="#cc2222" stroke-width="2.5" d="M993.03,-587C955.62,-587 916.2,-587 916.2,-587 916.2,-587 916.2,-305 916.2,-305 916.2,-305 547,-305 547,-305"/>
 <polygon fill="#cc2222" stroke="#cc2222" stroke-width="2.5" points="547,-302.55 540,-305 547,-307.45 547,-302.55"/>
-<text xml:space="preserve" text-anchor="middle" x="884.77" y="-309.12" font-family="Arial" font-size="7.50" fill="#cc2222">鲁迈拉油田开采</text>
+<text xml:space="preserve" text-anchor="middle" x="859.27" y="-331.62" font-family="Arial" font-size="7.50" fill="#cc2222">中石油鲁迈拉油田(2009&#45;)</text>
+<text xml:space="preserve" text-anchor="middle" x="859.27" y="-320.38" font-family="Arial" font-size="7.50" fill="#cc2222">2023中企伊拉克投资超$200亿</text>
+<text xml:space="preserve" text-anchor="middle" x="859.27" y="-309.12" font-family="Arial" font-size="7.50" fill="#cc2222">最大外国油企投资者</text>
 </g>
 <!-- CN_NOC&#45;&gt;IR_IRGC -->
 <g id="edge14" class="edge">
 <title>CN_NOC&#45;&gt;IR_IRGC</title>
 <path fill="none" stroke="#1a5296" stroke-width="1.5" d="M1091.4,-558.15C1091.4,-548.8 1091.4,-540 1091.4,-540 1091.4,-540 1931.2,-540 1931.2,-540 1931.2,-540 1931.2,-477.05 1931.2,-477.05"/>
 <polygon fill="#1a5296" stroke="#1a5296" stroke-width="1.5" points="1933.65,-477.05 1931.2,-470.05 1928.75,-477.05 1933.65,-477.05"/>
-<text xml:space="preserve" text-anchor="middle" x="1507.45" y="-544.12" font-family="Arial" font-size="7.50" fill="#1a5296">绕制裁购伊朗油</text>
+<text xml:space="preserve" text-anchor="middle" x="1484.57" y="-566.62" font-family="Arial" font-size="7.50" fill="#1a5296">2021中伊25年合作协议</text>
+<text xml:space="preserve" text-anchor="middle" x="1484.57" y="-555.38" font-family="Arial" font-size="7.50" fill="#1a5296">制裁灰色渠道采购</text>
+<text xml:space="preserve" text-anchor="middle" x="1484.57" y="-544.12" font-family="Arial" font-size="7.50" fill="#1a5296">2024进口伊朗油~150万桶/日</text>
 </g>
 <!-- IL_GOVT&#45;&gt;SA_MBS -->
 <g id="edge35" class="edge">
@@ -451,7 +515,9 @@
 <path fill="none" stroke="#1a5296" stroke-width="1.5" d="M653.4,-549.22C653.4,-549.22 653.4,-491 653.4,-491 653.4,-491 1180.6,-491 1180.6,-491 1180.6,-491 1180.6,-477.08 1180.6,-477.08"/>
 <polygon fill="#1a5296" stroke="#1a5296" stroke-width="1.5" points="650.95,-549.22 653.4,-556.22 655.85,-549.22 650.95,-549.22"/>
 <polygon fill="#1a5296" stroke="#1a5296" stroke-width="1.5" points="1183.05,-477.08 1180.6,-470.08 1178.15,-477.08 1183.05,-477.08"/>
-<text xml:space="preserve" text-anchor="middle" x="868.6" y="-495.12" font-family="Arial" font-size="7.50" fill="#1a5296">非正式安全协作</text>
+<text xml:space="preserve" text-anchor="middle" x="853.23" y="-517.62" font-family="Arial" font-size="7.50" fill="#1a5296">2023正常化谈判(10.7前)</text>
+<text xml:space="preserve" text-anchor="middle" x="853.23" y="-506.38" font-family="Arial" font-size="7.50" fill="#1a5296">2024加沙战争后搁置</text>
+<text xml:space="preserve" text-anchor="middle" x="853.23" y="-495.12" font-family="Arial" font-size="7.50" fill="#1a5296">非正式安全情报渠道持续</text>
 </g>
 <!-- IL_GOVT&#45;&gt;UAE_MBZ -->
 <g id="edge34" class="edge">
@@ -459,7 +525,9 @@
 <path fill="none" stroke="#cc2222" stroke-width="2.5" d="M588.6,-547.54C588.6,-547.54 588.6,-452 588.6,-452 588.6,-452 982.31,-452 982.31,-452"/>
 <polygon fill="#cc2222" stroke="#cc2222" stroke-width="2.5" points="586.15,-547.54 588.6,-554.54 591.05,-547.54 586.15,-547.54"/>
 <polygon fill="#cc2222" stroke="#cc2222" stroke-width="2.5" points="982.31,-454.45 989.31,-452 982.31,-449.55 982.31,-454.45"/>
-<text xml:space="preserve" text-anchor="middle" x="715.18" y="-456.12" font-family="Arial" font-size="7.50" fill="#cc2222">亚伯拉罕协议</text>
+<text xml:space="preserve" text-anchor="middle" x="698.68" y="-478.62" font-family="Arial" font-size="7.50" fill="#cc2222">2020亚伯拉罕协议签署</text>
+<text xml:space="preserve" text-anchor="middle" x="698.68" y="-467.38" font-family="Arial" font-size="7.50" fill="#cc2222">2024双边贸易$30亿+</text>
+<text xml:space="preserve" text-anchor="middle" x="698.68" y="-456.12" font-family="Arial" font-size="7.50" fill="#cc2222">情报/科技/军事合作</text>
 </g>
 <!-- TR_ERDOGAN -->
 <g id="node17" class="node">
@@ -481,7 +549,8 @@
 <title>TR_ERDOGAN&#45;&gt;SUEZ</title>
 <path fill="none" stroke="#1a5296" stroke-width="1.5" d="M386.2,-552.17C386.2,-449.71 386.2,-100 386.2,-100 386.2,-100 1983,-100 1983,-100 1983,-100 1983,-67.75 1983,-67.75"/>
 <polygon fill="#1a5296" stroke="#1a5296" stroke-width="1.5" points="1985.45,-67.75 1983,-60.75 1980.55,-67.75 1985.45,-67.75"/>
-<text xml:space="preserve" text-anchor="middle" x="942.01" y="-104.12" font-family="Arial" font-size="7.50" fill="#1a5296">Kirkuk&#45;Ceyhan替代</text>
+<text xml:space="preserve" text-anchor="middle" x="924.39" y="-115.37" font-family="Arial" font-size="7.50" fill="#1a5296">Kirkuk&#45;Ceyhan管道替代方案</text>
+<text xml:space="preserve" text-anchor="middle" x="924.39" y="-104.12" font-family="Arial" font-size="7.50" fill="#1a5296">2014后库区石油独立出口争议</text>
 </g>
 <!-- BTC_PIPE -->
 <g id="node26" class="node">
@@ -495,7 +564,9 @@
 <title>TR_ERDOGAN&#45;&gt;BTC_PIPE</title>
 <path fill="none" stroke="#cc2222" stroke-width="2.5" d="M396.2,-551.86C396.2,-465.91 396.2,-213 396.2,-213 396.2,-213 1983,-213 1983,-213 1983,-213 1983,-196.19 1983,-196.19"/>
 <polygon fill="#cc2222" stroke="#cc2222" stroke-width="2.5" points="1985.45,-196.19 1983,-189.19 1980.55,-196.19 1985.45,-196.19"/>
-<text xml:space="preserve" text-anchor="middle" x="1004.95" y="-217.12" font-family="Arial" font-size="7.50" fill="#cc2222">运营/通道税收</text>
+<text xml:space="preserve" text-anchor="middle" x="994.83" y="-239.62" font-family="Arial" font-size="7.50" fill="#cc2222">2006 BTC管道投运</text>
+<text xml:space="preserve" text-anchor="middle" x="994.83" y="-228.38" font-family="Arial" font-size="7.50" fill="#cc2222">里海油经土耳其输欧</text>
+<text xml:space="preserve" text-anchor="middle" x="994.83" y="-217.12" font-family="Arial" font-size="7.50" fill="#cc2222">通道税收/地缘杠杆</text>
 </g>
 <!-- OPEC_PLUS&#45;&gt;IEA -->
 <g id="edge6" class="edge">
@@ -503,7 +574,9 @@
 <path fill="none" stroke="#cc2222" stroke-width="2.5" d="M765,-133.13C765,-133.13 765,-69.28 765,-69.28"/>
 <polygon fill="#cc2222" stroke="#cc2222" stroke-width="2.5" points="762.55,-133.13 765,-140.13 767.45,-133.13 762.55,-133.13"/>
 <polygon fill="#cc2222" stroke="#cc2222" stroke-width="2.5" points="767.45,-69.28 765,-62.28 762.55,-69.28 767.45,-69.28"/>
-<text xml:space="preserve" text-anchor="middle" x="750" y="-105.33" font-family="Arial" font-size="7.50" fill="#cc2222">定价博弈</text>
+<text xml:space="preserve" text-anchor="middle" x="709.5" y="-127.83" font-family="Arial" font-size="7.50" fill="#cc2222">2022 IEA协调释放6000万桶储备</text>
+<text xml:space="preserve" text-anchor="middle" x="709.5" y="-116.58" font-family="Arial" font-size="7.50" fill="#cc2222">2023定价权拉锯战</text>
+<text xml:space="preserve" text-anchor="middle" x="709.5" y="-105.33" font-family="Arial" font-size="7.50" fill="#cc2222">供需信息博弈</text>
 </g>
 <!-- MAJORS_W -->
 <g id="node20" class="node">
@@ -518,14 +591,18 @@
 <title>MAJORS_W&#45;&gt;SA_ARAMCO</title>
 <path fill="none" stroke="#1a5296" stroke-width="1.5" d="M293.8,-554.67C293.8,-494.26 293.8,-347 293.8,-347 293.8,-347 1037.4,-347 1037.4,-347 1037.4,-347 1037.4,-334.46 1037.4,-334.46"/>
 <polygon fill="#1a5296" stroke="#1a5296" stroke-width="1.5" points="1039.85,-334.46 1037.4,-327.46 1034.95,-334.46 1039.85,-334.46"/>
-<text xml:space="preserve" text-anchor="middle" x="543.29" y="-351.12" font-family="Arial" font-size="7.50" fill="#1a5296">技术合作(递减)</text>
+<text xml:space="preserve" text-anchor="middle" x="516.29" y="-373.62" font-family="Arial" font-size="7.50" fill="#1a5296">1933特许权协议→1980国有化</text>
+<text xml:space="preserve" text-anchor="middle" x="516.29" y="-362.37" font-family="Arial" font-size="7.50" fill="#1a5296">技术合作合同递减</text>
+<text xml:space="preserve" text-anchor="middle" x="516.29" y="-351.12" font-family="Arial" font-size="7.50" fill="#1a5296">1988 Aramco完全国有化</text>
 </g>
 <!-- MAJORS_W&#45;&gt;IQ_GOVT -->
 <g id="edge15" class="edge">
 <title>MAJORS_W&#45;&gt;IQ_GOVT</title>
 <path fill="none" stroke="#cc2222" stroke-width="2.5" d="M261.8,-554.52C261.8,-485.09 261.8,-298 261.8,-298 261.8,-298 394.88,-298 394.88,-298"/>
 <polygon fill="#cc2222" stroke="#cc2222" stroke-width="2.5" points="394.88,-300.45 401.88,-298 394.88,-295.55 394.88,-300.45"/>
-<text xml:space="preserve" text-anchor="middle" x="239.3" y="-363.84" font-family="Arial" font-size="7.50" fill="#cc2222">油田服务合同</text>
+<text xml:space="preserve" text-anchor="middle" x="195.43" y="-386.34" font-family="Arial" font-size="7.50" fill="#cc2222">BP鲁迈拉/Exxon西古尔纳</text>
+<text xml:space="preserve" text-anchor="middle" x="195.43" y="-375.09" font-family="Arial" font-size="7.50" fill="#cc2222">2023 TotalEnergies $270亿天然气项目</text>
+<text xml:space="preserve" text-anchor="middle" x="195.43" y="-363.84" font-family="Arial" font-size="7.50" fill="#cc2222">战后重建合同</text>
 </g>
 <!-- LY_CHAOS -->
 <g id="node21" class="node">
@@ -540,14 +617,18 @@
 <title>MAJORS_W&#45;&gt;LY_CHAOS</title>
 <path fill="none" stroke="#1a5296" stroke-width="1.5" d="M213,-554.53C213,-554.53 213,-474.7 213,-474.7"/>
 <polygon fill="#1a5296" stroke="#1a5296" stroke-width="1.5" points="215.45,-474.7 213,-467.7 210.55,-474.7 215.45,-474.7"/>
-<text xml:space="preserve" text-anchor="middle" x="190.5" y="-518.74" font-family="Arial" font-size="7.50" fill="#1a5296">油田开发合同</text>
+<text xml:space="preserve" text-anchor="middle" x="161.62" y="-541.24" font-family="Arial" font-size="7.50" fill="#1a5296">2004制裁解除后重返</text>
+<text xml:space="preserve" text-anchor="middle" x="161.62" y="-529.99" font-family="Arial" font-size="7.50" fill="#1a5296">2011内战撤出→2017部分回归</text>
+<text xml:space="preserve" text-anchor="middle" x="161.62" y="-518.74" font-family="Arial" font-size="7.50" fill="#1a5296">ENI/BP油田开发</text>
 </g>
 <!-- LY_CHAOS&#45;&gt;OPEC_PLUS -->
 <g id="edge44" class="edge">
 <title>LY_CHAOS&#45;&gt;OPEC_PLUS</title>
 <path fill="none" stroke="#1a5296" stroke-width="1.5" d="M230.36,-439C374.48,-439 706.87,-439 706.87,-439 706.87,-439 706.87,-193.58 706.87,-193.58"/>
 <polygon fill="#1a5296" stroke="#1a5296" stroke-width="1.5" points="709.32,-193.58 706.87,-186.58 704.42,-193.58 709.32,-193.58"/>
-<text xml:space="preserve" text-anchor="middle" x="576.32" y="-443.12" font-family="Arial" font-size="7.50" fill="#1a5296">豁免参与</text>
+<text xml:space="preserve" text-anchor="middle" x="551.95" y="-465.62" font-family="Arial" font-size="7.50" fill="#1a5296">2011内战后产量崩溃</text>
+<text xml:space="preserve" text-anchor="middle" x="551.95" y="-454.38" font-family="Arial" font-size="7.50" fill="#1a5296">2024恢复至120万桶/日</text>
+<text xml:space="preserve" text-anchor="middle" x="551.95" y="-443.12" font-family="Arial" font-size="7.50" fill="#1a5296">豁免配额参与</text>
 </g>
 <!-- NG_GOVT -->
 <g id="node22" class="node">
@@ -561,7 +642,9 @@
 <title>NG_GOVT&#45;&gt;OPEC_PLUS</title>
 <path fill="none" stroke="#cc2222" stroke-width="2.5" d="M58.2,-560.26C58.2,-477.58 58.2,-164 58.2,-164 58.2,-164 688.36,-164 688.36,-164"/>
 <polygon fill="#cc2222" stroke="#cc2222" stroke-width="2.5" points="688.36,-166.45 695.36,-164 688.36,-161.55 688.36,-166.45"/>
-<text xml:space="preserve" text-anchor="middle" x="160.15" y="-168.12" font-family="Arial" font-size="7.50" fill="#cc2222">配额成员</text>
+<text xml:space="preserve" text-anchor="middle" x="137.27" y="-190.62" font-family="Arial" font-size="7.50" fill="#cc2222">1971加入OPEC</text>
+<text xml:space="preserve" text-anchor="middle" x="137.27" y="-179.38" font-family="Arial" font-size="7.50" fill="#cc2222">2024产量~150万桶/日</text>
+<text xml:space="preserve" text-anchor="middle" x="137.27" y="-168.12" font-family="Arial" font-size="7.50" fill="#cc2222">长期配额合规成员</text>
 </g>
 <!-- BAB_MAND&#45;&gt;SUEZ -->
 <g id="edge26" class="edge">
@@ -569,7 +652,9 @@
 <path fill="none" stroke="#cc2222" stroke-width="2.5" d="M2090.77,-157C2090.77,-157 2090.07,-157 2090.07,-157 2090.07,-157 2090.07,-33 2090.07,-33 2090.07,-33 2059.76,-33 2059.76,-33"/>
 <polygon fill="#cc2222" stroke="#cc2222" stroke-width="2.5" points="2086.28,-159.45 2093.28,-157 2086.28,-154.55 2086.28,-159.45"/>
 <polygon fill="#cc2222" stroke="#cc2222" stroke-width="2.5" points="2059.76,-30.55 2052.76,-33 2059.76,-35.45 2059.76,-30.55"/>
-<text xml:space="preserve" text-anchor="middle" x="2060.07" y="-73.07" font-family="Arial" font-size="7.50" fill="#cc2222">红海→苏伊士扰动</text>
+<text xml:space="preserve" text-anchor="middle" x="2030.07" y="-73.07" font-family="Arial" font-size="7.50" fill="#cc2222">2024红海危机→苏伊士通行量↓45%</text>
+<text xml:space="preserve" text-anchor="middle" x="2030.07" y="-61.82" font-family="Arial" font-size="7.50" fill="#cc2222">运费飙升300%+</text>
+<text xml:space="preserve" text-anchor="middle" x="2030.07" y="-50.57" font-family="Arial" font-size="7.50" fill="#cc2222">航运保险费暴涨</text>
 </g>
 <!-- BTC_PIPE&#45;&gt;HORMUZ -->
 <g id="edge33" class="edge">
@@ -577,7 +662,8 @@
 <path fill="none" stroke="#1a5296" stroke-width="1.5" d="M2055.65,-171C2055.65,-171 2056.47,-171 2056.47,-171 2056.47,-171 2056.47,-41 2056.47,-41 2056.47,-41 2087.78,-41 2087.78,-41"/>
 <polygon fill="#1a5296" stroke="#1a5296" stroke-width="1.5" points="2057.59,-168.55 2050.59,-171 2057.59,-173.45 2057.59,-168.55"/>
 <polygon fill="#1a5296" stroke="#1a5296" stroke-width="1.5" points="2087.78,-43.45 2094.78,-41 2087.78,-38.55 2087.78,-43.45"/>
-<text xml:space="preserve" text-anchor="middle" x="2018.97" y="-94.88" font-family="Arial" font-size="7.50" fill="#1a5296">里海油绕霍尔木兹替代</text>
+<text xml:space="preserve" text-anchor="middle" x="2008.09" y="-106.13" font-family="Arial" font-size="7.50" fill="#1a5296">1990s设计绕俄绕伊替代通道</text>
+<text xml:space="preserve" text-anchor="middle" x="2008.09" y="-94.88" font-family="Arial" font-size="7.50" fill="#1a5296">里海油避开霍尔木兹风险</text>
 </g>
 <!-- WAHHABISM -->
 <g id="node27" class="node">
@@ -591,7 +677,9 @@
 <title>WAHHABISM&#45;&gt;SA_MBS</title>
 <path fill="none" stroke="#1a5296" stroke-width="1.5" d="M1283.9,-558.65C1283.9,-558.65 1283.9,-477.11 1283.9,-477.11"/>
 <polygon fill="#1a5296" stroke="#1a5296" stroke-width="1.5" points="1286.35,-477.11 1283.9,-470.11 1281.45,-477.11 1286.35,-477.11"/>
-<text xml:space="preserve" text-anchor="middle" x="1261.4" y="-522.01" font-family="Arial" font-size="7.50" fill="#1a5296">意识形态输出</text>
+<text xml:space="preserve" text-anchor="middle" x="1336.03" y="-544.51" font-family="Arial" font-size="7.50" fill="#1a5296">MBS 2017后削弱宗教警察权力</text>
+<text xml:space="preserve" text-anchor="middle" x="1336.03" y="-533.26" font-family="Arial" font-size="7.50" fill="#1a5296">愿景2030世俗化转型</text>
+<text xml:space="preserve" text-anchor="middle" x="1336.03" y="-522.01" font-family="Arial" font-size="7.50" fill="#1a5296">但伊斯兰合作组织输出持续</text>
 </g>
 <!-- SHIA_CRES -->
 <g id="node28" class="node">
@@ -605,7 +693,9 @@
 <title>SHIA_CRES&#45;&gt;IR_IRGC</title>
 <path fill="none" stroke="#cc2222" stroke-width="2.5" d="M1894.43,-573C1917.45,-573 1937.7,-573 1937.7,-573 1937.7,-573 1937.7,-478.32 1937.7,-478.32"/>
 <polygon fill="#cc2222" stroke="#cc2222" stroke-width="2.5" points="1940.15,-478.32 1937.7,-471.32 1935.25,-478.32 1940.15,-478.32"/>
-<text xml:space="preserve" text-anchor="middle" x="1915.2" y="-551.42" font-family="Arial" font-size="7.50" fill="#cc2222">抵抗轴心基础</text>
+<text xml:space="preserve" text-anchor="middle" x="1888.95" y="-573.92" font-family="Arial" font-size="7.50" fill="#cc2222">1979革命输出什叶意识形态</text>
+<text xml:space="preserve" text-anchor="middle" x="1888.95" y="-562.67" font-family="Arial" font-size="7.50" fill="#cc2222">伊拉克→叙利亚→黎巴嫩轴线</text>
+<text xml:space="preserve" text-anchor="middle" x="1888.95" y="-551.42" font-family="Arial" font-size="7.50" fill="#cc2222">抵抗轴心意识形态基础</text>
 </g>
 <!-- ARAMCO_HIST -->
 <g id="node29" class="node">
@@ -620,7 +710,9 @@
 <title>ARAMCO_HIST&#45;&gt;SA_ARAMCO</title>
 <path fill="none" stroke="#cc2222" stroke-width="2.5" d="M1508.8,-551.52C1508.8,-478.03 1508.8,-288 1508.8,-288 1508.8,-288 1135.67,-288 1135.67,-288"/>
 <polygon fill="#cc2222" stroke="#cc2222" stroke-width="2.5" points="1135.67,-285.55 1128.67,-288 1135.67,-290.45 1135.67,-285.55"/>
-<text xml:space="preserve" text-anchor="middle" x="1425.12" y="-292.12" font-family="Arial" font-size="7.50" fill="#cc2222">历史:国有化1988</text>
+<text xml:space="preserve" text-anchor="middle" x="1398.49" y="-314.62" font-family="Arial" font-size="7.50" fill="#cc2222">1933美沙特许权协议</text>
+<text xml:space="preserve" text-anchor="middle" x="1398.49" y="-303.38" font-family="Arial" font-size="7.50" fill="#cc2222">1973部分国有化</text>
+<text xml:space="preserve" text-anchor="middle" x="1398.49" y="-292.12" font-family="Arial" font-size="7.50" fill="#cc2222">1988完全国有化→Saudi Aramco</text>
 </g>
 <!-- OPEC_1973 -->
 <g id="node30" class="node">
@@ -635,7 +727,9 @@
 <title>OPEC_1973&#45;&gt;OPEC_PLUS</title>
 <path fill="none" stroke="#cc2222" stroke-width="2.5" d="M1688.8,-551.57C1688.8,-455.74 1688.8,-151 1688.8,-151 1688.8,-151 841.48,-151 841.48,-151"/>
 <polygon fill="#cc2222" stroke="#cc2222" stroke-width="2.5" points="841.48,-148.55 834.48,-151 841.48,-153.45 841.48,-148.55"/>
-<text xml:space="preserve" text-anchor="middle" x="1450.42" y="-155.12" font-family="Arial" font-size="7.50" fill="#cc2222">历史演化</text>
+<text xml:space="preserve" text-anchor="middle" x="1422.67" y="-177.62" font-family="Arial" font-size="7.50" fill="#cc2222">1973石油禁运→价格四倍</text>
+<text xml:space="preserve" text-anchor="middle" x="1422.67" y="-166.38" font-family="Arial" font-size="7.50" fill="#cc2222">重塑全球能源秩序</text>
+<text xml:space="preserve" text-anchor="middle" x="1422.67" y="-155.12" font-family="Arial" font-size="7.50" fill="#cc2222">→演化为OPEC+机制</text>
 </g>
 <!-- L_state -->
 <g id="node31" class="node">

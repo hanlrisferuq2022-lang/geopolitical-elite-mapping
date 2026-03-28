@@ -28,14 +28,14 @@ select:focus{border-color:var(--accent)}
 
 /* ── Canvas ── */
 .canvas-wrap{flex:1;position:relative;background:#0d0f15}
-#cy{width:100%;height:100%}
+#cy{width:100%;height:calc(100% - 36px)}
 .hint{position:absolute;top:10px;left:10px;font-size:10px;color:var(--text-dim);pointer-events:none;line-height:1.6;background:rgba(15,17,23,0.85);padding:6px 10px;border-radius:4px;border:1px solid var(--border)}
-.zoom-ctrl{position:absolute;bottom:14px;right:14px;display:flex;flex-direction:column;gap:4px}
+.zoom-ctrl{position:absolute;bottom:50px;right:14px;display:flex;flex-direction:column;gap:4px}
 .zoom-btn{width:32px;height:32px;background:var(--panel);border:1px solid var(--border);border-radius:6px;color:var(--text);font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .15s}
 .zoom-btn:hover{background:var(--hover)}
 
 /* ── Right Panel ── */
-.panel-right{width:185px;background:var(--panel);border-left:1px solid var(--border);display:flex;flex-direction:column;overflow-y:auto;flex-shrink:0}
+.panel-right{width:280px;background:var(--panel);border-left:1px solid var(--border);display:flex;flex-direction:column;overflow-y:auto;flex-shrink:0}
 .panel-right h3{font-size:11px;text-transform:uppercase;letter-spacing:1.2px;color:var(--text-dim);padding:14px 12px 6px;border-bottom:1px solid var(--border)}
 .detail-empty{padding:14px 12px;font-size:11px;color:var(--text-dim);line-height:1.6}
 .detail-content{padding:10px 12px;font-size:11px;line-height:1.65}
@@ -48,10 +48,21 @@ select:focus{border-color:var(--accent)}
 .rel-item{padding:4px 0;border-bottom:1px solid var(--border);font-size:10px;line-height:1.5}
 .rel-arrow{color:var(--accent);font-weight:700}
 .rel-conf{float:right}
+.era-group-header{font-size:9px;font-weight:700;color:rgba(255,255,255,0.8);padding:4px 8px;margin:6px 0 2px;border-radius:3px;letter-spacing:0.5px}
+.era-group-header .era-range{font-weight:400;opacity:0.65;margin-left:4px}
 
 /* ── Tooltip ── */
 .edge-tooltip{position:absolute;pointer-events:none;background:rgba(24,27,37,0.96);border:1px solid var(--border);border-radius:6px;padding:8px 12px;font-size:11px;line-height:1.6;color:var(--text);z-index:999;max-width:260px;box-shadow:0 4px 16px rgba(0,0,0,0.5);display:none}
 .edge-tooltip .et-label{font-weight:600;color:var(--accent)}
+
+/* ── Timeline Bar ── */
+.timeline-bar{position:absolute;bottom:0;left:0;right:0;height:36px;background:var(--panel);border-top:1px solid var(--border);display:flex;align-items:center;padding:0 12px;gap:0;z-index:10}
+.timeline-label{font-size:9px;color:var(--text-dim);margin-right:8px;white-space:nowrap;flex-shrink:0}
+.timeline-track{flex:1;display:flex;height:18px;border-radius:4px;overflow:hidden;gap:1px}
+.timeline-seg{flex:1;display:flex;align-items:center;justify-content:center;font-size:8px;font-weight:600;color:rgba(255,255,255,0.85);cursor:pointer;transition:opacity .2s,filter .2s;user-select:none;position:relative}
+.timeline-seg.inactive{opacity:0.25;filter:grayscale(0.8)}
+.timeline-seg:hover{filter:brightness(1.2)}
+.timeline-seg .seg-range{font-size:7px;font-weight:400;opacity:0.7;margin-left:4px}
 </style>
 <!-- Cytoscape.js (inlined for offline use) -->
 <script>
@@ -109,6 +120,8 @@ var ts=function(){function e(e){return-e.tension*e.x-e.friction*e.v}function t(t
     </select>
     <p style="font-size:9px; color:var(--text-dim); margin-top:4px;">💡 推荐使用网格布局以获得最佳阵营展示效果</p>
   </div>
+  <h3>📅 时代纪元</h3>
+  <div class="filter-group" id="eraFilters"></div>
 </div>
 
 <!-- Canvas -->
@@ -121,6 +134,10 @@ var ts=function(){function e(e){return-e.tension*e.x-e.friction*e.v}function t(t
     <button class="zoom-btn" id="zoomFit" title="适应画布">⌂</button>
   </div>
   <div class="edge-tooltip" id="edgeTooltip"></div>
+  <div class="timeline-bar">
+    <span class="timeline-label">📅 时间线</span>
+    <div class="timeline-track" id="timelineTrack"></div>
+  </div>
 </div>
 
 <!-- Right Panel -->
@@ -134,10 +151,11 @@ var ts=function(){function e(e){return-e.tension*e.x-e.friction*e.v}function t(t
 "use strict";
 
 /* ── Data ── */
-const NODES = [{"id": "SA_MBS", "label": "沙特王室\n（MBS派系）\n+ 公共投资基金PIF", "type": "state_elite", "confidence": "HIGH", "note": "♟ Vision2030核心；控制Aramco；OPEC实际主导方"}, {"id": "SA_ARAMCO", "label": "沙特阿拉伯\n国家石油公司\nAramco", "type": "corp_national", "confidence": "HIGH", "note": "♟ 全球最大石油公司；估值最高时超2万亿美元"}, {"id": "UAE_MBZ", "label": "阿联酋\n（MBZ网络）\n+ ADNOC", "type": "state_elite", "confidence": "HIGH", "note": "♟ 亚伯拉罕协议签署方；主权财富基金ADQ/Mubadala"}, {"id": "QA_FUND", "label": "卡塔尔\n（埃米尔派系）\n+ QIA + 半岛电视台", "type": "state_elite", "confidence": "HIGH", "note": "♟ 全球最大LNG出口国；软实力网络"}, {"id": "KW_GOVT", "label": "科威特政府\n+ KPC", "type": "state_elite", "confidence": "MED", "note": "♟ 重要OPEC成员；2020价格战缓冲方"}, {"id": "IQ_GOVT", "label": "伊拉克政府\n（巴格达派系）", "type": "state_elite", "confidence": "MED", "note": "♟ OPEC第二大产油国；受PMF影响严重"}, {"id": "IR_SL", "label": "伊朗\n最高领袖办公室\n（哈梅内伊体系）", "type": "state_elite", "confidence": "HIGH", "note": "♟ IRGC最高指挥权；\"抵抗轴心\"总设计师"}, {"id": "IR_IRGC", "label": "伊朗革命卫队\n（IRGC）\n+ 圣城军Quds Force", "type": "militia_proxy", "confidence": "HIGH", "note": "♟ 经济帝国+代理战争调度器；控制Khatam al-Anbiya"}, {"id": "HOUTHI", "label": "也门胡塞武装\n（安萨尔真主）", "type": "militia_proxy", "confidence": "HIGH", "note": "♟ 控制曼德海峡；2023-2025红海袭击"}, {"id": "PMF_IQ", "label": "伊拉克\n人民动员力量PMF\n（亲伊朗派系）", "type": "militia_proxy", "confidence": "HIGH", "note": "♟ 控制部分油田和炼油厂；走私网络"}, {"id": "HEZBOLLAH", "label": "黎巴嫩真主党\n+ Al-Amana能源网络", "type": "militia_proxy", "confidence": "HIGH", "note": "♟ 伊朗石油黎巴嫩中转；年收入约$7亿（美估值）"}, {"id": "RU_KREMLIN", "label": "俄罗斯\n（克宫能源外交）\n+ Rosneft", "type": "state_elite", "confidence": "HIGH", "note": "♟ OPEC+共同主导方；制裁后重组出口路线"}, {"id": "US_SHALE", "label": "美国\n页岩油集团\n（德州-华盛顿轴）", "type": "state_elite", "confidence": "HIGH", "note": "♟ 2019成全球最大产油国；IEA主要推力"}, {"id": "US_CENTCOM", "label": "美国中央司令部\n（CENTCOM）", "type": "state_elite", "confidence": "HIGH", "note": "♟ 波斯湾军事保护伞；第5舰队巴林"}, {"id": "CN_NOC", "label": "中国国家石油企业\n中石油/中石化/中海油", "type": "corp_national", "confidence": "HIGH", "note": "♟ 中东第一大石油买家；BRI能源投资2024达$390亿"}, {"id": "IL_GOVT", "label": "以色列政府\n（内塔尼亚胡派系）", "type": "state_elite", "confidence": "HIGH", "note": "♟ 亚伯拉罕协议；CENTCOM区责；加沙战争后外交搁置"}, {"id": "TR_ERDOGAN", "label": "土耳其\n（埃尔多安政府）\n能源枢纽战略", "type": "state_elite", "confidence": "MED", "note": "♟ Kirkuk-Ceyhan管道；土耳其海峡；BTC管道"}, {"id": "OPEC_PLUS", "label": "OPEC+\n多边生产配额机制", "type": "intl_org", "confidence": "HIGH", "note": "♟ 沙俄联合主导；调节全球约40%石油供给"}, {"id": "IEA", "label": "国际能源署IEA\n（西方消费国集团）", "type": "intl_org", "confidence": "HIGH", "note": "♟ 全球战略储备协调；与OPEC博弈"}, {"id": "MAJORS_W", "label": "西方石油巨头\nExxon/BP/Shell\n/TotalEnergies", "type": "corp_western", "confidence": "HIGH", "note": "♟ 中东开采合同；逐步被国家油企替代"}, {"id": "LY_CHAOS", "label": "利比亚\n（碎片化政权）\n+ NOC", "type": "state_elite", "confidence": "MED", "note": "♟ OPEC豁免生产；欧洲主要供应方；2025产量十年高峰"}, {"id": "NG_GOVT", "label": "尼日利亚政府\n+ NNPC", "type": "state_elite", "confidence": "MED", "note": "♟ 非洲最大产油国；尼日尔三角洲安全复杂"}, {"id": "HORMUZ", "label": "霍尔木兹海峡\n（波斯湾咽喉）", "type": "chokepoint", "confidence": "HIGH", "note": "🚢 全球石油流量~21%；伊朗封锁威胁"}, {"id": "BAB_MAND", "label": "曼德海峡\n（红海入口）", "type": "chokepoint", "confidence": "HIGH", "note": "🚢 胡塞袭击中心；全球贸易~12%绕行"}, {"id": "SUEZ", "label": "苏伊士运河\n（埃及控制）", "type": "chokepoint", "confidence": "HIGH", "note": "🚢 中东→欧洲最短海路；2021Ever Given事件"}, {"id": "BTC_PIPE", "label": "BTC管道\n（巴库-第比利斯-杰伊汉）", "type": "chokepoint", "confidence": "MED", "note": "🚢 里海油绕俄输欧；土耳其通道杠杆"}, {"id": "WAHHABISM", "label": "瓦哈比主义\n国家意识形态输出", "type": "ideology", "confidence": "MED", "note": "💡 沙特通过伊斯兰合作组织输出；与伊朗什叶主义竞争"}, {"id": "SHIA_CRES", "label": "什叶新月意识形态\n（伊朗版本）", "type": "ideology", "confidence": "MED", "note": "💡 伊拉克→叙利亚→黎巴嫩轴线；抵抗轴心意识形态基础"}, {"id": "ARAMCO_HIST", "label": "七姐妹时代\n（美英石油垄断）\n1945-1973背景层", "type": "ideology", "confidence": "HIGH", "note": "📜 历史：西方主导被1973危机打断"}, {"id": "OPEC_1973", "label": "OPEC石油禁运\n（1973-1974）\n背景层", "type": "ideology", "confidence": "HIGH", "note": "📜 历史：第一次\"石油武器\"；重塑全球经济秩序"}];
-const EDGES = [{"source": "SA_MBS", "target": "OPEC_PLUS", "label": "领导定价配额", "confidence": "HIGH"}, {"source": "RU_KREMLIN", "target": "OPEC_PLUS", "label": "OPEC+共同主导", "confidence": "HIGH"}, {"source": "UAE_MBZ", "target": "OPEC_PLUS", "label": "配额参与/分歧", "confidence": "HIGH"}, {"source": "QA_FUND", "target": "OPEC_PLUS", "label": "配额参与", "confidence": "HIGH"}, {"source": "IQ_GOVT", "target": "OPEC_PLUS", "label": "配额(低合规率)", "confidence": "MED"}, {"source": "OPEC_PLUS", "target": "IEA", "label": "定价博弈", "confidence": "HIGH"}, {"source": "US_SHALE", "target": "IEA", "label": "西方战略储备", "confidence": "HIGH"}, {"source": "US_SHALE", "target": "OPEC_PLUS", "label": "市场竞争压力", "confidence": "HIGH"}, {"source": "SA_MBS", "target": "SA_ARAMCO", "label": "国家完全控制", "confidence": "HIGH"}, {"source": "SA_ARAMCO", "target": "OPEC_PLUS", "label": "产量数据支撑", "confidence": "HIGH"}, {"source": "UAE_MBZ", "target": "SA_ARAMCO", "label": "ADNOC竞争", "confidence": "MED"}, {"source": "CN_NOC", "target": "SA_ARAMCO", "label": "石油长约(买方)", "confidence": "HIGH"}, {"source": "CN_NOC", "target": "IQ_GOVT", "label": "鲁迈拉油田开采", "confidence": "HIGH"}, {"source": "CN_NOC", "target": "IR_IRGC", "label": "绕制裁购伊朗油", "confidence": "MED"}, {"source": "MAJORS_W", "target": "IQ_GOVT", "label": "油田服务合同", "confidence": "HIGH"}, {"source": "MAJORS_W", "target": "SA_ARAMCO", "label": "技术合作(递减)", "confidence": "MED"}, {"source": "RU_KREMLIN", "target": "CN_NOC", "label": "制裁后扩大对华出口", "confidence": "HIGH"}, {"source": "IR_SL", "target": "IR_IRGC", "label": "最高领袖直接指挥", "confidence": "HIGH"}, {"source": "IR_IRGC", "target": "HOUTHI", "label": "武器/资金/训练", "confidence": "HIGH"}, {"source": "IR_IRGC", "target": "PMF_IQ", "label": "伊朗化伊拉克民兵", "confidence": "HIGH"}, {"source": "IR_IRGC", "target": "HEZBOLLAH", "label": "$7亿+/年+武器", "confidence": "HIGH"}, {"source": "PMF_IQ", "target": "IQ_GOVT", "label": "政治渗透议会/部委", "confidence": "HIGH"}, {"source": "PMF_IQ", "target": "SA_ARAMCO", "label": "威胁沙特设施[LOW]", "confidence": "LOW"}, {"source": "HEZBOLLAH", "target": "IR_IRGC", "label": "伊朗油黎巴嫩分销", "confidence": "HIGH"}, {"source": "HOUTHI", "target": "BAB_MAND", "label": "袭击商船(200+次)", "confidence": "HIGH"}, {"source": "BAB_MAND", "target": "SUEZ", "label": "红海→苏伊士扰动", "confidence": "HIGH"}, {"source": "US_CENTCOM", "target": "HOUTHI", "label": "军事反制OPG", "confidence": "HIGH"}, {"source": "SA_MBS", "target": "HOUTHI", "label": "也门内战(沙特联军)", "confidence": "HIGH"}, {"source": "IR_IRGC", "target": "HORMUZ", "label": "封锁威胁/骚扰", "confidence": "HIGH"}, {"source": "US_CENTCOM", "target": "HORMUZ", "label": "护航/海上阻绝", "confidence": "HIGH"}, {"source": "TR_ERDOGAN", "target": "SUEZ", "label": "Kirkuk-Ceyhan替代", "confidence": "MED"}, {"source": "TR_ERDOGAN", "target": "BTC_PIPE", "label": "运营/通道税收", "confidence": "HIGH"}, {"source": "BTC_PIPE", "target": "HORMUZ", "label": "里海油绕霍尔木兹替代", "confidence": "MED"}, {"source": "IL_GOVT", "target": "UAE_MBZ", "label": "亚伯拉罕协议", "confidence": "HIGH"}, {"source": "IL_GOVT", "target": "SA_MBS", "label": "非正式安全协作", "confidence": "MED"}, {"source": "US_CENTCOM", "target": "IL_GOVT", "label": "CENTCOM区责+武器", "confidence": "HIGH"}, {"source": "SA_MBS", "target": "IL_GOVT", "label": "正常化谈判搁置", "confidence": "MED"}, {"source": "SA_MBS", "target": "IR_SL", "label": "2023中调沙伊复交", "confidence": "HIGH"}, {"source": "SA_MBS", "target": "IR_IRGC", "label": "也门代理战争对抗", "confidence": "HIGH"}, {"source": "IR_SL", "target": "QA_FUND", "label": "叙事竞争[INFERRED]", "confidence": "INFERRED"}, {"source": "CN_NOC", "target": "QA_FUND", "label": "卡塔尔LNG 27年合同", "confidence": "HIGH"}, {"source": "CN_NOC", "target": "UAE_MBZ", "label": "ADNOC投资合作", "confidence": "HIGH"}, {"source": "SA_MBS", "target": "CN_NOC", "label": "人民币结算探索", "confidence": "MED"}, {"source": "LY_CHAOS", "target": "OPEC_PLUS", "label": "豁免参与", "confidence": "MED"}, {"source": "NG_GOVT", "target": "OPEC_PLUS", "label": "配额成员", "confidence": "HIGH"}, {"source": "MAJORS_W", "target": "LY_CHAOS", "label": "油田开发合同", "confidence": "MED"}, {"source": "WAHHABISM", "target": "SA_MBS", "label": "意识形态输出", "confidence": "MED"}, {"source": "SHIA_CRES", "target": "IR_IRGC", "label": "抵抗轴心基础", "confidence": "HIGH"}, {"source": "OPEC_1973", "target": "OPEC_PLUS", "label": "历史演化", "confidence": "HIGH"}, {"source": "ARAMCO_HIST", "target": "SA_ARAMCO", "label": "历史:国有化1988", "confidence": "HIGH"}];
+const NODES = [{"id": "SA_MBS", "label": "沙特王室\n（MBS派系）\n+ 公共投资基金PIF", "type": "state_elite", "confidence": "HIGH", "note": "♟ Vision2030核心；控制Aramco；OPEC实际主导方", "era": ["era3", "era4"]}, {"id": "SA_ARAMCO", "label": "沙特阿拉伯\n国家石油公司\nAramco", "type": "corp_national", "confidence": "HIGH", "note": "♟ 全球最大石油公司；估值最高时超2万亿美元", "era": ["era2", "era3", "era4"]}, {"id": "UAE_MBZ", "label": "阿联酋\n（MBZ网络）\n+ ADNOC", "type": "state_elite", "confidence": "HIGH", "note": "♟ 亚伯拉罕协议签署方；主权财富基金ADQ/Mubadala", "era": ["era3", "era4"]}, {"id": "QA_FUND", "label": "卡塔尔\n（埃米尔派系）\n+ QIA + 半岛电视台", "type": "state_elite", "confidence": "HIGH", "note": "♟ 全球最大LNG出口国；软实力网络", "era": ["era3", "era4"]}, {"id": "KW_GOVT", "label": "科威特政府\n+ KPC", "type": "state_elite", "confidence": "MED", "note": "♟ 重要OPEC成员；2020价格战缓冲方", "era": ["era2", "era3", "era4"]}, {"id": "IQ_GOVT", "label": "伊拉克政府\n（巴格达派系）", "type": "state_elite", "confidence": "MED", "note": "♟ OPEC第二大产油国；受PMF影响严重", "era": ["era1", "era2", "era3", "era4"]}, {"id": "IR_SL", "label": "伊朗\n最高领袖办公室\n（哈梅内伊体系）", "type": "state_elite", "confidence": "HIGH", "note": "♟ IRGC最高指挥权；\"抵抗轴心\"总设计师", "era": ["era2", "era3", "era4"]}, {"id": "IR_IRGC", "label": "伊朗革命卫队\n（IRGC）\n+ 圣城军Quds Force", "type": "militia_proxy", "confidence": "HIGH", "note": "♟ 经济帝国+代理战争调度器；控制Khatam al-Anbiya", "era": ["era2", "era3", "era4"]}, {"id": "HOUTHI", "label": "也门胡塞武装\n（安萨尔真主）", "type": "militia_proxy", "confidence": "HIGH", "note": "♟ 控制曼德海峡；2023-2025红海袭击", "era": ["era3", "era4"]}, {"id": "PMF_IQ", "label": "伊拉克\n人民动员力量PMF\n（亲伊朗派系）", "type": "militia_proxy", "confidence": "HIGH", "note": "♟ 控制部分油田和炼油厂；走私网络", "era": ["era3", "era4"]}, {"id": "HEZBOLLAH", "label": "黎巴嫩真主党\n+ Al-Amana能源网络", "type": "militia_proxy", "confidence": "HIGH", "note": "♟ 伊朗石油黎巴嫩中转；年收入约$7亿（美估值）", "era": ["era2", "era3", "era4"]}, {"id": "RU_KREMLIN", "label": "俄罗斯\n（克宫能源外交）\n+ Rosneft", "type": "state_elite", "confidence": "HIGH", "note": "♟ OPEC+共同主导方；制裁后重组出口路线", "era": ["era2", "era3", "era4"]}, {"id": "US_SHALE", "label": "美国\n页岩油集团\n（德州-华盛顿轴）", "type": "state_elite", "confidence": "HIGH", "note": "♟ 2019成全球最大产油国；IEA主要推力", "era": ["era3", "era4"]}, {"id": "US_CENTCOM", "label": "美国中央司令部\n（CENTCOM）", "type": "state_elite", "confidence": "HIGH", "note": "♟ 波斯湾军事保护伞；第5舰队巴林", "era": ["era2", "era3", "era4"]}, {"id": "CN_NOC", "label": "中国国家石油企业\n中石油/中石化/中海油", "type": "corp_national", "confidence": "HIGH", "note": "♟ 中东第一大石油买家；BRI能源投资2024达$390亿", "era": ["era3", "era4"]}, {"id": "IL_GOVT", "label": "以色列政府\n（内塔尼亚胡派系）", "type": "state_elite", "confidence": "HIGH", "note": "♟ 亚伯拉罕协议；CENTCOM区责；加沙战争后外交搁置", "era": ["era3", "era4"]}, {"id": "TR_ERDOGAN", "label": "土耳其\n（埃尔多安政府）\n能源枢纽战略", "type": "state_elite", "confidence": "MED", "note": "♟ Kirkuk-Ceyhan管道；土耳其海峡；BTC管道", "era": ["era3", "era4"]}, {"id": "OPEC_PLUS", "label": "OPEC+\n多边生产配额机制", "type": "intl_org", "confidence": "HIGH", "note": "♟ 沙俄联合主导；调节全球约40%石油供给", "era": ["era2", "era3", "era4"]}, {"id": "IEA", "label": "国际能源署IEA\n（西方消费国集团）", "type": "intl_org", "confidence": "HIGH", "note": "♟ 全球战略储备协调；与OPEC博弈", "era": ["era2", "era3", "era4"]}, {"id": "MAJORS_W", "label": "西方石油巨头\nExxon/BP/Shell\n/TotalEnergies", "type": "corp_western", "confidence": "HIGH", "note": "♟ 中东开采合同；逐步被国家油企替代", "era": ["era1", "era2", "era3", "era4"]}, {"id": "LY_CHAOS", "label": "利比亚\n（碎片化政权）\n+ NOC", "type": "state_elite", "confidence": "MED", "note": "♟ OPEC豁免生产；欧洲主要供应方；2025产量十年高峰", "era": ["era3", "era4"]}, {"id": "NG_GOVT", "label": "尼日利亚政府\n+ NNPC", "type": "state_elite", "confidence": "MED", "note": "♟ 非洲最大产油国；尼日尔三角洲安全复杂", "era": ["era2", "era3", "era4"]}, {"id": "HORMUZ", "label": "霍尔木兹海峡\n（波斯湾咽喉）", "type": "chokepoint", "confidence": "HIGH", "note": "🚢 全球石油流量~21%；伊朗封锁威胁", "era": ["era1", "era2", "era3", "era4"]}, {"id": "BAB_MAND", "label": "曼德海峡\n（红海入口）", "type": "chokepoint", "confidence": "HIGH", "note": "🚢 胡塞袭击中心；全球贸易~12%绕行", "era": ["era1", "era2", "era3", "era4"]}, {"id": "SUEZ", "label": "苏伊士运河\n（埃及控制）", "type": "chokepoint", "confidence": "HIGH", "note": "🚢 中东→欧洲最短海路；2021Ever Given事件", "era": ["era1", "era2", "era3", "era4"]}, {"id": "BTC_PIPE", "label": "BTC管道\n（巴库-第比利斯-杰伊汉）", "type": "chokepoint", "confidence": "MED", "note": "🚢 里海油绕俄输欧；土耳其通道杠杆", "era": ["era2", "era3", "era4"]}, {"id": "WAHHABISM", "label": "瓦哈比主义\n国家意识形态输出", "type": "ideology", "confidence": "MED", "note": "💡 沙特通过伊斯兰合作组织输出；与伊朗什叶主义竞争", "era": ["era1", "era2", "era3", "era4"]}, {"id": "SHIA_CRES", "label": "什叶新月意识形态\n（伊朗版本）", "type": "ideology", "confidence": "MED", "note": "💡 伊拉克→叙利亚→黎巴嫩轴线；抵抗轴心意识形态基础", "era": ["era2", "era3", "era4"]}, {"id": "ARAMCO_HIST", "label": "七姐妹时代\n（美英石油垄断）\n1945-1973背景层", "type": "ideology", "confidence": "HIGH", "note": "📜 历史：西方主导被1973危机打断", "era": ["era1"]}, {"id": "OPEC_1973", "label": "OPEC石油禁运\n（1973-1974）\n背景层", "type": "ideology", "confidence": "HIGH", "note": "📜 历史：第一次\"石油武器\"；重塑全球经济秩序", "era": ["era1", "era2"]}];
+const EDGES = [{"source": "SA_MBS", "target": "OPEC_PLUS", "label": {"era3": "2016主导OPEC+减产协议", "era4": "2020史诗级减产970万桶/日 · 2024延长自愿减产至Q1'25"}, "confidence": "HIGH", "era": ["era3", "era4"]}, {"source": "RU_KREMLIN", "target": "OPEC_PLUS", "label": {"era3": "2016加入OPEC+联盟", "era4": "2020沙俄价格战→3月协议 · 2024制裁下维持配额合作"}, "confidence": "HIGH", "era": ["era3", "era4"]}, {"source": "UAE_MBZ", "target": "OPEC_PLUS", "label": {"era3": "参与OPEC+减产框架", "era4": "2021争取更高基准配额 · 2024扩产能至500万桶/日目标"}, "confidence": "HIGH", "era": ["era3", "era4"]}, {"source": "QA_FUND", "target": "OPEC_PLUS", "label": {"era3": "OPEC成员国参与配额", "era4": "2019退出OPEC转LNG · 仍参与OPEC+协调机制"}, "confidence": "HIGH", "era": ["era3", "era4"]}, {"source": "IQ_GOVT", "target": "OPEC_PLUS", "label": {"era2": "1960创始成员国", "era3": "配额合规率长期偏低", "era4": "2024合规率仅~65% · 超产争议"}, "confidence": "MED", "era": ["era2", "era3", "era4"]}, {"source": "OPEC_PLUS", "target": "IEA", "label": {"era3": "供需信息博弈", "era4": "2022 IEA协调释放6000万桶储备 · 2023定价权拉锯战"}, "confidence": "HIGH", "era": ["era3", "era4"]}, {"source": "US_SHALE", "target": "IEA", "label": {"era3": "2015页岩油使美成净出口国", "era4": "2022 SPR释放1.8亿桶 · 西方能源安全支柱"}, "confidence": "HIGH", "era": ["era3", "era4"]}, {"source": "US_SHALE", "target": "OPEC_PLUS", "label": {"era3": "2014页岩革命冲击油价", "era4": "2020产量战相互消耗 · 2024美产1300万桶/日纪录"}, "confidence": "HIGH", "era": ["era3", "era4"]}, {"source": "SA_MBS", "target": "SA_ARAMCO", "label": {"era3": "国家100%战略控制", "era4": "2019 Aramco IPO(1.7万亿估值) · 2024重组下游扩张"}, "confidence": "HIGH", "era": ["era3", "era4"]}, {"source": "SA_ARAMCO", "target": "OPEC_PLUS", "label": {"era3": "产量数据核心支撑", "era4": "闲置产能全球最大(~200万桶/日)"}, "confidence": "HIGH", "era": ["era3", "era4"]}, {"source": "UAE_MBZ", "target": "SA_ARAMCO", "label": {"era3": "ADNOC vs Aramco区域竞争", "era4": "2023 ADNOC产能450万桶/日 · 下游石化投资角力"}, "confidence": "MED", "era": ["era3", "era4"]}, {"source": "CN_NOC", "target": "SA_ARAMCO", "label": {"era3": "石油长约买方关系建立", "era4": "2023中石化长约50年合作 · 2024对华出口170万桶/日"}, "confidence": "HIGH", "era": ["era3", "era4"]}, {"source": "CN_NOC", "target": "IQ_GOVT", "label": {"era3": "中石油鲁迈拉油田(2009-)", "era4": "2023中企伊拉克投资超$200亿 · 最大外国油企投资者"}, "confidence": "HIGH", "era": ["era3", "era4"]}, {"source": "CN_NOC", "target": "IR_IRGC", "label": {"era3": "制裁灰色渠道采购", "era4": "2021中伊25年合作协议 · 2024进口伊朗油~150万桶/日"}, "confidence": "MED", "era": ["era3", "era4"]}, {"source": "MAJORS_W", "target": "IQ_GOVT", "label": {"era1": "1928-1972 IPC特许权时期 · 西方垄断伊拉克开采权", "era3": "BP鲁迈拉/Exxon西古尔纳", "era4": "2023 TotalEnergies $270亿天然气项目 · 战后重建合同"}, "confidence": "HIGH", "era": ["era1", "era3", "era4"]}, {"source": "MAJORS_W", "target": "SA_ARAMCO", "label": {"era2": "1973部分国有化 · 1988 Aramco完全国有化", "era3": "技术合作合同递减"}, "confidence": "MED", "era": ["era2", "era3"]}, {"source": "RU_KREMLIN", "target": "CN_NOC", "label": {"era4": "2022制裁后管道对华扩至200万桶/日 · 2024中俄能源贸易$700亿+ · 人民币结算占比↑"}, "confidence": "HIGH", "era": ["era4"]}, {"source": "IR_SL", "target": "IR_IRGC", "label": {"era2": "1979革命卫队成立 · 最高领袖直接指挥权", "era3": "IRGC经济帝国扩张", "era4": "2020苏莱曼尼遇刺后重组"}, "confidence": "HIGH", "era": ["era2", "era3", "era4"]}, {"source": "IR_IRGC", "target": "HOUTHI", "label": {"era3": "2014胡塞武装夺萨那 · 提供无人机/反舰导弹技术", "era4": "2024红海袭击军事支援"}, "confidence": "HIGH", "era": ["era3", "era4"]}, {"source": "IR_IRGC", "target": "PMF_IQ", "label": {"era3": "2014 PMF成立(反ISIS) · 伊朗系指挥官渗透", "era4": "2024超15万民兵准军事化"}, "confidence": "HIGH", "era": ["era3", "era4"]}, {"source": "IR_IRGC", "target": "HEZBOLLAH", "label": {"era2": "1982创建真主党", "era3": "$7亿+/年资金+武器", "era4": "2024以黎冲突升级"}, "confidence": "HIGH", "era": ["era2", "era3", "era4"]}, {"source": "PMF_IQ", "target": "IQ_GOVT", "label": {"era3": "2016 PMF合法化(国会法案)", "era4": "渗透议会/内政部 · 准国家暴力垄断"}, "confidence": "HIGH", "era": ["era3", "era4"]}, {"source": "PMF_IQ", "target": "SA_ARAMCO", "label": {"era4": "2019无人机袭击Abqaiq设施 · 威胁沙特东部油田安全"}, "confidence": "LOW", "era": ["era4"]}, {"source": "HEZBOLLAH", "target": "IR_IRGC", "label": {"era3": "伊朗油经叙利亚→黎巴嫩分销", "era4": "2024战后经济困境加深依赖"}, "confidence": "HIGH", "era": ["era3", "era4"]}, {"source": "HOUTHI", "target": "BAB_MAND", "label": {"era4": "2023.11起袭击商船200+次 · 反舰导弹+无人艇+无人机 · 全球贸易12%绕行好望角"}, "confidence": "HIGH", "era": ["era4"]}, {"source": "BAB_MAND", "target": "SUEZ", "label": {"era4": "2024红海危机→苏伊士通行量↓45% · 运费飙升300%+ · 航运保险费暴涨"}, "confidence": "HIGH", "era": ["era4"]}, {"source": "US_CENTCOM", "target": "HOUTHI", "label": {"era4": "2024.1繁荣卫士行动(OPG) · 空袭也门胡塞据点 · 多国海军护航联盟"}, "confidence": "HIGH", "era": ["era4"]}, {"source": "SA_MBS", "target": "HOUTHI", "label": {"era3": "2015沙特联军介入也门", "era4": "2023停火谈判推进 · 也门和平路线图磋商"}, "confidence": "HIGH", "era": ["era3", "era4"]}, {"source": "IR_IRGC", "target": "HORMUZ", "label": {"era2": "1988油轮战争先例", "era3": "2019扣押英国油轮", "era4": "持续封锁威胁21%全球油运"}, "confidence": "HIGH", "era": ["era2", "era3", "era4"]}, {"source": "US_CENTCOM", "target": "HORMUZ", "label": {"era2": "1987护航行动开始 · 第五舰队常驻巴林", "era3": "持续自由航行巡逻", "era4": "霍尔木兹分舰队常态化部署"}, "confidence": "HIGH", "era": ["era2", "era3", "era4"]}, {"source": "TR_ERDOGAN", "target": "SUEZ", "label": {"era3": "Kirkuk-Ceyhan管道替代方案", "era4": "2014后库区石油独立出口争议"}, "confidence": "MED", "era": ["era3", "era4"]}, {"source": "TR_ERDOGAN", "target": "BTC_PIPE", "label": {"era3": "2006 BTC管道投运 · 里海油经土耳其输欧", "era4": "通道税收/地缘杠杆持续"}, "confidence": "HIGH", "era": ["era3", "era4"]}, {"source": "BTC_PIPE", "target": "HORMUZ", "label": {"era2": "1990s设计绕俄绕伊替代通道", "era3": "里海油避开霍尔木兹风险"}, "confidence": "MED", "era": ["era2", "era3"]}, {"source": "IL_GOVT", "target": "UAE_MBZ", "label": {"era4": "2020亚伯拉罕协议签署 · 2024双边贸易$30亿+ · 情报/科技/军事合作"}, "confidence": "HIGH", "era": ["era4"]}, {"source": "IL_GOVT", "target": "SA_MBS", "label": {"era4": "2023正常化谈判(10.7前) · 2024加沙战争后搁置 · 非正式安全情报渠道持续"}, "confidence": "MED", "era": ["era4"]}, {"source": "US_CENTCOM", "target": "IL_GOVT", "label": {"era3": "铁穹/F-35武器供应", "era4": "2021以色列入CENTCOM区责 · 2024加沙军事支持"}, "confidence": "HIGH", "era": ["era3", "era4"]}, {"source": "SA_MBS", "target": "IL_GOVT", "label": {"era4": "2023美斡旋正常化框架 · 10.7后MBS搁置谈判 · 条件:巴勒斯坦建国路径"}, "confidence": "MED", "era": ["era4"]}, {"source": "SA_MBS", "target": "IR_SL", "label": {"era4": "2023.3中国调解沙伊复交 · 2016断交→2023恢复外交 · 战略对冲/降温信号"}, "confidence": "HIGH", "era": ["era4"]}, {"source": "SA_MBS", "target": "IR_IRGC", "label": {"era3": "2015也门代理战争对抗", "era4": "2019 Aramco遇袭(伊朗关联) · 双边对抗持续"}, "confidence": "HIGH", "era": ["era3", "era4"]}, {"source": "IR_SL", "target": "QA_FUND", "label": {"era3": "什叶-逊尼叙事竞争 · 半岛电视台信息战", "era4": "2017断交危机(沙特指控亲伊)"}, "confidence": "INFERRED", "era": ["era3", "era4"]}, {"source": "CN_NOC", "target": "QA_FUND", "label": {"era4": "2022 QatarEnergy-中石化27年LNG合同 · 400万吨/年($600亿+) · 最大单笔LNG长约"}, "confidence": "HIGH", "era": ["era4"]}, {"source": "CN_NOC", "target": "UAE_MBZ", "label": {"era3": "2018 ADNOC股权投资", "era4": "2024中国进口阿联酋油~60万桶/日 · 石化联合投资"}, "confidence": "HIGH", "era": ["era3", "era4"]}, {"source": "SA_MBS", "target": "CN_NOC", "label": {"era4": "2023首笔人民币结算LNG · 沙特→中国原油$500亿/年 · 去美元化试探"}, "confidence": "MED", "era": ["era4"]}, {"source": "LY_CHAOS", "target": "OPEC_PLUS", "label": {"era3": "2011内战后产量崩溃", "era4": "2024恢复至120万桶/日 · 豁免配额参与"}, "confidence": "MED", "era": ["era3", "era4"]}, {"source": "NG_GOVT", "target": "OPEC_PLUS", "label": {"era2": "1971加入OPEC", "era3": "长期配额合规成员", "era4": "2024产量~150万桶/日"}, "confidence": "HIGH", "era": ["era2", "era3", "era4"]}, {"source": "MAJORS_W", "target": "LY_CHAOS", "label": {"era3": "2004制裁解除后重返 · 2011内战撤出→2017部分回归", "era4": "ENI/BP油田开发"}, "confidence": "MED", "era": ["era3", "era4"]}, {"source": "WAHHABISM", "target": "SA_MBS", "label": {"era3": "瓦哈比意识形态国家输出", "era4": "MBS 2017后削弱宗教警察权力 · 愿景2030世俗化转型"}, "confidence": "MED", "era": ["era3", "era4"]}, {"source": "SHIA_CRES", "target": "IR_IRGC", "label": {"era2": "1979革命输出什叶意识形态", "era3": "伊拉克→叙利亚→黎巴嫩轴线", "era4": "抵抗轴心意识形态基础"}, "confidence": "HIGH", "era": ["era2", "era3", "era4"]}, {"source": "OPEC_1973", "target": "OPEC_PLUS", "label": {"era2": "1973石油禁运→价格四倍 · 重塑全球能源秩序 · →演化为OPEC+机制"}, "confidence": "HIGH", "era": ["era2"]}, {"source": "ARAMCO_HIST", "target": "SA_ARAMCO", "label": {"era1": "1933美沙特许权协议 · 七姐妹完全控制", "era2": "1973部分国有化 · 1988完全国有化→Saudi Aramco"}, "confidence": "HIGH", "era": ["era1", "era2"]}, {"source": "MAJORS_W", "target": "SUEZ", "label": {"era1": "1956苏伊士危机前西方资本控制 · 战后欧洲石油供应生命线"}, "confidence": "HIGH", "era": ["era1"]}, {"source": "MAJORS_W", "target": "ARAMCO_HIST", "label": {"era1": "1933-1973特许权时期 · Exxon/Mobil/Chevron/Texaco完全控制产量定价"}, "confidence": "HIGH", "era": ["era1"]}, {"source": "WAHHABISM", "target": "ARAMCO_HIST", "label": {"era1": "1945大苦湖会晤确立\"石油换安全\" · 意识形态与能源利益早期绑定"}, "confidence": "HIGH", "era": ["era1"]}, {"source": "MAJORS_W", "target": "HORMUZ", "label": {"era1": "1971年前属英国势力范围/保护国 · 西方油轮绝对主导航权"}, "confidence": "HIGH", "era": ["era1"]}];
 const COLORS = {"state_elite": "#1A3A5C", "militia_proxy": "#8B0000", "intl_org": "#2E5E3F", "corp_national": "#5C4A1A", "corp_western": "#4A1A5C", "chokepoint": "#1A5C5C", "ideology": "#5C5C1A", "timeline": "#F0F0F0"};
 const GROUPS = [{"id": "grp_gulf", "label": "🛢️ 海湾产油轴（沙特主导）", "color": "#1A3A5C", "bg": "#EBF5FB", "members": ["SA_MBS", "SA_ARAMCO", "UAE_MBZ", "QA_FUND", "KW_GOVT"]}, {"id": "grp_iran", "label": "☪️ 伊朗抵抗轴心（什叶弧）", "color": "#8B0000", "bg": "#FDEDEC", "members": ["IR_SL", "IR_IRGC", "HOUTHI", "PMF_IQ", "HEZBOLLAH"]}, {"id": "grp_powers", "label": "🌍 大国外部介入（美/俄/中）", "color": "#2E5E3F", "bg": "#EAF7EF", "members": ["US_SHALE", "US_CENTCOM", "RU_KREMLIN", "CN_NOC"]}, {"id": "grp_choke", "label": "🚢 战略咽喉节点", "color": "#1A5C5C", "bg": "#EAF7F7", "members": ["HORMUZ", "BAB_MAND", "SUEZ", "BTC_PIPE"]}, {"id": "grp_multi", "label": "⚖️ 多边机制", "color": "#2E5E3F", "bg": "#F0FFF0", "members": ["OPEC_PLUS", "IEA"]}, {"id": "grp_periph", "label": "🔷 区域外围玩家", "color": "#444488", "bg": "#F5F5FF", "members": ["IL_GOVT", "TR_ERDOGAN", "LY_CHAOS", "NG_GOVT", "MAJORS_W"]}, {"id": "grp_ideology", "label": "📜 意识形态 / 历史背景层", "color": "#8B7355", "bg": "#FAFAF0", "members": ["WAHHABISM", "SHIA_CRES", "OPEC_1973", "ARAMCO_HIST"]}];
+const ERAS = [{"id": "era1", "label": "七姐妹时代 (1945-1973)", "range": [1945, 1973], "desc": "西方石油垄断；中东国家尚未掌握定价权"}, {"id": "era2", "label": "石油武器时代 (1973-2000)", "range": [1973, 2000], "desc": "OPEC崛起；两次石油危机；海湾战争"}, {"id": "era3", "label": "多极博弈时代 (2000-2020)", "range": [2000, 2020], "desc": "页岩革命；中国崛起为第一大买家；阿拉伯之春"}, {"id": "era4", "label": "新秩序时代 (2020-2026)", "range": [2020, 2026], "desc": "价格战；红海危机；沙伊复交；去美元化探索"}] || [];
 
 const CONF_EDGE = {
   HIGH:     {color:"#cc2222", width:2.5, style:"solid"},
@@ -171,13 +189,15 @@ NODES.forEach(n => {
   const parent = memberToGroup[n.id] || undefined;
   elements.push({data:{
     id:n.id, label:n.label.replace(/\\n/g,"\n"), type:n.type,
-    confidence:n.confidence, note:n.note, parent:parent
+    confidence:n.confidence, note:n.note, parent:parent,
+    era:n.era||[]
   }});
 });
 
 /* Edges */
 EDGES.forEach((e,i) => {
-  elements.push({data:{id:"e"+i, source:e.source, target:e.target, label:e.label.replace(/\\n/g," "), confidence:e.confidence}});
+  const lbl = (typeof e.label === 'object' && e.label !== null) ? Object.values(e.label).join(' · ') : (e.label || '');
+  elements.push({data:{id:"e"+i, source:e.source, target:e.target, label:e.label, labelFlat:lbl.replace(/\\n/g," "), confidence:e.confidence, era:e.era||[]}});
 });
 
 /* ── Node style function ── */
@@ -276,11 +296,23 @@ cy.on("tap", function(evt){
 });
 
 /* ── Edge tooltip ── */
+function edgeLabelFlat(label){
+  if(typeof label === 'object' && label !== null){
+    return Object.values(label).join(' · ');
+  }
+  return label || '';
+}
+function edgeLabelForEra(label, eraId){
+  if(typeof label === 'object' && label !== null){
+    return label[eraId] || '';
+  }
+  return label || '';
+}
 const tooltip = document.getElementById("edgeTooltip");
 cy.on("mouseover","edge", function(evt){
   const d = evt.target.data();
   const confBadge = '<span class="conf-badge conf-'+d.confidence+'">'+d.confidence+'</span>';
-  tooltip.innerHTML = '<div class="et-label">'+d.label+'</div><div>'+
+  tooltip.innerHTML = '<div class="et-label">'+edgeLabelFlat(d.label)+'</div><div>'+
     d.source+' → '+d.target+'</div><div>置信度: '+confBadge+'</div>';
   tooltip.style.display = "block";
 });
@@ -292,12 +324,29 @@ cy.on("mousemove","edge", function(evt){
 cy.on("mouseout","edge", function(){tooltip.style.display = "none"});
 
 /* ── Right panel detail ── */
+const ERA_COLORS = ["#6366f1","#f59e0b","#10b981","#ef4444","#8b5cf6","#ec4899","#14b8a6","#f97316"];
+function eraLabelById(id){
+  if(!ERAS||!ERAS.length) return id;
+  const era = ERAS.find(e=>e.id===id);
+  return era ? era.label : id;
+}
+function eraColor(id){
+  if(!ERAS||!ERAS.length) return '#555';
+  const idx = ERAS.findIndex(e=>e.id===id);
+  return ERA_COLORS[idx % ERA_COLORS.length] || '#555';
+}
+function eraRange(id){
+  if(!ERAS||!ERAS.length) return '';
+  const era = ERAS.find(e=>e.id===id);
+  return era ? era.range[0]+'-'+era.range[1] : '';
+}
+
 function showDetail(d){
   if(d.isGroup) return; /* Don't show details for group nodes */
   const panel = document.getElementById("detailPanel");
   const confBadge = '<span class="conf-badge conf-'+d.confidence+'">'+d.confidence+'</span>';
   let html = '<div class="detail-content">';
-  html += '<div class="dl">名称</div><div class="dv">'+(d.label||"").replace(/\n/g,"<br>")+'</div>';
+  html += '<div class="dl">名称</div><div class="dv">'+(d.label||"").replace(/\n/g,"<br>")+"</div>";
   html += '<div class="dl">类型</div><div class="dv">'+(TYPE_LABELS[d.type]||d.type)+'</div>';
   html += '<div class="dl">置信度</div><div class="dv">'+confBadge+'</div>';
   /* Show group membership */
@@ -305,21 +354,83 @@ function showDetail(d){
     const grp = GROUPS.find(g=>g.id===d.parent);
     if(grp) html += '<div class="dl">阵营</div><div class="dv">'+grp.label+'</div>';
   }
+  /* Show eras */
+  if(d.era && d.era.length > 0){
+    html += '<div class="dl">活跃纪元</div><div class="dv">';
+    d.era.forEach(eId=>{
+      html += '<span style="display:inline-block;padding:1px 6px;margin:1px 2px;border-radius:3px;font-size:9px;background:'+eraColor(eId)+';color:#fff">'+eraLabelById(eId).replace(/\s*\(.*\)/,'')+'</span>';
+    });
+    html += '</div>';
+  }
   if(d.note){html += '<div class="dl">备注</div><div class="dv">'+d.note+'</div>';}
-  /* Connected edges */
+  /* Connected edges — grouped by era */
   const node = cy.getElementById(d.id);
   const edges = node.connectedEdges();
   if(edges.length>0){
-    html += '<div class="dl">关系 ('+edges.length+')</div><div class="rel-list">';
-    edges.forEach(e=>{
-      const ed = e.data();
-      const otherId = ed.source===d.id ? ed.target : ed.source;
-      const otherLabel = cy.getElementById(otherId).data("label") || otherId;
-      const arrow = ed.source===d.id ? "→" : "←";
-      const cb = '<span class="conf-badge conf-'+ed.confidence+' rel-conf">'+ed.confidence+'</span>';
-      html += '<div class="rel-item"><span class="rel-arrow">'+arrow+'</span> '+otherLabel.replace(/\n/g," ")+' · '+ed.label+' '+cb+'</div>';
-    });
-    html += '</div>';
+    html += '<div class="dl">关系 ('+edges.length+')</div>';
+    if(ERAS && ERAS.length > 0){
+      /* Group edges by era */
+      const eraEdges = {};
+      ERAS.forEach(era => { eraEdges[era.id] = []; });
+      eraEdges['cross_era'] = []; /* for edges spanning all eras */
+      edges.forEach(e=>{
+        const ed = e.data();
+        if(!ed.era || ed.era.length === 0 || ed.era.length === ERAS.length){
+          eraEdges['cross_era'].push(e);
+        } else {
+          /* Add to EVERY era it belongs to */
+          ed.era.forEach(eraId => {
+            if(eraEdges[eraId]) eraEdges[eraId].push(e);
+          });
+        }
+      });
+      /* Render each era group */
+      ERAS.forEach(era => {
+        const group = eraEdges[era.id];
+        if(group.length === 0) return;
+        html += '<div class="era-group-header" style="background:'+eraColor(era.id)+'">' +
+          era.label.replace(/\s*\(.*\)/,'') +
+          '<span class="era-range">'+era.range[0]+'-'+era.range[1]+'</span>' +
+          ' ('+group.length+')</div>';
+        html += '<div class="rel-list">';
+        group.forEach(e=>{
+          const ed = e.data();
+          const otherId = ed.source===d.id ? ed.target : ed.source;
+          const otherLabel = cy.getElementById(otherId).data("label") || otherId;
+          const arrow = ed.source===d.id ? "→" : "←";
+          const cb = '<span class="conf-badge conf-'+ed.confidence+' rel-conf">'+ed.confidence+'</span>';
+          const eraText = edgeLabelForEra(ed.label, era.id);
+          html += '<div class="rel-item"><span class="rel-arrow">'+arrow+'</span> '+otherLabel.replace(/\n/g," ")+' · '+eraText+' '+cb+'</div>';
+        });
+        html += '</div>';
+      });
+      /* Cross-era edges */
+      if(eraEdges['cross_era'].length > 0){
+        html += '<div class="era-group-header" style="background:#555">跨纪元 (' + eraEdges['cross_era'].length + ')</div>';
+        html += '<div class="rel-list">';
+        eraEdges['cross_era'].forEach(e=>{
+          const ed = e.data();
+          const otherId = ed.source===d.id ? ed.target : ed.source;
+          const otherLabel = cy.getElementById(otherId).data("label") || otherId;
+          const arrow = ed.source===d.id ? "→" : "←";
+          const cb = '<span class="conf-badge conf-'+ed.confidence+' rel-conf">'+ed.confidence+'</span>';
+          html += '<div class="rel-item"><span class="rel-arrow">'+arrow+'</span> '+otherLabel.replace(/\n/g," ")+' · '+edgeLabelFlat(ed.label)+' '+cb+'</div>';
+        });
+        html += '</div>';
+      }
+    } else {
+      /* Fallback: no eras, flat list */
+      html += '<div class="rel-list">';
+      edges.forEach(e=>{
+        const ed = e.data();
+        const otherId = ed.source===d.id ? ed.target : ed.source;
+        const otherLabel = cy.getElementById(otherId).data("label") || otherId;
+        const arrow = ed.source===d.id ? "→" : "←";
+        const cb = '<span class="conf-badge conf-'+ed.confidence+' rel-conf">'+ed.confidence+'</span>';
+        html += '<div class="rel-item"><span class="rel-arrow">'+arrow+'</span> '+otherLabel.replace(/\n/g," ")+' · '+edgeLabelFlat(ed.label)+' '+cb+'</div>';
+      });
+      html += '</div>';
+    }
   }
   html += '</div>';
   panel.innerHTML = html;
@@ -337,7 +448,6 @@ document.getElementById("layoutSelect").onchange = function(){
   if(name==="cose"){opts.nodeRepulsion=function(){return 6000};opts.idealEdgeLength=function(){return 80};opts.gravity=0.8;opts.nestingFactor=1.2;opts.numIter=2000;opts.initialTemp=300}
   if(name==="breadthfirst"){opts.directed=true;opts.spacingFactor=1.2}
   cy.layout(opts).run();
-  if(name==="grid") cy.fit(undefined, 40);
 };
 
 /* ── Type filters ── */
@@ -367,25 +477,96 @@ const confContainer = document.getElementById("confFilters");
   confContainer.appendChild(item);
 });
 
-/* ── Apply filters ── */
+/* ── Era filter UI ── */
+const eraContainer = document.getElementById("eraFilters");
+const timelineTrack = document.getElementById("timelineTrack");
+if(ERAS && ERAS.length > 0){
+  /* "All eras" toggle */
+  const allItem = document.createElement("div");
+  allItem.className = "filter-item";
+  allItem.innerHTML = '<input type="checkbox" checked id="era_all"><span class="color-dot" style="background:var(--accent)"></span><label for="era_all">全部纪元（长曝光）</label>';
+  eraContainer.appendChild(allItem);
+  /* Individual era checkboxes */
+  ERAS.forEach((era, idx) => {
+    const color = ERA_COLORS[idx % ERA_COLORS.length];
+    const item = document.createElement("div");
+    item.className = "filter-item";
+    item.innerHTML = '<input type="checkbox" checked data-filter-era="'+era.id+'" id="fe_'+era.id+'">' +
+      '<span class="color-dot" style="background:'+color+'"></span>' +
+      '<label for="fe_'+era.id+'" title="'+era.desc+'">'+era.label+'</label>';
+    eraContainer.appendChild(item);
+    /* Timeline segment */
+    const seg = document.createElement("div");
+    seg.className = "timeline-seg";
+    seg.dataset.era = era.id;
+    seg.style.background = color;
+    seg.innerHTML = era.label.replace(/\s*\(.*\)/, '') + '<span class="seg-range">' + era.range[0] + '-' + era.range[1] + '</span>';
+    seg.title = era.desc;
+    seg.onclick = function(){
+      /* Click timeline segment → solo that era */
+      document.getElementById("era_all").checked = false;
+      document.querySelectorAll("[data-filter-era]").forEach(cb => { cb.checked = (cb.dataset.filterEra === era.id); });
+      applyFilters();
+    };
+    timelineTrack.appendChild(seg);
+  });
+  /* "All eras" toggle logic */
+  document.getElementById("era_all").addEventListener("change", function(){
+    const allChecked = this.checked;
+    document.querySelectorAll("[data-filter-era]").forEach(cb => { cb.checked = allChecked; });
+    applyFilters();
+  });
+  /* Individual era checkbox logic */
+  document.querySelectorAll("[data-filter-era]").forEach(cb => {
+    cb.addEventListener("change", function(){
+      const allCbs = document.querySelectorAll("[data-filter-era]");
+      const allChecked = Array.from(allCbs).every(c => c.checked);
+      const noneChecked = Array.from(allCbs).every(c => !c.checked);
+      document.getElementById("era_all").checked = allChecked;
+      /* If none checked, check all (prevent empty state) */
+      if(noneChecked){
+        document.getElementById("era_all").checked = true;
+        allCbs.forEach(c => { c.checked = true; });
+      }
+      applyFilters();
+    });
+  });
+}
+
+/* ── Apply filters (unified: type + confidence + era) ── */
 function applyFilters(){
   const activeTypes = new Set();
   document.querySelectorAll("[data-filter-type]").forEach(cb=>{if(cb.checked) activeTypes.add(cb.dataset.filterType)});
   const activeConfs = new Set();
   document.querySelectorAll("[data-filter-conf]").forEach(cb=>{if(cb.checked) activeConfs.add(cb.dataset.filterConf)});
+  /* Era filter */
+  const activeEras = new Set();
+  document.querySelectorAll("[data-filter-era]").forEach(cb=>{if(cb.checked) activeEras.add(cb.dataset.filterEra)});
+  const eraFilterActive = ERAS && ERAS.length > 0 && activeEras.size < ERAS.length;
+  function eraMatch(eraArr) {
+    if(!eraFilterActive || !eraArr || eraArr.length === 0) return true;
+    return eraArr.some(e => activeEras.has(e));
+  }
+
+  /* Update timeline segments */
+  document.querySelectorAll(".timeline-seg").forEach(seg => {
+    if(activeEras.has(seg.dataset.era)) { seg.classList.remove("inactive"); }
+    else { seg.classList.add("inactive"); }
+  });
 
   cy.batch(()=>{
-    /* Child nodes: filter by type + confidence */
+    /* Child nodes: filter by type + confidence + era */
     cy.nodes("[!isGroup]").forEach(n=>{
-      const show = activeTypes.has(n.data("type")) && activeConfs.has(n.data("confidence"));
+      const show = activeTypes.has(n.data("type")) && activeConfs.has(n.data("confidence")) && eraMatch(n.data("era"));
       if(show){n.style("display","element")} else {n.style("display","none")}
     });
-    /* Edges: show only if both endpoints visible */
+    /* Edges: show only if both endpoints visible + era match */
     cy.edges().forEach(e=>{
       const src = cy.getElementById(e.data("source"));
       const tgt = cy.getElementById(e.data("target"));
       const confOk = activeConfs.has(e.data("confidence"));
-      const show = confOk && src.style("display")!=="none" && tgt.style("display")!=="none";
+      const eraOk = eraMatch(e.data("era"));
+      const show = confOk && eraOk && src.style("display")!=="none" && tgt.style("display")!=="none";
       if(show){e.style("display","element")} else {e.style("display","none")}
     });
     /* Group nodes: hide if all children hidden */

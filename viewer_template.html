@@ -28,14 +28,14 @@ select:focus{border-color:var(--accent)}
 
 /* ── Canvas ── */
 .canvas-wrap{flex:1;position:relative;background:#0d0f15}
-#cy{width:100%;height:100%}
+#cy{width:100%;height:calc(100% - 36px)}
 .hint{position:absolute;top:10px;left:10px;font-size:10px;color:var(--text-dim);pointer-events:none;line-height:1.6;background:rgba(15,17,23,0.85);padding:6px 10px;border-radius:4px;border:1px solid var(--border)}
-.zoom-ctrl{position:absolute;bottom:14px;right:14px;display:flex;flex-direction:column;gap:4px}
+.zoom-ctrl{position:absolute;bottom:50px;right:14px;display:flex;flex-direction:column;gap:4px}
 .zoom-btn{width:32px;height:32px;background:var(--panel);border:1px solid var(--border);border-radius:6px;color:var(--text);font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .15s}
 .zoom-btn:hover{background:var(--hover)}
 
 /* ── Right Panel ── */
-.panel-right{width:185px;background:var(--panel);border-left:1px solid var(--border);display:flex;flex-direction:column;overflow-y:auto;flex-shrink:0}
+.panel-right{width:280px;background:var(--panel);border-left:1px solid var(--border);display:flex;flex-direction:column;overflow-y:auto;flex-shrink:0}
 .panel-right h3{font-size:11px;text-transform:uppercase;letter-spacing:1.2px;color:var(--text-dim);padding:14px 12px 6px;border-bottom:1px solid var(--border)}
 .detail-empty{padding:14px 12px;font-size:11px;color:var(--text-dim);line-height:1.6}
 .detail-content{padding:10px 12px;font-size:11px;line-height:1.65}
@@ -48,10 +48,21 @@ select:focus{border-color:var(--accent)}
 .rel-item{padding:4px 0;border-bottom:1px solid var(--border);font-size:10px;line-height:1.5}
 .rel-arrow{color:var(--accent);font-weight:700}
 .rel-conf{float:right}
+.era-group-header{font-size:9px;font-weight:700;color:rgba(255,255,255,0.8);padding:4px 8px;margin:6px 0 2px;border-radius:3px;letter-spacing:0.5px}
+.era-group-header .era-range{font-weight:400;opacity:0.65;margin-left:4px}
 
 /* ── Tooltip ── */
 .edge-tooltip{position:absolute;pointer-events:none;background:rgba(24,27,37,0.96);border:1px solid var(--border);border-radius:6px;padding:8px 12px;font-size:11px;line-height:1.6;color:var(--text);z-index:999;max-width:260px;box-shadow:0 4px 16px rgba(0,0,0,0.5);display:none}
 .edge-tooltip .et-label{font-weight:600;color:var(--accent)}
+
+/* ── Timeline Bar ── */
+.timeline-bar{position:absolute;bottom:0;left:0;right:0;height:36px;background:var(--panel);border-top:1px solid var(--border);display:flex;align-items:center;padding:0 12px;gap:0;z-index:10}
+.timeline-label{font-size:9px;color:var(--text-dim);margin-right:8px;white-space:nowrap;flex-shrink:0}
+.timeline-track{flex:1;display:flex;height:18px;border-radius:4px;overflow:hidden;gap:1px}
+.timeline-seg{flex:1;display:flex;align-items:center;justify-content:center;font-size:8px;font-weight:600;color:rgba(255,255,255,0.85);cursor:pointer;transition:opacity .2s,filter .2s;user-select:none;position:relative}
+.timeline-seg.inactive{opacity:0.25;filter:grayscale(0.8)}
+.timeline-seg:hover{filter:brightness(1.2)}
+.timeline-seg .seg-range{font-size:7px;font-weight:400;opacity:0.7;margin-left:4px}
 </style>
 <!-- Cytoscape.js (inlined for offline use) -->
 <script>
@@ -77,6 +88,8 @@ select:focus{border-color:var(--accent)}
     </select>
     <p style="font-size:9px; color:var(--text-dim); margin-top:4px;">💡 推荐使用网格布局以获得最佳阵营展示效果</p>
   </div>
+  <h3>📅 时代纪元</h3>
+  <div class="filter-group" id="eraFilters"></div>
 </div>
 
 <!-- Canvas -->
@@ -89,6 +102,10 @@ select:focus{border-color:var(--accent)}
     <button class="zoom-btn" id="zoomFit" title="适应画布">⌂</button>
   </div>
   <div class="edge-tooltip" id="edgeTooltip"></div>
+  <div class="timeline-bar">
+    <span class="timeline-label">📅 时间线</span>
+    <div class="timeline-track" id="timelineTrack"></div>
+  </div>
 </div>
 
 <!-- Right Panel -->
@@ -106,6 +123,7 @@ const NODES = {{NODES_JSON}};
 const EDGES = {{EDGES_JSON}};
 const COLORS = {{COLORS_JSON}};
 const GROUPS = {{GROUPS_JSON}};
+const ERAS = {{ERAS_JSON}} || [];
 
 const CONF_EDGE = {
   HIGH:     {color:"#cc2222", width:2.5, style:"solid"},
@@ -139,13 +157,15 @@ NODES.forEach(n => {
   const parent = memberToGroup[n.id] || undefined;
   elements.push({data:{
     id:n.id, label:n.label.replace(/\\n/g,"\n"), type:n.type,
-    confidence:n.confidence, note:n.note, parent:parent
+    confidence:n.confidence, note:n.note, parent:parent,
+    era:n.era||[]
   }});
 });
 
 /* Edges */
 EDGES.forEach((e,i) => {
-  elements.push({data:{id:"e"+i, source:e.source, target:e.target, label:e.label.replace(/\\n/g," "), confidence:e.confidence}});
+  const lbl = (typeof e.label === 'object' && e.label !== null) ? Object.values(e.label).join(' · ') : (e.label || '');
+  elements.push({data:{id:"e"+i, source:e.source, target:e.target, label:e.label, labelFlat:lbl.replace(/\\n/g," "), confidence:e.confidence, era:e.era||[]}});
 });
 
 /* ── Node style function ── */
@@ -244,11 +264,23 @@ cy.on("tap", function(evt){
 });
 
 /* ── Edge tooltip ── */
+function edgeLabelFlat(label){
+  if(typeof label === 'object' && label !== null){
+    return Object.values(label).join(' · ');
+  }
+  return label || '';
+}
+function edgeLabelForEra(label, eraId){
+  if(typeof label === 'object' && label !== null){
+    return label[eraId] || '';
+  }
+  return label || '';
+}
 const tooltip = document.getElementById("edgeTooltip");
 cy.on("mouseover","edge", function(evt){
   const d = evt.target.data();
   const confBadge = '<span class="conf-badge conf-'+d.confidence+'">'+d.confidence+'</span>';
-  tooltip.innerHTML = '<div class="et-label">'+d.label+'</div><div>'+
+  tooltip.innerHTML = '<div class="et-label">'+edgeLabelFlat(d.label)+'</div><div>'+
     d.source+' → '+d.target+'</div><div>置信度: '+confBadge+'</div>';
   tooltip.style.display = "block";
 });
@@ -260,12 +292,29 @@ cy.on("mousemove","edge", function(evt){
 cy.on("mouseout","edge", function(){tooltip.style.display = "none"});
 
 /* ── Right panel detail ── */
+const ERA_COLORS = ["#6366f1","#f59e0b","#10b981","#ef4444","#8b5cf6","#ec4899","#14b8a6","#f97316"];
+function eraLabelById(id){
+  if(!ERAS||!ERAS.length) return id;
+  const era = ERAS.find(e=>e.id===id);
+  return era ? era.label : id;
+}
+function eraColor(id){
+  if(!ERAS||!ERAS.length) return '#555';
+  const idx = ERAS.findIndex(e=>e.id===id);
+  return ERA_COLORS[idx % ERA_COLORS.length] || '#555';
+}
+function eraRange(id){
+  if(!ERAS||!ERAS.length) return '';
+  const era = ERAS.find(e=>e.id===id);
+  return era ? era.range[0]+'-'+era.range[1] : '';
+}
+
 function showDetail(d){
   if(d.isGroup) return; /* Don't show details for group nodes */
   const panel = document.getElementById("detailPanel");
   const confBadge = '<span class="conf-badge conf-'+d.confidence+'">'+d.confidence+'</span>';
   let html = '<div class="detail-content">';
-  html += '<div class="dl">名称</div><div class="dv">'+(d.label||"").replace(/\n/g,"<br>")+'</div>';
+  html += '<div class="dl">名称</div><div class="dv">'+(d.label||"").replace(/\n/g,"<br>")+"</div>";
   html += '<div class="dl">类型</div><div class="dv">'+(TYPE_LABELS[d.type]||d.type)+'</div>';
   html += '<div class="dl">置信度</div><div class="dv">'+confBadge+'</div>';
   /* Show group membership */
@@ -273,21 +322,83 @@ function showDetail(d){
     const grp = GROUPS.find(g=>g.id===d.parent);
     if(grp) html += '<div class="dl">阵营</div><div class="dv">'+grp.label+'</div>';
   }
+  /* Show eras */
+  if(d.era && d.era.length > 0){
+    html += '<div class="dl">活跃纪元</div><div class="dv">';
+    d.era.forEach(eId=>{
+      html += '<span style="display:inline-block;padding:1px 6px;margin:1px 2px;border-radius:3px;font-size:9px;background:'+eraColor(eId)+';color:#fff">'+eraLabelById(eId).replace(/\s*\(.*\)/,'')+'</span>';
+    });
+    html += '</div>';
+  }
   if(d.note){html += '<div class="dl">备注</div><div class="dv">'+d.note+'</div>';}
-  /* Connected edges */
+  /* Connected edges — grouped by era */
   const node = cy.getElementById(d.id);
   const edges = node.connectedEdges();
   if(edges.length>0){
-    html += '<div class="dl">关系 ('+edges.length+')</div><div class="rel-list">';
-    edges.forEach(e=>{
-      const ed = e.data();
-      const otherId = ed.source===d.id ? ed.target : ed.source;
-      const otherLabel = cy.getElementById(otherId).data("label") || otherId;
-      const arrow = ed.source===d.id ? "→" : "←";
-      const cb = '<span class="conf-badge conf-'+ed.confidence+' rel-conf">'+ed.confidence+'</span>';
-      html += '<div class="rel-item"><span class="rel-arrow">'+arrow+'</span> '+otherLabel.replace(/\n/g," ")+' · '+ed.label+' '+cb+'</div>';
-    });
-    html += '</div>';
+    html += '<div class="dl">关系 ('+edges.length+')</div>';
+    if(ERAS && ERAS.length > 0){
+      /* Group edges by era */
+      const eraEdges = {};
+      ERAS.forEach(era => { eraEdges[era.id] = []; });
+      eraEdges['cross_era'] = []; /* for edges spanning all eras */
+      edges.forEach(e=>{
+        const ed = e.data();
+        if(!ed.era || ed.era.length === 0 || ed.era.length === ERAS.length){
+          eraEdges['cross_era'].push(e);
+        } else {
+          /* Add to EVERY era it belongs to */
+          ed.era.forEach(eraId => {
+            if(eraEdges[eraId]) eraEdges[eraId].push(e);
+          });
+        }
+      });
+      /* Render each era group */
+      ERAS.forEach(era => {
+        const group = eraEdges[era.id];
+        if(group.length === 0) return;
+        html += '<div class="era-group-header" style="background:'+eraColor(era.id)+'">' +
+          era.label.replace(/\s*\(.*\)/,'') +
+          '<span class="era-range">'+era.range[0]+'-'+era.range[1]+'</span>' +
+          ' ('+group.length+')</div>';
+        html += '<div class="rel-list">';
+        group.forEach(e=>{
+          const ed = e.data();
+          const otherId = ed.source===d.id ? ed.target : ed.source;
+          const otherLabel = cy.getElementById(otherId).data("label") || otherId;
+          const arrow = ed.source===d.id ? "→" : "←";
+          const cb = '<span class="conf-badge conf-'+ed.confidence+' rel-conf">'+ed.confidence+'</span>';
+          const eraText = edgeLabelForEra(ed.label, era.id);
+          html += '<div class="rel-item"><span class="rel-arrow">'+arrow+'</span> '+otherLabel.replace(/\n/g," ")+' · '+eraText+' '+cb+'</div>';
+        });
+        html += '</div>';
+      });
+      /* Cross-era edges */
+      if(eraEdges['cross_era'].length > 0){
+        html += '<div class="era-group-header" style="background:#555">跨纪元 (' + eraEdges['cross_era'].length + ')</div>';
+        html += '<div class="rel-list">';
+        eraEdges['cross_era'].forEach(e=>{
+          const ed = e.data();
+          const otherId = ed.source===d.id ? ed.target : ed.source;
+          const otherLabel = cy.getElementById(otherId).data("label") || otherId;
+          const arrow = ed.source===d.id ? "→" : "←";
+          const cb = '<span class="conf-badge conf-'+ed.confidence+' rel-conf">'+ed.confidence+'</span>';
+          html += '<div class="rel-item"><span class="rel-arrow">'+arrow+'</span> '+otherLabel.replace(/\n/g," ")+' · '+edgeLabelFlat(ed.label)+' '+cb+'</div>';
+        });
+        html += '</div>';
+      }
+    } else {
+      /* Fallback: no eras, flat list */
+      html += '<div class="rel-list">';
+      edges.forEach(e=>{
+        const ed = e.data();
+        const otherId = ed.source===d.id ? ed.target : ed.source;
+        const otherLabel = cy.getElementById(otherId).data("label") || otherId;
+        const arrow = ed.source===d.id ? "→" : "←";
+        const cb = '<span class="conf-badge conf-'+ed.confidence+' rel-conf">'+ed.confidence+'</span>';
+        html += '<div class="rel-item"><span class="rel-arrow">'+arrow+'</span> '+otherLabel.replace(/\n/g," ")+' · '+edgeLabelFlat(ed.label)+' '+cb+'</div>';
+      });
+      html += '</div>';
+    }
   }
   html += '</div>';
   panel.innerHTML = html;
@@ -334,25 +445,96 @@ const confContainer = document.getElementById("confFilters");
   confContainer.appendChild(item);
 });
 
-/* ── Apply filters ── */
+/* ── Era filter UI ── */
+const eraContainer = document.getElementById("eraFilters");
+const timelineTrack = document.getElementById("timelineTrack");
+if(ERAS && ERAS.length > 0){
+  /* "All eras" toggle */
+  const allItem = document.createElement("div");
+  allItem.className = "filter-item";
+  allItem.innerHTML = '<input type="checkbox" checked id="era_all"><span class="color-dot" style="background:var(--accent)"></span><label for="era_all">全部纪元（长曝光）</label>';
+  eraContainer.appendChild(allItem);
+  /* Individual era checkboxes */
+  ERAS.forEach((era, idx) => {
+    const color = ERA_COLORS[idx % ERA_COLORS.length];
+    const item = document.createElement("div");
+    item.className = "filter-item";
+    item.innerHTML = '<input type="checkbox" checked data-filter-era="'+era.id+'" id="fe_'+era.id+'">' +
+      '<span class="color-dot" style="background:'+color+'"></span>' +
+      '<label for="fe_'+era.id+'" title="'+era.desc+'">'+era.label+'</label>';
+    eraContainer.appendChild(item);
+    /* Timeline segment */
+    const seg = document.createElement("div");
+    seg.className = "timeline-seg";
+    seg.dataset.era = era.id;
+    seg.style.background = color;
+    seg.innerHTML = era.label.replace(/\s*\(.*\)/, '') + '<span class="seg-range">' + era.range[0] + '-' + era.range[1] + '</span>';
+    seg.title = era.desc;
+    seg.onclick = function(){
+      /* Click timeline segment → solo that era */
+      document.getElementById("era_all").checked = false;
+      document.querySelectorAll("[data-filter-era]").forEach(cb => { cb.checked = (cb.dataset.filterEra === era.id); });
+      applyFilters();
+    };
+    timelineTrack.appendChild(seg);
+  });
+  /* "All eras" toggle logic */
+  document.getElementById("era_all").addEventListener("change", function(){
+    const allChecked = this.checked;
+    document.querySelectorAll("[data-filter-era]").forEach(cb => { cb.checked = allChecked; });
+    applyFilters();
+  });
+  /* Individual era checkbox logic */
+  document.querySelectorAll("[data-filter-era]").forEach(cb => {
+    cb.addEventListener("change", function(){
+      const allCbs = document.querySelectorAll("[data-filter-era]");
+      const allChecked = Array.from(allCbs).every(c => c.checked);
+      const noneChecked = Array.from(allCbs).every(c => !c.checked);
+      document.getElementById("era_all").checked = allChecked;
+      /* If none checked, check all (prevent empty state) */
+      if(noneChecked){
+        document.getElementById("era_all").checked = true;
+        allCbs.forEach(c => { c.checked = true; });
+      }
+      applyFilters();
+    });
+  });
+}
+
+/* ── Apply filters (unified: type + confidence + era) ── */
 function applyFilters(){
   const activeTypes = new Set();
   document.querySelectorAll("[data-filter-type]").forEach(cb=>{if(cb.checked) activeTypes.add(cb.dataset.filterType)});
   const activeConfs = new Set();
   document.querySelectorAll("[data-filter-conf]").forEach(cb=>{if(cb.checked) activeConfs.add(cb.dataset.filterConf)});
+  /* Era filter */
+  const activeEras = new Set();
+  document.querySelectorAll("[data-filter-era]").forEach(cb=>{if(cb.checked) activeEras.add(cb.dataset.filterEra)});
+  const eraFilterActive = ERAS && ERAS.length > 0 && activeEras.size < ERAS.length;
+  function eraMatch(eraArr) {
+    if(!eraFilterActive || !eraArr || eraArr.length === 0) return true;
+    return eraArr.some(e => activeEras.has(e));
+  }
+
+  /* Update timeline segments */
+  document.querySelectorAll(".timeline-seg").forEach(seg => {
+    if(activeEras.has(seg.dataset.era)) { seg.classList.remove("inactive"); }
+    else { seg.classList.add("inactive"); }
+  });
 
   cy.batch(()=>{
-    /* Child nodes: filter by type + confidence */
+    /* Child nodes: filter by type + confidence + era */
     cy.nodes("[!isGroup]").forEach(n=>{
-      const show = activeTypes.has(n.data("type")) && activeConfs.has(n.data("confidence"));
+      const show = activeTypes.has(n.data("type")) && activeConfs.has(n.data("confidence")) && eraMatch(n.data("era"));
       if(show){n.style("display","element")} else {n.style("display","none")}
     });
-    /* Edges: show only if both endpoints visible */
+    /* Edges: show only if both endpoints visible + era match */
     cy.edges().forEach(e=>{
       const src = cy.getElementById(e.data("source"));
       const tgt = cy.getElementById(e.data("target"));
       const confOk = activeConfs.has(e.data("confidence"));
-      const show = confOk && src.style("display")!=="none" && tgt.style("display")!=="none";
+      const eraOk = eraMatch(e.data("era"));
+      const show = confOk && eraOk && src.style("display")!=="none" && tgt.style("display")!=="none";
       if(show){e.style("display","element")} else {e.style("display","none")}
     });
     /* Group nodes: hide if all children hidden */
