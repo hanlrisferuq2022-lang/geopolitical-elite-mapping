@@ -1,5 +1,7 @@
 # 地缘政治关键团体网络图谱工具 (Geopolitical Key Actors Network Mapping)
 
+[English](README.en.md)
+
 *AI 驱动的地缘政治权力网络分析与可视化平台*
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
