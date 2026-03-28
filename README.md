@@ -25,9 +25,9 @@
 *AI 自动生成的地缘政治精英网络图谱，展示节点阵营分布与关系连线*
 
 **模块二：可视化编辑器**
-<img width="1419" height="650" alt="交互式可视化编辑器界面，支持节点增删、连线管理与备注编辑" src="https://github.com/user-attachments/assets/4a8ef27e-135d-4ae6-bb76-9a85a2d7fde9" />
+<img width="1419" height="650" alt="交互式可视化编辑器界面，支持节点增删、连线管理与备注编辑，并可通过 Git 仓库云端保存修改" src="https://github.com/user-attachments/assets/4a8ef27e-135d-4ae6-bb76-9a85a2d7fde9" />
 
-*交互式可视化编辑器界面，支持节点增删、连线管理与备注编辑*
+*交互式可视化编辑器界面，支持节点增删、连线管理与备注编辑，并可通过 Git 仓库云端保存修改*
 
 
 ## 目录
