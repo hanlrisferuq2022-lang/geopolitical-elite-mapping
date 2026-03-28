@@ -51,6 +51,36 @@ select:focus{border-color:var(--accent)}
 .era-group-header{font-size:9px;font-weight:700;color:rgba(255,255,255,0.8);padding:4px 8px;margin:6px 0 2px;border-radius:3px;letter-spacing:0.5px}
 .era-group-header .era-range{font-weight:400;opacity:0.65;margin-left:4px}
 
+
+
+/* ── F1: Path Query ── */
+.path-input{width:100%;background:#1e2130;color:var(--text);border:1px solid var(--border);border-radius:4px;padding:5px 8px;font-size:11px;outline:none;margin:3px 0}
+.path-input:focus{border-color:var(--accent)}
+.path-input.error{border-color:#ef4444}
+.path-btn-group{display:flex;gap:6px;margin-top:6px}
+.path-btn{flex:1;padding:5px 0;background:var(--accent);color:#fff;border:none;border-radius:4px;font-size:10px;font-weight:600;cursor:pointer;transition:background .15s}
+.path-btn:hover{background:#2563eb}
+.path-btn.secondary{background:transparent;border:1px solid var(--border);color:var(--text)}
+.path-btn.secondary:hover{background:var(--hover)}
+.path-result{font-size:10px;color:var(--accent);margin-top:6px;line-height:1.5}
+.path-chain{font-size:11px;line-height:1.7;padding:8px 0}
+.path-chain .path-node{font-weight:700;color:#facc15}
+.path-chain .path-edge{color:var(--text-dim);font-size:10px}
+
+/* ── F3/F5: Export Menu ── */
+.panel-right-header{display:flex;align-items:center;justify-content:space-between;padding:10px 12px 6px;border-bottom:1px solid var(--border)}
+.panel-right-header h3{font-size:11px;text-transform:uppercase;letter-spacing:1.2px;color:var(--text-dim);margin:0;padding:0;border:none}
+.export-wrap{position:relative}
+.export-btn{background:transparent;border:1px solid var(--border);color:var(--text-dim);border-radius:4px;padding:3px 8px;font-size:10px;cursor:pointer;transition:all .15s}
+.export-btn:hover{border-color:var(--accent);color:var(--accent)}
+.export-menu{display:none;position:absolute;right:0;top:110%;background:var(--panel);border:1px solid var(--border);border-radius:6px;min-width:180px;z-index:100;box-shadow:0 6px 20px rgba(0,0,0,0.5);overflow:hidden}
+.export-menu.open{display:block}
+.export-menu-item{padding:8px 12px;font-size:10px;color:var(--text);cursor:pointer;transition:background .1s;white-space:nowrap}
+.export-menu-item:hover{background:var(--hover)}
+/* ── Toast ── */
+.toast{position:fixed;bottom:60px;left:50%;transform:translateX(-50%) translateY(20px);background:rgba(24,27,37,0.95);border:1px solid var(--border);color:var(--text);padding:8px 20px;border-radius:8px;font-size:11px;z-index:2000;opacity:0;pointer-events:none;transition:opacity .3s,transform .3s;box-shadow:0 4px 16px rgba(0,0,0,0.5)}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0);pointer-events:auto}
+
 /* ── Tooltip ── */
 .edge-tooltip{position:absolute;pointer-events:none;background:rgba(24,27,37,0.96);border:1px solid var(--border);border-radius:6px;padding:8px 12px;font-size:11px;line-height:1.6;color:var(--text);z-index:999;max-width:260px;box-shadow:0 4px 16px rgba(0,0,0,0.5);display:none}
 .edge-tooltip .et-label{font-weight:600;color:var(--accent)}
@@ -131,6 +161,17 @@ select:focus{border-color:var(--accent)}
   </div>
   <h3>📅 时代纪元</h3>
   <div class="filter-group" id="eraFilters"></div>
+  <h3>🔍 路径查询</h3>
+  <div class="filter-group">
+    <input class="path-input" id="pathFrom" list="nodeList" placeholder="起点节点名称...">
+    <input class="path-input" id="pathTo" list="nodeList" placeholder="终点节点名称...">
+    <datalist id="nodeList"></datalist>
+    <div class="path-btn-group">
+      <button class="path-btn" id="pathQueryBtn">查询</button>
+      <button class="path-btn secondary" id="pathClearBtn">清除</button>
+    </div>
+    <div class="path-result" id="pathResult"></div>
+  </div>
 </div>
 
 <!-- Canvas -->
@@ -141,6 +182,7 @@ select:focus{border-color:var(--accent)}
     <button class="zoom-btn" id="zoomIn" title="放大">+</button>
     <button class="zoom-btn" id="zoomOut" title="缩小">−</button>
     <button class="zoom-btn" id="zoomFit" title="适应画布">⌂</button>
+    <button class="zoom-btn" id="screenshotBtn" title="截图">📷</button>
   </div>
   <div class="edge-tooltip" id="edgeTooltip"></div>
   <div class="timeline-bar">
@@ -151,9 +193,22 @@ select:focus{border-color:var(--accent)}
 
 <!-- Right Panel -->
 <div class="panel-right">
-  <h3>📋 节点详情</h3>
+  <div class="panel-right-header">
+    <h3>📋 节点详情</h3>
+    <div class="export-wrap">
+      <button class="export-btn" id="exportToggle">⬇ 导出</button>
+      <div class="export-menu" id="exportMenu">
+        <div class="export-menu-item disabled" id="expNodeDetail">导出节点详情 (.md)</div>
+        <div class="export-menu-item disabled" id="expPath">导出当前路径 (.md)</div>
+      </div>
+    </div>
+  </div>
   <div id="detailPanel"><div class="detail-empty">点击节点查看详情</div></div>
 </div>
+
+<!-- Toast -->
+<div class="toast" id="toast"></div>
+
 
 <script>
 (function(){
@@ -443,6 +498,9 @@ function showDetail(d){
   }
   html += '</div>';
   panel.innerHTML = html;
+  /* Track selected node for export */
+  window._selectedNodeData = d;
+  document.getElementById('expNodeDetail').classList.remove('disabled');
 }
 
 /* ── Zoom controls ── */
@@ -588,6 +646,215 @@ function applyFilters(){
 }
 document.querySelectorAll("[data-filter-type],[data-filter-conf]").forEach(cb=>{
   cb.addEventListener("change", applyFilters);
+});
+
+/* ── F1: Path Query ── */
+let currentPath = null;
+/* Populate datalist */
+const nodeListEl = document.getElementById('nodeList');
+NODES.forEach(n => {
+  if(n.type === 'timeline') return;
+  const opt = document.createElement('option');
+  opt.value = (n.label || n.id).replace(/[\n\r]|\\n/g, ' ');
+  opt.setAttribute('data-id', n.id);
+  nodeListEl.appendChild(opt);
+});
+function findNodeIdByLabel(val){
+  if(!val) return null;
+  const norm = (s) => s.toLowerCase().replace(/[\s\n\r（\(\)）]/g, '');
+  const v = norm(val);
+  if(!v) return null;
+  /* exact ID match */
+  const byId = cy.getElementById(val.trim());
+  if(byId.length && !byId.data('isGroup')) return val.trim();
+  /* fuzzy label match */
+  const match = NODES.find(n => {
+    if(n.type === 'timeline') return false;
+    const lValue = norm(n.label || '');
+    return lValue.includes(v) || norm(n.id).includes(v);
+  });
+  return match ? match.id : null;
+}
+function runPathQuery(){
+  const fromInput = document.getElementById('pathFrom');
+  const toInput = document.getElementById('pathTo');
+  fromInput.classList.remove('error'); toInput.classList.remove('error');
+  const fromId = findNodeIdByLabel(fromInput.value);
+  const toId = findNodeIdByLabel(toInput.value);
+  if(!fromId){ fromInput.classList.add('error'); return; }
+  if(!toId){ toInput.classList.add('error'); return; }
+  /* Dijkstra */
+  const dijk = cy.elements().dijkstra({ root: '#'+fromId, weight: ()=>1, directed: false });
+  const targetNode = cy.getElementById(toId);
+  const dist = dijk.distanceTo(targetNode);
+  const resultEl = document.getElementById('pathResult');
+  if(dist === Infinity){
+    resultEl.innerHTML = '⚠️ 两节点间无连通路径';
+    currentPath = null;
+    document.getElementById('expPath').classList.add('disabled');
+    return;
+  }
+  /* Trace path */
+  const pathToTarget = dijk.pathTo(targetNode);
+  currentPath = { from: fromId, to: toId, elements: pathToTarget, distance: dist };
+  /* Visual highlight */
+  cy.elements().addClass('dimmed').removeClass('highlighted');
+  pathToTarget.forEach(el => {
+    el.removeClass('dimmed').addClass('highlighted');
+    if(el.isNode()) el.style({'background-color': '#ffffff', 'border-color': '#facc15', 'border-width': 3});
+    if(el.isEdge()) el.style({'line-color': '#facc15', 'target-arrow-color': '#facc15', 'width': 3});
+  });
+  /* Show path detail in right panel */
+  const panel = document.getElementById('detailPanel');
+  let html = '<div class="detail-content">';
+  html += '<div class="dl">路径结果</div>';
+  html += '<div class="path-chain">';
+  pathToTarget.forEach((el, i) => {
+    if(el.isNode()){
+      const lbl = (el.data('label')||el.id()).replace(/\n/g,' ');
+      html += '<span class="path-node">' + lbl + '</span>';
+    }
+    if(el.isEdge()){
+      const lbl = edgeLabelFlat(el.data('label'));
+      html += ' <span class="path-edge">→ [' + lbl.substring(0,30) + (lbl.length>30?'...':'') + '] → </span> ';
+    }
+  });
+  html += '</div>';
+  html += '<div class="dv" style="margin-top:4px">共 ' + dist + ' 跳</div>';
+  html += '</div>';
+  panel.innerHTML = html;
+  document.getElementById('expPath').classList.remove('disabled');
+  resultEl.innerHTML = '✅ 找到路径，共 ' + dist + ' 跳';
+}
+function clearPath(){
+  cy.elements().removeClass('dimmed highlighted');
+  cy.elements().removeStyle();
+  highlighted = false;
+  currentPath = null;
+  document.getElementById('pathResult').innerHTML = '';
+  document.getElementById('pathFrom').value = '';
+  document.getElementById('pathTo').value = '';
+  document.getElementById('expPath').classList.add('disabled');
+  document.getElementById('detailPanel').innerHTML = '<div class="detail-empty">点击节点查看详情</div>';
+}
+document.getElementById('pathQueryBtn').addEventListener('click', runPathQuery);
+document.getElementById('pathClearBtn').addEventListener('click', clearPath);
+
+/* ── F3/F5: Export System ── */
+function todayStr(){ return new Date().toISOString().split('T')[0]; }
+function showToast(msg){
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(()=> t.classList.remove('show'), 3000);
+}
+function downloadFile(filename, content, mime){
+  const blob = new Blob([content], {type: mime || 'text/plain;charset=utf-8'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = filename;
+  a.click();
+  URL.revokeObjectURL(a.href);
+}
+/* Export menu toggle */
+const exportMenu = document.getElementById('exportMenu');
+document.getElementById('exportToggle').addEventListener('click', function(e){
+  e.stopPropagation();
+  exportMenu.classList.toggle('open');
+});
+document.addEventListener('click', function(){ exportMenu.classList.remove('open'); });
+
+/* F3a: Export node detail */
+document.getElementById('expNodeDetail').addEventListener('click', function(){
+  if(this.classList.contains('disabled')) return;
+  const d = window._selectedNodeData;
+  if(!d){ showToast('请先选中一个节点'); return; }
+  let md = '## ' + (d.label||d.id).replace(/\n/g,' ') + '\n\n';
+  md += '- **类型：** ' + (TYPE_LABELS[d.type]||d.type) + '\n';
+  if(d.parent){
+    const grp = GROUPS.find(g=>g.id===d.parent);
+    if(grp) md += '- **阵营：** ' + grp.label + '\n';
+  }
+  if(d.era && d.era.length){
+    md += '- **活跃纪元：** ' + d.era.map(e=> eraLabelById(e).replace(/\s*\(.*\)/,'') + ' ' + eraRange(e)).join(', ') + '\n';
+  }
+  md += '- **置信度：** ' + d.confidence + '\n';
+  if(d.note) md += '- **描述：** ' + d.note + '\n';
+  /* Relations */
+  const node = cy.getElementById(d.id);
+  const edges = node.connectedEdges();
+  if(edges.length > 0){
+    md += '\n### 关联关系\n';
+    edges.forEach(e => {
+      const ed = e.data();
+      const otherId = ed.source===d.id ? ed.target : ed.source;
+      const otherLabel = (cy.getElementById(otherId).data('label')||otherId).replace(/\n/g,' ');
+      const arrow = ed.source===d.id ? '→' : '←';
+      md += '- ' + arrow + ' ' + otherLabel + '（' + edgeLabelFlat(ed.label) + '，' + ed.confidence + '）\n';
+    });
+  }
+  const fname = (d.label||d.id).replace(/\n/g,'_').replace(/[^\w\u4e00-\u9fff]/g,'_').substring(0,30) + '_detail.md';
+  downloadFile(fname, md);
+  exportMenu.classList.remove('open');
+  showToast('已导出节点详情');
+});
+
+/* F3b: Export path */
+document.getElementById('expPath').addEventListener('click', function(){
+  if(this.classList.contains('disabled') || !currentPath) return;
+  const fromLabel = (cy.getElementById(currentPath.from).data('label')||currentPath.from).replace(/\n/g,' ');
+  const toLabel = (cy.getElementById(currentPath.to).data('label')||currentPath.to).replace(/\n/g,' ');
+  let md = '## 路径：' + fromLabel + ' → ' + toLabel + '\n\n';
+  md += '**查询时间：** ' + todayStr() + '\n\n';
+  md += '**路径链：**\n';
+  let chain = '';
+  currentPath.elements.forEach(el => {
+    if(el.isNode()) chain += '[' + (el.data('label')||el.id()).replace(/\n/g,' ') + ']';
+    if(el.isEdge()) chain += ' → [' + edgeLabelFlat(el.data('label')).substring(0,40) + '] → ';
+  });
+  md += chain + '\n\n';
+  /* Node summaries */
+  md += '**节点摘要：**\n\n';
+  currentPath.elements.forEach(el => {
+    if(!el.isNode()) return;
+    const dd = el.data();
+    md += '### ' + (dd.label||dd.id).replace(/\n/g,' ') + '\n';
+    md += '- 类型：' + (TYPE_LABELS[dd.type]||dd.type) + '\n';
+    if(dd.parent){ const g=GROUPS.find(gg=>gg.id===dd.parent); if(g) md += '- 阵营：' + g.label + '\n'; }
+    md += '- 置信度：' + dd.confidence + '\n\n';
+  });
+  const fname = 'path_' + currentPath.from + '_to_' + currentPath.to + '.md';
+  downloadFile(fname, md);
+  exportMenu.classList.remove('open');
+  showToast('已导出路径');
+});
+
+/* ── F4: Screenshot ── */
+function loadHtml2Canvas(callback){
+  if(window.html2canvas) return callback();
+  const s = document.createElement('script');
+  s.src = 'https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js';
+  s.onload = callback;
+  s.onerror = ()=> showToast('截图库加载失败，请检查网络');
+  document.head.appendChild(s);
+}
+document.getElementById('screenshotBtn').addEventListener('click', function(){
+  const btn = this;
+  btn.textContent = '...';
+  btn.disabled = true;
+  loadHtml2Canvas(function(){
+    html2canvas(document.body, { useCORS:true, scale:2, logging:false }).then(function(canvas){
+      const activeEra = document.querySelector('.timeline-seg:not(.inactive)');
+      const eraName = activeEra ? activeEra.textContent.trim().replace(/\s+/g,'_') : 'all';
+      const a = document.createElement('a');
+      a.href = canvas.toDataURL('image/png');
+      a.download = 'network_' + eraName + '_' + todayStr() + '.png';
+      a.click();
+      btn.textContent = '📷';
+      btn.disabled = false;
+      showToast('截图已保存');
+    }).catch(function(){ btn.textContent = '📷'; btn.disabled = false; showToast('截图失败'); });
+  });
 });
 
 /* ── Mobile Panel Toggles ── */
