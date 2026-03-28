@@ -48,7 +48,8 @@
 - `viewer_template.html`: 交互式 UI 渲染引擎模块。
 - `SKILL.md`: 地缘政治分析方法论与视觉规范标准。
 - `references/`: 置信度定义与视觉编码的详细技术文档。
-- `Examples/`: 已完成的地缘政治网络案例（如：中东石油地缘政治）。
+- `Examples/`: 已完成的地缘政治网络案例。
+  - **中东石油示例**: [点击此处查看在线交互演示 (Live Demo)](https://katarism.github.io/geopolitical-elite-mapping/Examples/MiddleEastOil/MiddleEastOil_EliteNetwork_Viewer.html)
 
 ## 📜 引用与许可
 
