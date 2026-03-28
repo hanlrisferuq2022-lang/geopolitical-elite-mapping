@@ -35,6 +35,9 @@ wheels/
 # Local docs
 docs/
 
+# Generated outputs
+output/
+
 # Project-specific
 .obsidian/
 .gemini/

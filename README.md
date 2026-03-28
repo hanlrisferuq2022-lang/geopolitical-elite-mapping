@@ -42,8 +42,6 @@
 | 依赖 | 用途 | 安装方式 |
 |------|------|----------|
 | Python 3.8+ | 图谱生成脚本 | [python.org](https://www.python.org/) |
-| Graphviz | 图结构构建（`generate_elite_network.py` 使用） | macOS: `brew install graphviz` / Linux: `sudo apt-get install graphviz` |
-| `graphviz`（Python） | Python Graphviz 绑定 | `pip install graphviz` |
 | AI IDE（推荐） | 运行 Agentic Workflow | [Cursor](https://www.cursor.com/) / Gravity |
 
 > **注**：可视化编辑器（`Editor/editor.html`）无需上述依赖，直接在浏览器中打开即可使用。
