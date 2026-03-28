@@ -2,6 +2,9 @@
 
 这是一个专为地缘政治研究设计的精英网络制图工具包。它利用 Graphviz 生成高精度的静态关系图，并利用 Cytoscape.js 生成支持交互、完全离线的 HTML 查看器。
 
+> [!TIP]
+> **在线演示**: [点击此处查看中东石油地缘政治精英网络在线交互演示 (Live Demo)](https://katarism.github.io/geopolitical-elite-mapping/Examples/MiddleEastOil/MiddleEastOil_EliteNetwork_Viewer.html)
+
 ## 🌟 核心功能
 
 - **静态 SVG 生成**: 自动将置信度级别（HIGH/MED/LOW/INFERRED）编码为视觉样式（线宽、颜色、虚实），确保数据的透明度与诚实性。
@@ -49,7 +52,6 @@
 - `SKILL.md`: 地缘政治分析方法论与视觉规范标准。
 - `references/`: 置信度定义与视觉编码的详细技术文档。
 - `Examples/`: 已完成的地缘政治网络案例。
-  - **中东石油示例**: [点击此处查看在线交互演示 (Live Demo)](https://katarism.github.io/geopolitical-elite-mapping/Examples/MiddleEastOil/MiddleEastOil_EliteNetwork_Viewer.html)
 
 ## 📜 引用与许可
 
