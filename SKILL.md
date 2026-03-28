@@ -16,16 +16,7 @@ description: "地缘政治精英网络图谱工具。适用于分析特定议题
 - 🌐 **多层关系建模**：主边（利益关系：贸易投资、战争冲突、资源控制）+ 注释层（条约框架、思想谱系）
 - 📊 **叙事竞争意识**：地缘政治数据不透明、存在叙事竞争，没有 ground truth，置信度标注是诚实性的核心保障
 
-**与 technology-mapping 的核心差异**：
 
-| 维度 | technology-mapping | geopolitical-elite-mapping |
-|------|-------------------|---------------------------|
-| 节点 | 学者、公司、开源项目 | 精英集团、派系、军工、财阀 |
-| 主边 | 师承、创办、代码派生 | 贸易投资、战争冲突、资源控制 |
-| 注释层 | 技术概念、里程碑 | 条约框架、思想谱系 |
-| 置信度 | 可选标注（百分比） | ⚠️ 强制标注（四级），视觉编码 |
-| 启动前确认 | Phase 0 展示 domain_profile | ⚠️ 强制多轮确认（议题/时间/粒度） |
-| 分析框架 | VC 技术尽调 | 地缘政治权力分析 |
 
 ## When to Use
 
@@ -35,7 +26,7 @@ description: "地缘政治精英网络图谱工具。适用于分析特定议题
 - "印太地区安全同盟网络分析"
 - "全球稀土供应链的权力网络"
 
-**不适用**：纯技术赛道研究（使用 technology-mapping）、纯历史事件叙述（无网络结构）。
+**不适用**：纯历史事件叙述（无网络结构）。
 
 ## 输入与输出
 
@@ -262,7 +253,7 @@ description: "地缘政治精英网络图谱工具。适用于分析特定议题
 **技术方案**：使用 Python `graphviz` 库 + `dot` 布局引擎。
 
 > [!CAUTION]
-> 必须使用 Graphviz dot 引擎生成 SVG。禁止使用 Obsidian Canvas (.canvas)、NetworkX + PyVis HTML、或任何替代方案。
+> 必须使用 Graphviz dot 引擎生成 SVG。
 > 生成脚本 `generate_elite_network.py` 必须使用 `import graphviz` 并调用 `graphviz.Digraph`，输出 `.svg` 文件。
 
 > ⚠️ **前置依赖**：系统需安装 Graphviz。Python 库：`pip install graphviz`。
@@ -372,7 +363,7 @@ description: "地缘政治精英网络图谱工具。适用于分析特定议题
 | `tavily-search` | **首选搜索**：环境缺失则降级为 `search_web` | 可选（有 fallback） |
 | `graphviz` (系统+Python库) | **Phase 4 唯一出图方案**：dot 引擎生成 SVG 矢量图谱 | ⚠️ 必需 |
 
-> ⛔ **已废弃**：不支持 Obsidian Canvas (.canvas)、NetworkX + PyVis HTML 输出。
+> ⛔ **已废弃**：仅支持基于 Graphviz 的 SVG 输出。
 
 ### 辅助脚本
 
