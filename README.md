@@ -10,7 +10,9 @@
 
 一款地缘政治权力网络的脉络绘制工具。结合 **AI 自动化建模** 与 **交互式可视化编辑**，帮助您梳理复杂政治组织间的利益关系与权力结构。
 
-**[Agentic Workflow 生成示例 Live Demo](https://katarism.github.io/geopolitical-elite-mapping/Examples/MiddleEastOil/MiddleEastOil_EliteNetwork_Viewer.html)**（中东石油地缘政治精英网络，由 AI 自动生成）&nbsp;|&nbsp; **[分析报告示例](https://github.com/katarism/geopolitical-elite-mapping/blob/main/Examples/MiddleEastOil/MiddleEastOil_EliteNetwork_Report.md)**
+**[Agentic Workflow 生成示例 Live Demo](https://katarism.github.io/geopolitical-elite-mapping/Examples/MiddleEastOil/MiddleEastOil_EliteNetwork_Viewer.html)**（中东石油地缘政治精英网络，由 AI 自动生成）
+
+**[分析报告示例](https://github.com/katarism/geopolitical-elite-mapping/blob/main/Examples/MiddleEastOil/MiddleEastOil_EliteNetwork_Report.md)**
 
 <!-- TODO: 添加图谱截图或 GIF 演示 -->
 <!-- ![图谱预览](docs/assets/preview.png) -->
@@ -61,6 +63,7 @@
 
 | 文件 | 说明 |
 |------|------|
+| `[Topic]_EliteNetwork_Viewer.html` | 交互式图谱查看器，可直接在浏览器中浏览，也是导入 Editor 的源文件 |
 | `[Topic]_EliteNetwork.svg` | Graphviz 生成的 SVG 矢量图谱，置信度编码为视觉样式 |
 | `[Topic]_EliteNetwork_Report.md` | 分析报告（行为体简介、置信度审计表、关系验证、分析结论） |
 | `generate_elite_network.py` | 图谱生成脚本，可复现与手动迭代 |
