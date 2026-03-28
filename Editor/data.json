@@ -231,7 +231,7 @@
         "era3",
         "era4"
       ],
-      "user_note": "",
+      "user_note": "d f f d",
       "suspected": false
     },
     {
@@ -550,6 +550,16 @@
       ],
       "user_note": "",
       "suspected": false
+    },
+    {
+      "id": "test",
+      "label": "test",
+      "type": "state_elite",
+      "confidence": "HIGH",
+      "note": "",
+      "era": [],
+      "user_note": "",
+      "suspected": false
     }
   ],
   "edges": [
@@ -566,7 +576,8 @@
         "era4"
       ],
       "user_note": "",
-      "suspected": false
+      "suspected": false,
+      "_eid": "eid_1774693110137_0_s5sg"
     },
     {
       "source": "RU_KREMLIN",
@@ -581,7 +592,8 @@
         "era4"
       ],
       "user_note": "",
-      "suspected": false
+      "suspected": false,
+      "_eid": "eid_1774693110137_1_8bai"
     },
     {
       "source": "UAE_MBZ",
@@ -596,7 +608,8 @@
         "era4"
       ],
       "user_note": "",
-      "suspected": false
+      "suspected": false,
+      "_eid": "eid_1774693110137_2_mwn5"
     },
     {
       "source": "QA_FUND",
@@ -611,7 +624,8 @@
         "era4"
       ],
       "user_note": "",
-      "suspected": false
+      "suspected": false,
+      "_eid": "eid_1774693110137_3_7ikw"
     },
     {
       "source": "IQ_GOVT",
@@ -628,7 +642,8 @@
         "era4"
       ],
       "user_note": "",
-      "suspected": false
+      "suspected": false,
+      "_eid": "eid_1774693110137_4_vrgk"
     },
     {
       "source": "OPEC_PLUS",
@@ -643,7 +658,8 @@
         "era4"
       ],
       "user_note": "",
-      "suspected": false
+      "suspected": false,
+      "_eid": "eid_1774693110137_5_bdjn"
     },
     {
       "source": "US_SHALE",
@@ -658,7 +674,8 @@
         "era4"
       ],
       "user_note": "",
-      "suspected": false
+      "suspected": false,
+      "_eid": "eid_1774693110137_6_8xv2"
     },
     {
       "source": "US_SHALE",
@@ -673,7 +690,8 @@
         "era4"
       ],
       "user_note": "",
-      "suspected": false
+      "suspected": false,
+      "_eid": "eid_1774693110137_7_o8l0"
     },
     {
       "source": "SA_MBS",
@@ -688,7 +706,8 @@
         "era4"
       ],
       "user_note": "",
-      "suspected": false
+      "suspected": false,
+      "_eid": "eid_1774693110137_8_lwkr"
     },
     {
       "source": "SA_ARAMCO",
@@ -703,7 +722,8 @@
         "era4"
       ],
       "user_note": "",
-      "suspected": false
+      "suspected": false,
+      "_eid": "eid_1774693110137_9_si52"
     },
     {
       "source": "UAE_MBZ",
@@ -718,7 +738,8 @@
         "era4"
       ],
       "user_note": "",
-      "suspected": false
+      "suspected": false,
+      "_eid": "eid_1774693110137_10_reos"
     },
     {
       "source": "CN_NOC",
@@ -733,7 +754,8 @@
         "era4"
       ],
       "user_note": "",
-      "suspected": false
+      "suspected": false,
+      "_eid": "eid_1774693110137_11_4lrj"
     },
     {
       "source": "CN_NOC",
@@ -748,7 +770,8 @@
         "era4"
       ],
       "user_note": "",
-      "suspected": false
+      "suspected": false,
+      "_eid": "eid_1774693110137_12_9fj4"
     },
     {
       "source": "CN_NOC",
@@ -763,7 +786,8 @@
         "era4"
       ],
       "user_note": "",
-      "suspected": false
+      "suspected": false,
+      "_eid": "eid_1774693110137_13_4cqv"
     },
     {
       "source": "MAJORS_W",
@@ -780,7 +804,8 @@
         "era4"
       ],
       "user_note": "",
-      "suspected": false
+      "suspected": false,
+      "_eid": "eid_1774693110137_14_c16g"
     },
     {
       "source": "MAJORS_W",
@@ -795,7 +820,8 @@
         "era3"
       ],
       "user_note": "",
-      "suspected": false
+      "suspected": false,
+      "_eid": "eid_1774693110137_15_k62j"
     },
     {
       "source": "RU_KREMLIN",
@@ -808,7 +834,8 @@
         "era4"
       ],
       "user_note": "",
-      "suspected": false
+      "suspected": false,
+      "_eid": "eid_1774693110137_16_ktqp"
     },
     {
       "source": "IR_SL",
@@ -825,7 +852,8 @@
         "era4"
       ],
       "user_note": "",
-      "suspected": false
+      "suspected": false,
+      "_eid": "eid_1774693110137_17_udel"
     },
     {
       "source": "IR_IRGC",
@@ -840,7 +868,8 @@
         "era4"
       ],
       "user_note": "",
-      "suspected": false
+      "suspected": false,
+      "_eid": "eid_1774693110137_18_qlit"
     },
     {
       "source": "IR_IRGC",
@@ -855,7 +884,8 @@
         "era4"
       ],
       "user_note": "",
-      "suspected": false
+      "suspected": false,
+      "_eid": "eid_1774693110137_19_815o"
     },
     {
       "source": "IR_IRGC",
@@ -872,7 +902,8 @@
         "era4"
       ],
       "user_note": "",
-      "suspected": false
+      "suspected": false,
+      "_eid": "eid_1774693110137_20_d822"
     },
     {
       "source": "PMF_IQ",
@@ -887,7 +918,8 @@
         "era4"
       ],
       "user_note": "",
-      "suspected": false
+      "suspected": false,
+      "_eid": "eid_1774693110137_21_90wx"
     },
     {
       "source": "PMF_IQ",
@@ -900,7 +932,8 @@
         "era4"
       ],
       "user_note": "",
-      "suspected": false
+      "suspected": false,
+      "_eid": "eid_1774693110137_22_286v"
     },
     {
       "source": "HEZBOLLAH",
@@ -915,7 +948,8 @@
         "era4"
       ],
       "user_note": "",
-      "suspected": false
+      "suspected": false,
+      "_eid": "eid_1774693110137_23_6ebq"
     },
     {
       "source": "HOUTHI",
@@ -928,7 +962,8 @@
         "era4"
       ],
       "user_note": "",
-      "suspected": false
+      "suspected": false,
+      "_eid": "eid_1774693110137_24_dgf2"
     },
     {
       "source": "BAB_MAND",
@@ -941,7 +976,8 @@
         "era4"
       ],
       "user_note": "",
-      "suspected": false
+      "suspected": false,
+      "_eid": "eid_1774693110137_25_0yox"
     },
     {
       "source": "US_CENTCOM",
@@ -954,7 +990,8 @@
         "era4"
       ],
       "user_note": "",
-      "suspected": false
+      "suspected": false,
+      "_eid": "eid_1774693110137_26_yube"
     },
     {
       "source": "SA_MBS",
@@ -969,24 +1006,8 @@
         "era4"
       ],
       "user_note": "",
-      "suspected": false
-    },
-    {
-      "source": "IR_IRGC",
-      "target": "HORMUZ",
-      "label": {
-        "era2": "1988油轮战争先例",
-        "era3": "2019扣押英国油轮",
-        "era4": "持续封锁威胁21%全球油运"
-      },
-      "confidence": "HIGH",
-      "era": [
-        "era2",
-        "era3",
-        "era4"
-      ],
-      "user_note": "",
-      "suspected": false
+      "suspected": false,
+      "_eid": "eid_1774693110137_27_p1xv"
     },
     {
       "source": "US_CENTCOM",
@@ -1003,7 +1024,8 @@
         "era4"
       ],
       "user_note": "",
-      "suspected": false
+      "suspected": false,
+      "_eid": "eid_1774693110137_29_63l8"
     },
     {
       "source": "TR_ERDOGAN",
@@ -1018,7 +1040,8 @@
         "era4"
       ],
       "user_note": "",
-      "suspected": false
+      "suspected": false,
+      "_eid": "eid_1774693110137_30_3cjo"
     },
     {
       "source": "TR_ERDOGAN",
@@ -1033,7 +1056,8 @@
         "era4"
       ],
       "user_note": "",
-      "suspected": false
+      "suspected": false,
+      "_eid": "eid_1774693110137_31_y9g3"
     },
     {
       "source": "BTC_PIPE",
@@ -1048,7 +1072,8 @@
         "era3"
       ],
       "user_note": "",
-      "suspected": false
+      "suspected": false,
+      "_eid": "eid_1774693110137_32_6boa"
     },
     {
       "source": "IL_GOVT",
@@ -1061,7 +1086,8 @@
         "era4"
       ],
       "user_note": "",
-      "suspected": false
+      "suspected": false,
+      "_eid": "eid_1774693110137_33_f8up"
     },
     {
       "source": "IL_GOVT",
@@ -1074,7 +1100,8 @@
         "era4"
       ],
       "user_note": "",
-      "suspected": false
+      "suspected": false,
+      "_eid": "eid_1774693110137_34_smlt"
     },
     {
       "source": "US_CENTCOM",
@@ -1089,7 +1116,8 @@
         "era4"
       ],
       "user_note": "",
-      "suspected": false
+      "suspected": false,
+      "_eid": "eid_1774693110137_35_8tga"
     },
     {
       "source": "SA_MBS",
@@ -1102,7 +1130,8 @@
         "era4"
       ],
       "user_note": "",
-      "suspected": false
+      "suspected": false,
+      "_eid": "eid_1774693110137_36_t0kv"
     },
     {
       "source": "SA_MBS",
@@ -1115,7 +1144,8 @@
         "era4"
       ],
       "user_note": "",
-      "suspected": false
+      "suspected": false,
+      "_eid": "eid_1774693110137_37_dp8d"
     },
     {
       "source": "SA_MBS",
@@ -1130,7 +1160,8 @@
         "era4"
       ],
       "user_note": "",
-      "suspected": false
+      "suspected": false,
+      "_eid": "eid_1774693110137_38_zkil"
     },
     {
       "source": "IR_SL",
@@ -1145,7 +1176,8 @@
         "era4"
       ],
       "user_note": "",
-      "suspected": false
+      "suspected": false,
+      "_eid": "eid_1774693110137_39_9obo"
     },
     {
       "source": "CN_NOC",
@@ -1158,7 +1190,8 @@
         "era4"
       ],
       "user_note": "",
-      "suspected": false
+      "suspected": false,
+      "_eid": "eid_1774693110137_40_b4mo"
     },
     {
       "source": "CN_NOC",
@@ -1173,7 +1206,8 @@
         "era4"
       ],
       "user_note": "",
-      "suspected": false
+      "suspected": false,
+      "_eid": "eid_1774693110137_41_qjs5"
     },
     {
       "source": "SA_MBS",
@@ -1186,7 +1220,8 @@
         "era4"
       ],
       "user_note": "",
-      "suspected": false
+      "suspected": false,
+      "_eid": "eid_1774693110137_42_e6f3"
     },
     {
       "source": "LY_CHAOS",
@@ -1201,7 +1236,8 @@
         "era4"
       ],
       "user_note": "",
-      "suspected": false
+      "suspected": false,
+      "_eid": "eid_1774693110137_43_hayu"
     },
     {
       "source": "NG_GOVT",
@@ -1218,7 +1254,8 @@
         "era4"
       ],
       "user_note": "",
-      "suspected": false
+      "suspected": false,
+      "_eid": "eid_1774693110137_44_2lis"
     },
     {
       "source": "MAJORS_W",
@@ -1233,7 +1270,8 @@
         "era4"
       ],
       "user_note": "",
-      "suspected": false
+      "suspected": false,
+      "_eid": "eid_1774693110137_45_ixqo"
     },
     {
       "source": "WAHHABISM",
@@ -1248,7 +1286,8 @@
         "era4"
       ],
       "user_note": "",
-      "suspected": false
+      "suspected": false,
+      "_eid": "eid_1774693110137_46_00vc"
     },
     {
       "source": "SHIA_CRES",
@@ -1265,7 +1304,8 @@
         "era4"
       ],
       "user_note": "",
-      "suspected": false
+      "suspected": false,
+      "_eid": "eid_1774693110137_47_d17b"
     },
     {
       "source": "OPEC_1973",
@@ -1278,7 +1318,8 @@
         "era2"
       ],
       "user_note": "",
-      "suspected": false
+      "suspected": false,
+      "_eid": "eid_1774693110137_48_pzvx"
     },
     {
       "source": "ARAMCO_HIST",
@@ -1293,7 +1334,8 @@
         "era2"
       ],
       "user_note": "",
-      "suspected": false
+      "suspected": false,
+      "_eid": "eid_1774693110137_49_awrv"
     },
     {
       "source": "MAJORS_W",
@@ -1306,7 +1348,8 @@
         "era1"
       ],
       "user_note": "",
-      "suspected": false
+      "suspected": false,
+      "_eid": "eid_1774693110137_50_177o"
     },
     {
       "source": "MAJORS_W",
@@ -1319,7 +1362,8 @@
         "era1"
       ],
       "user_note": "",
-      "suspected": false
+      "suspected": false,
+      "_eid": "eid_1774693110137_51_svh7"
     },
     {
       "source": "WAHHABISM",
@@ -1332,7 +1376,8 @@
         "era1"
       ],
       "user_note": "",
-      "suspected": false
+      "suspected": false,
+      "_eid": "eid_1774693110137_52_6nki"
     },
     {
       "source": "MAJORS_W",
@@ -1345,7 +1390,8 @@
         "era1"
       ],
       "user_note": "",
-      "suspected": false
+      "suspected": false,
+      "_eid": "eid_1774693110137_53_07fs"
     }
   ]
 }
