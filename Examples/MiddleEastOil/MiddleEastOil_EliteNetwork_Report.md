@@ -3,7 +3,7 @@
 
 **生成时间**: 2026-03-28  
 **分析工具**: geopolitical-elite-mapping v1.0.0  
-**图谱文件**: `MiddleEastOil_EliteNetwork.svg`  
+**查看器文件**: `MiddleEastOil_EliteNetwork_Viewer.html`
 **脚本文件**: `generate_elite_network.py`
 
 ---

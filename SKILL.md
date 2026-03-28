@@ -1,7 +1,7 @@
 ---
 name: geopolitical-elite-mapping
 version: 1.0.0
-description: "地缘政治精英网络图谱工具。适用于分析特定议题下的精英集团/派系网络（政治派系、财阀、军工集团、资源控制方），通过系统性调研构建利益关系网络，输出带置信度编码的 Graphviz SVG 图谱 + 文字分析报告。触发词：「地缘政治图谱」「精英网络」「elite network」「geopolitical mapping」「权力网络分析」。"
+description: "地缘政治精英网络图谱工具。适用于分析特定议题下的精英集团/派系网络（政治派系、财阀、军工集团、资源控制方），通过系统性调研构建利益关系网络，输出带置信度编码的交互式 HTML 图谱查看器 + 文字分析报告。触发词：「地缘政治图谱」「精英网络」「elite network」「geopolitical mapping」「权力网络分析」。"
 ---
 
 # Geopolitical Elite Network Mapping Skill (v1.0.0)
@@ -34,7 +34,7 @@ description: "地缘政治精英网络图谱工具。适用于分析特定议题
 用户提供一个地缘政治议题关键词或描述：`"中东石油地缘政治"` / `"印太安全同盟"` / `"全球半导体供应链权力博弈"`
 
 ### 输出
-1. **`[Topic]_EliteNetwork.svg`** — Graphviz dot 生成的 SVG 矢量图谱（置信度编码进视觉）
+1. **`[Topic]_EliteNetwork_Viewer.html`** — 交互式图谱查看器（置信度编码进视觉，内置纪元筛选器）
 2. **`[Topic]_EliteNetwork_Report.md`** — 文字分析报告（行为体简介 + 置信度审计表 + 关系验证 + 分析结论）
 3. **`generate_elite_network.py`** — 图谱生成脚本（可复现、可迭代修改）
 
@@ -258,21 +258,17 @@ description: "地缘政治精英网络图谱工具。适用于分析特定议题
 
 ---
 
-### Phase 4: 可视化输出 (Graphviz SVG)
+### Phase 4: 可视化输出 (Interactive Viewer)
 
-**目的**：将图数据转化为高质量、带置信度视觉编码的 SVG 矢量图谱。
+**目的**：将图数据转化为高质量、带置信度视觉编码的交互式 HTML 图谱查看器。
 
-**技术方案**：使用 Python `graphviz` 库 + `dot` 布局引擎。
-
-> [!CAUTION]
-> 必须使用 Graphviz dot 引擎生成 SVG。
-> 生成脚本 `generate_elite_network.py` 必须使用 `import graphviz` 并调用 `graphviz.Digraph`，输出 `.svg` 文件。
+**技术方案**：使用 Python `graphviz` 库构建图结构，通过 `export_html()` 注入 `viewer_template.html` 生成 Cytoscape.js 查看器。
 
 > ⚠️ **前置依赖**：系统需安装 Graphviz。Python 库：`pip install graphviz`。
 
 **步骤**：
 
-1. 创建 `generate_elite_network.py`，使用 `graphviz.Digraph(format='svg', engine='dot')`
+1. 创建 `generate_elite_network.py`，使用 `graphviz.Digraph(engine='dot')` 构建图结构
 
 2. 图谱全局设置：白底 + 深色文字，`rankdir: TB`，`dpi: 150`，`fontname: Arial`（确保中英文兼容）
 
@@ -305,10 +301,10 @@ description: "地缘政治精英网络图谱工具。适用于分析特定议题
 
 7. **时间轴锚定**：左侧时间轴 + `rank=same` 约束
 
-8. **布局验证** — 生成 SVG 后按 [调试 checklist](references/visual_spec.md#6-调试-checklist) 检查
+8. **布局验证** — 生成查看器后按 [调试 checklist](references/visual_spec.md#6-调试-checklist) 检查
 
-**Phase 4 交付物**：SVG 矢量图谱 + 生成脚本。
-3. `[Topic]_EliteNetwork_Viewer.html` — 交互查看器（由 `export_html()` 自动生成，内置纪元筛选器 + 时间线控件）
+**Phase 4 交付物**：`[Topic]_EliteNetwork_Viewer.html` 交互式查看器 + 生成脚本。
+   - 由 `export_html()` 自动生成，内置纪元筛选器 + 时间线控件
    - 用户可通过左侧「📅 时代纪元」筛选器或底部时间线切换纪元视图
    - 支持多纪元叠加、单纪元独显、全部纪元（长曝光模式）
 
@@ -375,9 +371,7 @@ description: "地缘政治精英网络图谱工具。适用于分析特定议题
 | 技能 | 用途 | 必需 |
 |------|------|------|
 | `tavily-search` | **首选搜索**：环境缺失则降级为 `search_web` | 可选（有 fallback） |
-| `graphviz` (系统+Python库) | **Phase 4 唯一出图方案**：dot 引擎生成 SVG 矢量图谱 | ⚠️ 必需 |
-
-> ⛔ **已废弃**：仅支持基于 Graphviz 的 SVG 输出。
+| `graphviz` (系统+Python库) | **Phase 4 图结构构建**：dot 引擎定义节点/边布局，输出交互式 HTML 查看器 | ⚠️ 必需 |
 
 ### 辅助脚本
 
@@ -409,5 +403,5 @@ description: "地缘政治精英网络图谱工具。适用于分析特定议题
 8. **按利益分组**：聚类分组基于利益关系和实际行为，不基于刻板的国家/种族/宗教标签。
 9. **时间线必备**：左侧必须有时间轴锚定关键事件。
 10. **中文标注**：组织/人名保留原文名 + 中文注释。
-11. **Graphviz dot 标准**：SVG 输出，白底 + 置信度视觉编码。
+11. **可视化标准**：白底 + 置信度视觉编码，通过交互式 HTML 查看器呈现。
 12. **局限性透明**：报告必须包含局限性声明，明确数据来源受限、分析框架偏见等。

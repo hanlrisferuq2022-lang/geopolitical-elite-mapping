@@ -411,7 +411,6 @@ GROUPS = [
 # ──────────────────────────────────────────
 dot = graphviz.Digraph(
     name="MiddleEastOilEliteNetwork",
-    format="svg",
     engine="dot",
     graph_attr={
         "bgcolor":    "white",
@@ -704,11 +703,8 @@ def export_html(output_base, title, nodes, edges, colors, groups, eras=None):
 if __name__ == "__main__":
     output_path = "MiddleEastOil_EliteNetwork"
 
-    # 1. SVG 图谱（原有）
-    dot.render(output_path, cleanup=True)
-    print(f"✅ SVG 已生成: {output_path}.svg")
     print(f"📊 节点数: {len(NODES)}, 边数: {len(EDGES)}")
 
-    # 2. 交互式 HTML 查看器（新增）
+    # 交互式 HTML 查看器
     graph_title = "中东石油地缘政治精英网络图谱 (1973-2026)"
     export_html(output_path, graph_title, NODES, EDGES, COLORS, GROUPS, ERAS)

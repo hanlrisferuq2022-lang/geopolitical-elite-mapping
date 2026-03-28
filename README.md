@@ -4,7 +4,7 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Python 3.8+](https://img.shields.io/badge/Python-3.8%2B-3776AB?logo=python&logoColor=white)](https://www.python.org/)
-[![Graphviz](https://img.shields.io/badge/Graphviz-required-orange)](https://graphviz.org/)
+
 
 > **最近更新 (2026-03-28)**：可视化编辑器与 AI 辅助生成流程已完善。
 
@@ -34,7 +34,7 @@
 | 依赖 | 用途 | 安装方式 |
 |------|------|----------|
 | Python 3.8+ | 图谱生成脚本 | [python.org](https://www.python.org/) |
-| Graphviz | SVG 渲染引擎 | macOS: `brew install graphviz` / Linux: `sudo apt-get install graphviz` |
+| Graphviz | 图结构构建（`generate_elite_network.py` 使用） | macOS: `brew install graphviz` / Linux: `sudo apt-get install graphviz` |
 | `graphviz`（Python） | Python Graphviz 绑定 | `pip install graphviz` |
 | AI IDE（推荐） | 运行 Agentic Workflow | [Cursor](https://www.cursor.com/) / Gravity |
 
@@ -69,7 +69,6 @@
 | 文件 | 说明 |
 |------|------|
 | `[Topic]_EliteNetwork_Viewer.html` | 交互式图谱查看器，可直接在浏览器中浏览，也是导入 Editor 的源文件 |
-| `[Topic]_EliteNetwork.svg` | Graphviz 生成的 SVG 矢量图谱，置信度编码为视觉样式 |
 | `[Topic]_EliteNetwork_Report.md` | 分析报告（行为体简介、置信度审计表、关系验证、分析结论） |
 | `generate_elite_network.py` | 图谱生成脚本，可复现与手动迭代 |
 
@@ -100,7 +99,7 @@ geopolitical-elite-mapping/
 │   ├── editor.html                    # 可视化编辑器（纯前端单文件应用）
 │   └── EliteNetworkEditor_PRD.md      # 编辑器产品需求文档
 ├── Examples/
-│   └── MiddleEastOil/                 # 中东石油政治案例（SVG + 报告 + 查看器）
+│   └── MiddleEastOil/                 # 中东石油政治案例（报告 + 查看器）
 ├── references/                        # 规范文档
 │   ├── data_schema.md                 # 数据 Schema（节点/边类型定义）
 │   ├── confidence_spec.md             # 置信度标注规范（HIGH / MED / LOW / INFERRED）

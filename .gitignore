@@ -44,7 +44,6 @@ _agent/
 
 # Generated outputs (optional, keep Examples but ignore loose outputs in root)
 # Add specific patterns if you want to keep the root clean
-# *EliteNetwork.svg
 # *EliteNetwork_Viewer.html
 # *EliteNetwork_Report.md
 # network_meta.json
