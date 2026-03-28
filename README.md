@@ -27,7 +27,7 @@
 
 1. **克隆项目**:
    ```bash
-   git clone <你的项目地址>
+   git clone https://github.com/katarism/geopolitical-elite-mapping.git
    cd geopolitical-elite-mapping
    ```
 
