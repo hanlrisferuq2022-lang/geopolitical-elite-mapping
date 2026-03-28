@@ -92,7 +92,7 @@ AI 生成的图谱是起点，而非终点。编辑器让您将其转化为**持
 ### 开始使用
 
 1. **获取 Token**：前往 [GitHub Token 申请页](https://github.com/settings/tokens?type=beta)，创建一个 `Fine-grained Token`（需勾选 `Contents: Read and Write` 权限）。
-2. **打开并工作**：直接在浏览器中双击 `Editor/editor.html`，输入 Token 和仓库名，导入 Agentic Workflow 生成的 `[Topic]_EliteNetwork_Viewer.html` 即可开始。
+2. **打开并工作**：在文件浏览器（macOS 用 Finder，Windows 用文件资源管理器）中双击 `Editor/editor.html`，浏览器将自动打开该文件，输入 Token 和仓库名，导入 Agentic Workflow 生成的 `[Topic]_EliteNetwork_Viewer.html` 即可开始。
 
 ## 项目结构
 
